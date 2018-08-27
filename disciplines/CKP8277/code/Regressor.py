@@ -18,8 +18,7 @@ from matplotlib import pyplot as plt
 
 class LinearRegressor(Regressor):
     """docstring for LinearRegressor"""
-    def __init__(self, method="OLS", params={'eta': 0.01, 'epochs': 100}):
-        self.method  = method
+    def __init__(self, params={'method':'OLS', 'eta': 0.01, 'epochs': 100}):
         self.params  = params
         self.model   = dict()
         self.metrics = dict()
@@ -28,24 +27,23 @@ class LinearRegressor(Regressor):
         self.train_data = data
 
         # ordinary least squares
-        if self.method == 'OLS':
+        if self.params['method'] == 'OLS':
             self.model['w'] = np.linalg.pinv(data.X).dot(data.y)
             self.metrics['mse'] = np.power(data.y - data.X.dot(self.model['w']),2).mean()
         
         # gradient descendent
-        elif self.method == 'GD':
+        elif self.params['method'] == 'GD':
             self.model['w']     = 0.01 * np.random.randn(data.X.shape[1],1)
             self.metrics['mse'] = np.zeros((self.params['epochs'],))
             y_hat               = data.X.dot(self.model['w'])
             for i in range(self.params['epochs']):
-                self.model['w']        = self.model['w'] + self.params['eta'] * np.mean(np.multiply(data.y - y_hat, data.X),0)[np.newaxis].T + \
-                                         
+                self.model['w']        = self.model['w'] + self.params['eta'] * np.mean(np.multiply(data.y - y_hat, data.X),0)[np.newaxis].T
                 y_hat                  = data.X.dot(self.model['w'])
                 # mean squared error
                 self.metrics['mse'][i] = ((data.y - y_hat) ** 2).mean()
 
         # stochastic gradient descendent
-        elif self.method == 'SGD':
+        elif self.params['method'] == 'SGD':
             self.model['w'] = 0.01 * np.random.randn(data.X.shape[1],1)
             self.metrics['mse'] = np.zeros((self.params['epochs'],))
             for i in range(self.params['epochs']):
