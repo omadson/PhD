@@ -21,11 +21,20 @@ class Data:
         
     def plot(self):
         if self.data.shape[1] == 2:
-            plt.scatter(self.data[:,-2], self.data[:,-1])
+            plt.scatter(self.data[:,0], self.data[:,1])
             plt.title('Dataset')
-            plt.xlabel('x')
-            plt.ylabel('y')
+            plt.xlabel('feature #1')
+            plt.ylabel('output')
             plt.show()
+        if self.data.shape[1] == 3:
+            plt.scatter(self.data[:,0], self.data[:,1], c=self.data[:,2])
+            plt.title('Dataset')
+            plt.xlabel('feature #1')
+            plt.ylabel('feature #2')
+            plt.show()
+
+        else:
+            print("Plot error: Dataset with 3 or more features.")
     
     def copy(self):
         return copy.copy(self)
