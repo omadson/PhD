@@ -1,4 +1,5 @@
 import numpy as np
+import copy
 from matplotlib import pyplot as plt
 class Data:
     """docstring for Data"""
@@ -19,12 +20,15 @@ class Data:
         self.split_io()
         
     def plot(self):
-        if self.data.shape[1] - 1 == 2:
+        if self.data.shape[1] == 2:
             plt.scatter(self.data[:,-2], self.data[:,-1])
             plt.title('Dataset')
             plt.xlabel('x')
             plt.ylabel('y')
             plt.show()
+    
+    def copy(self):
+        return copy.copy(self)
 
     def add_bias(self):
         self.data = np.concatenate((np.ones((self.data.shape[0],1)),self.data),1)
