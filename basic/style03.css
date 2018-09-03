@@ -1,0 +1,8 @@
+p {
+    color: blue;
+}
+
+p.highlight {
+    color: black;
+    background-color: yellow;
+}

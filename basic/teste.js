@@ -1,0 +1,1 @@
+alert("Carregando JS com arquivo externo.");
