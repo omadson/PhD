@@ -1,4 +1,4 @@
-# Curso de visialização de dados (2018.1)
+# Visualização de dados
  - [index01.html](basic/index01.html)
  - [index02.html](basic/index02.html)
  - [index03.html](basic/index03.html)
