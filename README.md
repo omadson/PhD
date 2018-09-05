@@ -12,4 +12,14 @@
  - [index09.html](basic/index09.html)
 
 ## 05.09.2018
- - 
+ - [01_single_select.html](d3_intro/01_single_select.html)
+ - [02_multi_select.html](d3_intro/02_multi_select.html)
+ - [03_iterate_select.html](d3_intro/03_iterate_select.html)
+ - [04_data_array_start.html](d3_intro/04_data_array_start.html)
+ - [05_data_object_start.html](d3_intro/05_data_object_start.html)
+ - [06_util_array.html ](d3_intro/06_util_array.html )
+ - [07_load_data.html](d3_intro/07_load_data.html)
+ - [08_sort_data.html](d3_intro/08_sort_data.html)
+ - [data_array_solution.html](d3_intro/data_array_solution.html)
+ - [data_object_solution.html](d3_intro/data_object_solution.html)
+ - [movies_d3.html](d3_intro/movies_d3.html)
