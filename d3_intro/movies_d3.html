@@ -8,42 +8,69 @@
 </head>
 
 <body>
-    <div id="chart"></div>
+    <div id="chart1"></div>
+    <div id="chart2"></div>
+    <div id="chart3"></div>
+    <div id="chart4"></div>
     <script type="text/javascript">
-        function render(data, title, comparator) {
-            d3.select("#chart").append("h1").text(title)
-            d3.select("#chart").selectAll("div.h-bar")
+        function render(data, id, title, info) {
+            d3.select(id).append("h1").text(title)
+            d3.select(id).selectAll("div.h-bar")
                     .data(data)
                 .enter().append("div")
                 .attr("class", "h-bar")
                 .append("span");
             
-            d3.select("#chart").selectAll("div.h-bar")
+            d3.select(id).selectAll("div.h-bar")
                     .data(data)
-                .attr("class", "h-bar")
+                .attr("class", "h-bar red")
                 .style("width", function (d) {
-                    return Math.round(d.Worldwide_Gross_M / 2.5) + "px";
+                    return information(info, d) + "px";
                 })
                 .select("span")
                     .text(function (d) {
-                        return d.Film + ` (${d.Worldwide_Gross_M})`;
+                        return d.Film;
                     });
-            if (comparator)
-                d3.select("body")
+
+            if (compara(info))
+                d3.select(id)
                     .selectAll("div.h-bar")
-                    .sort(comparator);
+                    .sort(compara(info));
         }
-        
-        let comparePorBilheteria = function(a, b) {
-            return a.Worldwide_Gross_M < b.Worldwide_Gross_M?-1:1;
+
+        let information = function(info, d) {
+            if (info == 'Lucro') {
+                return Math.round((d['Worldwide_Gross_M'] - d['Budget_M'])/2)
+            }
+            if (info == 'Bilheteria') {
+                return Math.round(d['Worldwide_Gross_M'] / 3)
+            }
+            if (info == 'Orcamento') {
+                return Math.round(d['Budget_M'] * 3)
+            }
+
         };
 
-        let comparePorOrcamento = function(a, b) {
-            return a.Budget_M > b.Budget_M?-1:1;
-        };
+        let compara = function(info) {
+            if (info == 'Lucro') {
+                return function(a, b) {
+                    let aa = a['Worldwide_Gross_M'] - a['Budget_M']
+                    let bb = b['Worldwide_Gross_M'] - b['Budget_M']
+                    return aa > bb?-1:1;
+                };
+            }
+            if (info == 'Bilheteria') {
+                return function(a, b) {return a.Worldwide_Gross_M > b.Worldwide_Gross_M?-1:1;};
+            }
+            if (info == 'Orcamento') {
+                return function(a, b) {return a.Budget_M > b.Budget_M?-1:1;};
+            }
+        }
 
         d3.json("data/movies.json").then(function(json){ 
-            render(json, "Filmes por Bilheteria", comparePorBilheteria);
+            render(json, "#chart1", "Bilheteria", "Bilheteria");
+            render(json, "#chart2", "Orçamento", "Orcamento");
+            render(json, "#chart3", "Lucro", "Lucro");
         });
         // d3.json("data/movies.json").then(function(json){ 
         //     render(json, "Filmes por Orçamento", comparePorOrcamento);

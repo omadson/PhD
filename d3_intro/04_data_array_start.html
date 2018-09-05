@@ -17,21 +17,16 @@
             .enter()
                 .append("div")
                     .attr("class", "h-bar")
-                    .style("width", "30px")
-                .append("span");
-        // Update
-        d3.select("body").selectAll("div.h-bar")
-            .data(data)
-                .style("width", function (d) {
-                    return 5*d + 'px'
-                })
-                .style("font-", function (d) {
-                    return 5*d + 'px'
-                })
-                .text(function (d) {
-                    return d
-                })
-                .select("span");
+                    .style("width", function (d) {
+                        return 5*d + 'px'
+                    })
+                    .style("font-", function (d) {
+                        return 5*d + 'px'
+                    })
+                    .text(function (d) {
+                        return d
+                    })
+                    .select("span");
 
     }
     render(data);

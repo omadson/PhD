@@ -11,9 +11,11 @@
     <div id="chart"></div>
     <script type="text/javascript">
         function render(data) {
-            d3.select("#chart").selectAll("div.h-bar")
-                    .data(data)
-                .enter().append("div")
+            d3.select("#chart")
+                .selectAll("div.h-bar")
+                .data(data)
+                .enter()
+                .append("div")
                 .attr("class", "h-bar")
                 .append("span");
             
