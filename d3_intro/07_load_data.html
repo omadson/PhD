@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carregando dados de arquivo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <div id="chart"></div>
+    <script type="text/javascript">
+        function render(data) {
+            d3.select("#chart").selectAll("div.h-bar")
+                    .data(data)
+                .enter().append("div")
+                .attr("class", "h-bar")
+                .append("span");
+            
+            d3.select("#chart").selectAll("div.h-bar")
+                    .data(data)
+                .attr("class", "h-bar")
+                .style("width", function (d) {
+                    return (d.despesa * 10) + "px";
+                })
+                .select("span")
+                    .text(function (d) {
+                        return d.categoria;
+                    });
+        }
+        
+        d3.json("data/data.json").then(function(json){ 
+            render(json);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Funções úteis para lidar com vetores de dados</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <div class="code">let array = [3, 2, 11, 7, 6, 4, 10, 8, 15];</div>
+    <div>d3.min => <span id="min"></span></div>
+    <div>d3.max => <span id="max"></span></div>
+    <div>d3.extent => <span id="extent"></span></div>
+    <div>d3.sum => <span id="sum"></span></div>
+    <div>d3.median => <span id="median"></span></div>
+    <div>d3.mean => <span id="mean"></span></div>
+    <div>array.sort(d3.ascending) => <span id="asc"></span></div>
+    <div>array.sort(d3.descending) => <span id="desc"></span></div>
+    <div>d3.quantile(array.sort(d3.ascending), 0.25) => <span id="quantile"></span></div>
+
+    <script type="text/javascript">
+        let array = [3, 2, 11, 7, 6, 4, 10, 8, 15];
+
+        d3.select("#min").text(d3.min(array));
+        d3.select("#max").text(d3.max(array));
+        d3.select("#extent").text(d3.extent(array));
+        d3.select("#sum").text(d3.sum(array));
+        d3.select("#median").text(d3.median(array));
+        d3.select("#mean").text(d3.mean(array));
+        d3.select("#asc").text(array.sort(d3.ascending));
+        d3.select("#desc").text(array.sort(d3.descending));
+        d3.select("#quantile").text(
+            d3.quantile(array.sort(d3.ascending), 0.25)
+        );
+    </script>
+</body>
+</html>

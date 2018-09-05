@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carregando dados de arquivo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <div id="chart"></div>
+    <script type="text/javascript">
+        function render(data, title, comparator) {
+            d3.select("#chart").append("h1").text(title)
+            d3.select("#chart").selectAll("div.h-bar")
+                    .data(data)
+                .enter().append("div")
+                .attr("class", "h-bar")
+                .append("span");
+            
+            d3.select("#chart").selectAll("div.h-bar")
+                    .data(data)
+                .attr("class", "h-bar")
+                .style("width", function (d) {
+                    return Math.round(d.Worldwide_Gross_M / 2.5) + "px";
+                })
+                .select("span")
+                    .text(function (d) {
+                        return d.Film + ` (${d.Worldwide_Gross_M})`;
+                    });
+            if (comparator)
+                d3.select("body")
+                    .selectAll("div.h-bar")
+                    .sort(comparator);
+        }
+        
+        let comparePorBilheteria = function(a, b) {
+            return a.Worldwide_Gross_M < b.Worldwide_Gross_M?-1:1;
+        };
+
+        let comparePorOrcamento = function(a, b) {
+            return a.Budget_M > b.Budget_M?-1:1;
+        };
+
+        d3.json("data/movies.json").then(function(json){ 
+            render(json, "Filmes por Bilheteria", comparePorBilheteria);
+        });
+        // d3.json("data/movies.json").then(function(json){ 
+        //     render(json, "Filmes por Orçamento", comparePorOrcamento);
+        // });
+    </script>
+</body>
+</html>

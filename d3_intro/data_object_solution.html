@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vinculando um vetor de objetos</title>
+    <link rel="stylesheet" href="css/styles.css">
+   <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+    let data = [ 
+        {width: 10, color: 23},{width: 15, color: 33},
+        {width: 30, color: 40},{width: 50, color: 60},
+        {width: 80, color: 22},{width: 65, color: 10},
+        {width: 55, color: 5},{width: 30, color: 30},
+        {width: 20, color: 60},{width: 10, color: 90},
+        {width: 8, color: 10}
+    ];
+
+    let colorScale = d3.scaleLinear()
+        .domain([0, 100])
+        .range(["#deebf7", "#08306b"]); // Escala de cor
+
+    function render(data) {
+        // Enter
+        d3.select("body").selectAll("div.h-bar")
+            .data(data)
+            .enter()
+                .append("div")
+                    .attr("class", "h-bar")
+                .append("span");
+        // Update
+        d3.select("body").selectAll("div.h-bar")
+            .data(data) 
+                .style("width", function (d) { 
+                    return (d.width * 5) + "px";
+                })
+                .style("background-color", function(d){
+                    return colorScale(d.color); 
+                })
+                .select("span") 
+                    .text(function (d) {
+                        return d.width;
+                    });
+    }
+    render(data);
+</script>
+
+</body>
+</html>

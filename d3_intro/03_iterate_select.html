@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Selecionando múltiplos elementos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+
+<div></div>
+<div></div>
+<div></div>
+
+<script type="text/javascript">
+    d3.selectAll("div") 
+        .attr("class", "red box")
+        .each(function (d, i) {
+            d3.select(this)
+            .append('h1').text(i)
+            .append('svg')
+                .attr('width', 200)
+                .attr('height', 100)
+                .append('circle')
+                    .attr('cx', '100')
+                    .attr('cy', '50')
+                    .attr('r','22')
+                    .attr('fill','white')
+
+        }); 
+</script>
+
+</body>
+</html>
