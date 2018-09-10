@@ -10,6 +10,7 @@ def ones(dimensions):
         dimensions = (dimensions, dimensions)
     return Matrix([[1] * dimensions[1] for i in range(dimensions[0])])
 
+# zeros method
 def zeros(dimensions):
     return ones(dimensions) * 0
 
@@ -133,10 +134,15 @@ class Matrix(object):
         elif type(value) == Matrix and self.shape[1] != value.shape[0]:
             print("Error: Matrices with Incompatible Dimensions.")
             result = None
-        # else:
-        #     for i in range(self.shape[0]):
-        #         aux = ones((1,self.shape[0]))
-        #         for j in range(self.shape[1]):
-        #             aux[1,j] = self[i,j] * value[j,i]
-        #         result[i,j] = 
+        else:
+            result = zeros((self.shape[0], value.shape[1]))
+            if self.shape[0] == 1 and value.shape[1] == 1:
+                result = 0
+                for i in range(self.shape[1]):
+                    result = result + self[0,i] * value[i,0]
+            else:
+                result = zeros((self.shape[0], value.shape[1]))
+                for i in range(self.shape[0]):
+                    for j in range(value.shape[1]):
+                        result[i,j] = self[i,:] * value[:,j]
         return result
