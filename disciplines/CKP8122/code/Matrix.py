@@ -1,5 +1,4 @@
 import math
-import itertools
 
 # ones method
 def ones(dimensions):
@@ -128,9 +127,9 @@ class Matrix(object):
     def __mul__(self, value):
         result = self
         if type(value) in [int, float]:
-            for (i,j) in itertools.product(range(self.shape[0]),range(self.shape[1])):
-                result[i,j] = result[i,j] * value
-            
+            for i in range(self.shape[0]):
+                for j in range(self.shape[1]):
+                    result[i,j] = result[i,j] * value
         elif type(value) == Matrix and self.shape[1] != value.shape[0]:
             print("Error: Matrices with Incompatible Dimensions.")
             result = None
