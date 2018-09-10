@@ -1,6 +1,18 @@
 import math
 import itertools
 
+# ones method
+def ones(dimensions):
+    if type(dimensions) not in [int, tuple]:
+        print("Error: inconsistent dimensions.")
+        return False
+    if type(dimensions) == int:
+        dimensions = (dimensions, dimensions)
+    return Matrix([[1] * dimensions[1] for i in range(dimensions[0])])
+
+def zeros(dimensions):
+    return ones(dimensions) * 0
+
 # Matrix class
 class Matrix(object):
     def __init__(self,linhas = list()):
@@ -82,4 +94,49 @@ class Matrix(object):
                     result[i,j] = result[i,j] + value[i,j]
         elif type(value) in [int,float]:
             result = self + Matrix([[value]*self.shape[1]]*self.shape[0])
+        return result
+
+    def transpose(self):
+        result = zeros((self.shape[1], self.shape[0]))
+        for i in range(self.shape[0]):
+            for j in range(self.shape[1]):
+                result[j,i] = self[i,j]
+        return result
+
+    def sum(self, axis=0):
+        if 1 in self.shape:
+            result = 0
+            if self.shape[0] == 1:
+                for i in range(self.shape[1]):
+                    result = result + self[0,i]
+            else:
+                for i in range(self.shape[0]):
+                    result = result + self[i,0]
+        else:
+            aux = self
+            result = zeros((1,self.shape[1]))
+            if axis == 1:
+                aux = self.transpose()
+            for i in range(self.shape[1]):
+                result[0,i] = aux[:,i].sum()
+            if axis == 1:
+                result = result.transpose()
+
+        return result
+
+    def __mul__(self, value):
+        result = self
+        if type(value) in [int, float]:
+            for (i,j) in itertools.product(range(self.shape[0]),range(self.shape[1])):
+                result[i,j] = result[i,j] * value
+            
+        elif type(value) == Matrix and self.shape[1] != value.shape[0]:
+            print("Error: Matrices with Incompatible Dimensions.")
+            result = None
+        # else:
+        #     for i in range(self.shape[0]):
+        #         aux = ones((1,self.shape[0]))
+        #         for j in range(self.shape[1]):
+        #             aux[1,j] = self[i,j] * value[j,i]
+        #         result[i,j] = 
         return result
