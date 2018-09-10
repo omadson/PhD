@@ -68,3 +68,18 @@ class Matrix(object):
                     self[linha,coluna] = value[linha,coluna]
         else:
             self.linhas[i][j] = value
+
+
+    def __add__(self, value):
+        if type(value) == Matrix:
+            if self.shape != value.shape:
+                print("Error: incompatible dimensions.")
+                return False
+            else:
+                result = self
+                
+                for (i,j) in itertools.product(range(self.shape[0]),range(self.shape[1])):
+                    result[i,j] = result[i,j] + value[i,j]
+        elif type(value) in [int,float]:
+            result = self + Matrix([[value]*self.shape[1]]*self.shape[0])
+        return result
