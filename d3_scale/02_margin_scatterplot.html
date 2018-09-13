@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Scatterplot</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+<div id="chart"></div>
+<script type="text/javascript">
+    // Primeiro definimos o objeto margin
+    let margin = {top: 40, right: 40, bottom: 40, left: 40};
+    
+    // Depois definimos w e h como as dimensões internas
+    // da área do gráfico (área útil)
+    let w = 800 - margin.left - margin.right;
+    let h = 200 - margin.top - margin.bottom;
+
+    // Depois um elemento g no svg que vai transladar a origem 
+    // do gráfico como sendo a origem da área útil do gráfico
+
+    let svg = d3.select("#chart")
+            .append("svg")
+                .attr("width", w + margin.left + margin.right)
+                .attr("height", h + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    let dataset = [
+            [5, 20], [480, 90], [250, 50],
+            [100, 33], [330, 95], [410, 12], 
+            [475, 44], [25, 67], [85, 21],
+            [220, 88] ]; 
+
+    // Agora todo o código pode ignorar as margens. 
+    // Copie aqui o código de criação das escalas do arquivo
+    // anterior (vai continuar o mesmo)
+
+    // Depois adicione os elementos círculos
+
+    // Depois adicione os labels
+        
+</script>
+</body>
+</html>
