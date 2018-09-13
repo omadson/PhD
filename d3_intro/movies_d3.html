@@ -23,7 +23,9 @@
             
             d3.select(id).selectAll("div.h-bar")
                     .data(data)
-                .attr("class", "h-bar red")
+                .attr("class", "h-bar")
+                .transition()
+                .duration(1000)
                 .style("width", function (d) {
                     return information(info, d) + "px";
                 })
