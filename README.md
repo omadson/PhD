@@ -23,3 +23,8 @@
  - [data_array_solution.html](d3_intro/data_array_solution.html)
  - [data_object_solution.html](d3_intro/data_object_solution.html)
  - [movies_d3.html](d3_intro/movies_d3.html)
+
+## 12.09.2018
+ - [01_scatterplot.html](d3_scale/01_scatterplot.html)
+ - [02_margin_scatterplot.html](d3_scale/02_margin_scatterplot.html)
+ - [movies_scatter.html](d3_scale/movies_scatter.html)
