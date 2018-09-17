@@ -8,8 +8,10 @@
 </head>
 
 <body>
-<div id="chart"></div>
-<button id="clique">Novos dados</button>
+    <p>O gráfico possui <span id="number">??</span> pontos.</p>
+    <div id="chart"></div>
+    <button id="clique">Novos dados</button>
+
 <script type="text/javascript">
     // Primeiro definimos o objeto margin
     let margin = {top: 40, right: 40, bottom: 40, left: 40};
@@ -90,7 +92,7 @@
 
     function generateRandomDataset() {
         let dataset = [];
-        let numDataPoints = 50;
+        let numDataPoints = Math.ceil(Math.random() * 100);
         let xRange = Math.random() * 1000;
         let yRange = Math.random() * 1000;
 
@@ -106,7 +108,30 @@
       .on("click", function(){
         // Atualizar dados
         dataset = generateRandomDataset();
+
+        // Remover elementos sem dados
+        svg.selectAll("circle")
+           .data(dataset)
+           .exit()
+           .remove();        
         
+
+        // Adicionar elementos para novos dados
+        // Depois adicione os elementos círculos
+        svg.selectAll("circle")
+           .data(dataset)
+           .enter()
+           .append("circle")
+           .transition()
+           .duration(1000)
+           .attr("cx", function(d) {
+                return xScale(d[0]);
+           })
+           .attr("cy", function(d) {
+                return yScale(d[1]);
+           })
+           .attr("r", 4);
+
         // Atualizar domínio das escalas
         // X
         xScale.domain([0, d3.max(dataset, function(d) {
@@ -120,6 +145,8 @@
         // Revincular os dados 
         svg.selectAll("circle")
            .data(dataset)
+           .transition()
+           .duration(1000)
            .attr("cx", function(d) {
                 return xScale(d[0]);
             })
@@ -130,10 +157,15 @@
         // Atualizar eixos
         // X
         svg.selectAll(".x.axis")
+           .transition()
+           .duration(1000)
            .call(xAxis);
         // Y
         svg.selectAll(".y.axis")
+           .transition()
+           .duration(1000)
            .call(yAxis);
+        d3.select("#number").text(dataset.length);
 
       });
         
