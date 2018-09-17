@@ -69,7 +69,6 @@ class Matrix(object):
                 n = slice(n.start, self.shape[0 if n_ == i else 1]) if n.stop == None else n
                 i = n if n_ == i else i
                 j = n if n_ == j else j
-            
             if type(value) in [float,int]:
                 value = Matrix([[value]*self.shape[1]]*self.shape[0])
             elif value.shape[0] != i.stop - i.start or value.shape[1] != j.stop - j.start:
@@ -82,7 +81,7 @@ class Matrix(object):
                     value = Matrix([n*self.shape[0] for n in value.linhas])
             for linha in range(i.start, i.stop) if self.shape[0] != 1 else [0]:
                 for coluna in range(j.start, j.stop) if self.shape[1] != 1 else [0]:
-                    self[linha,coluna] = value[linha,coluna]
+                    self[linha,coluna] = value[linha-i.start,coluna-j.start]
         else:
             self.linhas[i][j] = value
 
@@ -159,5 +158,19 @@ class Matrix(object):
                     result[i,j] = self[i,j] * value[i,j]
         else:
             print("Error: types or dimensions incompatibles.")
+            result = None
+        return result
+
+    def concat(self, value, axis=1):
+        if axis == 1 and self.shape[0] == value.shape[0]:
+            result = zeros((self.shape[0], self.shape[1] + value.shape[1]))
+            result[:,0:self.shape[1]] = self
+            result[:,self.shape[1]:]  = value
+        elif axis == 0 and self.shape[1] == value.shape[1]:
+            result = zeros((self.shape[0] + value.shape[0], self.shape[1]))
+            result[:self.shape[0],:] = self
+            result[self.shape[0]:,:] = value
+        else:
+            print("Error: matrices with incompatible dimensions.")
             result = None
         return result
