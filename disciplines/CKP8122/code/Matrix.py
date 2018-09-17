@@ -145,3 +145,14 @@ class Matrix(object):
                     for j in range(value.shape[1]):
                         result[i,j] = self[i,:] * value[:,j]
         return result
+
+    def dot(self, value):
+        result = zeros(self.shape)
+        if type(value) == Matrix and self.shape == value.shape:
+            for i in range(self.shape[0]):
+                for j in range(self.shape[1]):
+                    result[i,j] = self[i,j] * value[i,j]
+        else:
+            print("Error: types or dimensions incompatibles.")
+            result = None
+        return result
