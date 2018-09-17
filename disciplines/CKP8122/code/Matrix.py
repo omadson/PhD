@@ -204,9 +204,10 @@ class Matrix(object):
             print("Error: matrices with incompatible dimensions.")
             result = None
         return result
-
     
-
-    # def gauss_elimination(self):
-    #     m, n = self.shape
-    #     for k in range(n):
+    def dot_operation(self, operation):
+        result = zeros(self.shape)
+        for i in range(self.shape[0]):
+            for j in range(self.shape[1]):
+                result[i,j] = operation(self[i,j])
+        return result
