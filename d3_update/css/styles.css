@@ -1,0 +1,23 @@
+p {
+    font-family: Optima, Futura, sans-serif;
+}
+.axis path,
+.axis line {
+    stroke: dimgray;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: Optima, Futura, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    fill: dimgray;
+}
+
+.label {
+    font-family: Optima, Futura, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    fill: dimgray;
+    text-anchor: middle;
+}
