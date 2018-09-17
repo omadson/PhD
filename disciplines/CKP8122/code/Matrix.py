@@ -107,27 +107,6 @@ class Matrix(object):
                 result[j,i] = self[i,j]
         return result
 
-    def sum(self, axis=0):
-        if 1 in self.shape:
-            result = 0
-            if self.shape[0] == 1:
-                for i in range(self.shape[1]):
-                    result = result + self[0,i]
-            else:
-                for i in range(self.shape[0]):
-                    result = result + self[i,0]
-        else:
-            aux = self
-            result = zeros((1,self.shape[1]))
-            if axis == 1:
-                aux = self.transpose()
-            for i in range(self.shape[1]):
-                result[0,i] = aux[:,i].sum()
-            if axis == 1:
-                result = result.transpose()
-
-        return result
-
     def __mul__(self, value):
         result = self
         if type(value) in [int, float]:
@@ -149,6 +128,57 @@ class Matrix(object):
                     for j in range(value.shape[1]):
                         result[i,j] = self[i,:] * value[:,j]
         return result
+
+    def sum(self, axis=0):
+        if 1 in self.shape:
+            result = 0
+            if self.shape[0] == 1:
+                for i in range(self.shape[1]):
+                    result = result + self[0,i]
+            else:
+                for i in range(self.shape[0]):
+                    result = result + self[i,0]
+        else:
+            aux = self
+            result = zeros((1,self.shape[1]))
+            if axis == 1:
+                aux = self.transpose()
+            for i in range(self.shape[1]):
+                result[0,i] = aux[:,i].sum()
+            if axis == 1:
+                result = result.transpose()
+        return result
+
+    def min_max(self, axis=0, op='max', arg=False):
+        if 1 in self.shape:
+            result = 0
+            if self.shape[0] == 1:
+                linhas = self.linhas[0]
+                if op == 'max':
+                    op_value = max(linhas)
+                elif op == 'min':
+                    op_value = min(linhas)
+                result = op_value if not arg else linhas.index(op_value)
+            else:
+                result = self.transpose().min_max(axis=axis, op=op, arg=arg)
+        else:
+            aux = self
+            result = zeros((1,self.shape[1]))
+            aux = self.transpose() if axis == 0 else aux
+            for i in range(self.shape[1]):
+                result[0,i] = aux[:,i].min_max(axis=axis, op=op, arg=arg)
+            result = result.transpose() if axis == 0 else result
+        return result
+
+    def min(self, axis=0):
+        return self.min_max(axis=axis, op='min')
+    def argmin(self, axis=0):
+        return self.min_max(axis=axis, op='min', arg=True)
+
+    def max(self, axis=0):
+        return self.min_max(axis=axis, op='max')
+    def argmax(self, axis=0):
+        return self.min_max(axis=axis, op='max', arg=True)
 
     def dot(self, value):
         result = zeros(self.shape)
@@ -174,3 +204,9 @@ class Matrix(object):
             print("Error: matrices with incompatible dimensions.")
             result = None
         return result
+
+    
+
+    # def gauss_elimination(self):
+    #     m, n = self.shape
+    #     for k in range(n):
