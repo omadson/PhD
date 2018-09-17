@@ -1,17 +1,22 @@
 import math
+from random import random
 
 # ones method
 def ones(dimensions):
+    return (rand(dimensions) * 0) + 1
+
+# zeros method
+def zeros(dimensions):
+    return rand(dimensions) * 0
+
+# rand method
+def rand(dimensions):
     if type(dimensions) not in [int, tuple]:
         print("Error: inconsistent dimensions.")
         return False
     if type(dimensions) == int:
         dimensions = (dimensions, dimensions)
-    return Matrix([[1] * dimensions[1] for i in range(dimensions[0])])
-
-# zeros method
-def zeros(dimensions):
-    return ones(dimensions) * 0
+    return Matrix([[random() for i in range(dimensions[1])] for j in range(dimensions[0])])
 
 # Matrix class
 class Matrix(object):
@@ -89,9 +94,9 @@ class Matrix(object):
                 return False
             else:
                 result = self
-                
-                for (i,j) in itertools.product(range(self.shape[0]),range(self.shape[1])):
-                    result[i,j] = result[i,j] + value[i,j]
+                for i in range(self.shape[0]):
+                    for j in range(self.shape[1]):
+                        result[i,j] = result[i,j] + value[i,j]
         elif type(value) in [int,float]:
             result = self + Matrix([[value]*self.shape[1]]*self.shape[0])
         return result
