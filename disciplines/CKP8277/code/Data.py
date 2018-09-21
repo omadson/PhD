@@ -40,5 +40,8 @@ class Data:
         return copy.copy(self)
 
     def add_bias(self):
-        self.data = np.concatenate((np.ones((self.data.shape[0],1)),self.data),1)
-        self.split_io()
+        if not(np.any(self.data[:,0] == 1)):
+            data_bias = np.ones((self.data.shape[0],self.data.shape[1]+1))
+            data_bias[:,1:] = self.data
+            self.data = data_bias
+            self.split_io()
