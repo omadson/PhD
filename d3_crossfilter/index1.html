@@ -8,6 +8,18 @@
 <body>
 	<script type="text/javascript">
 		d3.csv("data/stocks.csv").then(function(data){
+            
+            d3.select('body')
+              .selectAll('p')
+              .data(data)
+              .enter()
+              .append('p');
+
+            d3.select('body')
+              .selectAll('p')
+              .data(data)
+              .text(function(d) {return 'Data: ' + d.date + ', Tesla: ' + d.tesla + ', Facebook: ' + d.facebook;});
+
 			// 1. Use o d3 para selecionar todos os parágrafos do elemento body
             // 2. Faça o data-join e depois chame o método enter()
             // 3. Crie um elemento parágrafo e depois modifique o text 
