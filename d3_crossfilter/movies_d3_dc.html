@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Valores das ações da Tesla e do Facebook</title>
+    <link rel="stylesheet" href="css/dc.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/crossfilter.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="js/dc.min.js"></script>
+
+</head>
+<body>
+    <div>
+        <div id="chart1">
+             <h2>Total apurado a cada ano</h2>
+        </div>
+        
+        <div id="chart2">
+            <h2>Total apurado por gênero</h2>
+        </div>
+    </div>
+    <script type="text/javascript">
+        let barChart1 = dc.barChart('#chart1');
+        let barChart2 = dc.barChart('#chart2');
+
+        d3.json("data/movies.json").then(function(data){
+            //criando um crossfilter
+            var facts          = crossfilter(data),
+                years          = facts.dimension(function(d){return d.Year;}),
+                gross_by_year  = years.group().reduceSum(function(d){return d.Worldwide_Gross_M;}),
+                genres         = facts.dimension(function(d){return d.Genre;}),
+                gross_by_genre = genres.group().reduceSum(function(d){return d.Worldwide_Gross_M;});
+
+            barChart1.width(600)
+                     .height(400)
+                     .margins({top: 50, right: 50, bottom: 50, left: 50})
+                     .transitionDuration(1000)
+                     .x(d3.scaleBand())
+                     .xUnits(dc.units.ordinal)
+                     .brushOn(false)
+                     .xAxisLabel('ano')
+                     .yAxisLabel('bilheteria (mi)')
+                     .dimension(years)
+                     .barPadding(0.1)
+                     .outerPadding(0.05)
+                     .group(gross_by_year);
+
+            barChart2.width(600)
+                     .height(400)
+                     .margins({top: 50, right: 50, bottom: 50, left: 50})
+                     .transitionDuration(1000)
+                     .x(d3.scaleBand())
+                     .xUnits(dc.units.ordinal)
+                     .brushOn(false)
+                     .xAxisLabel('gênero')
+                     .yAxisLabel('bilheteria (mi)')
+                     .dimension(years)
+                     .barPadding(0.1)
+                     .outerPadding(0.05)
+                     .group(gross_by_genre);
+
+
+            dc.renderAll();
+
+        });
+    </script>           
+</body>
+</html>
