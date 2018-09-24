@@ -31,3 +31,12 @@
 
 ## 17.09.2018
  - [01_scatterplot.html](d3_update/01_scatterplot.html)
+
+## 24.09.2018
+ - [index1.html](d3_crossfilter/index1.html)
+ - [index2.html](d3_crossfilter/index2.html)
+ - [index3.html](d3_crossfilter/index3.html)
+ - [index4.html](d3_crossfilter/index4.html)
+ - [index5.html](d3_crossfilter/index5.html)
+ - [acoes.html](d3_crossfilter/acoes.html)
+ - [movies_d3_dc.html](d3_crossfilter/movies_d3_dc.html)
