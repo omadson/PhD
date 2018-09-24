@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carregando dados de um arquivo csv</title>
+    <script src="js/crossfilter.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        d3.csv("data/stocks.csv").then(function(data){
+            // formatando nossos dados
+            let parseDate = d3.timeParse("%Y/%m/%d");
+            data.forEach(function(d){
+                d.date = parseDate(d.date);
+                d.tesla = +d.tesla;
+                d.facebook = +d.facebook;
+            });
+
+            //criando um crossfilter
+            let facts = crossfilter(data);
+
+            let teslaDim = facts.dimension(function(d){
+                return d.tesla;
+            });
+
+            let topTenTesla = teslaDim.top(10);
+
+            console.log(topTenTesla);
+        });
+    </script>           
+</body>
+</html>
