@@ -9,6 +9,40 @@ class Classification(object):
     def predict(X):
         pass
 
+    def plot(self,info='curve',X=False):
+        if type(X) == bool:
+            X = self.train_data.X
+        if info == 'curve':
+            # Parameters
+            
+            # plt.title('Decision surface (%s)\n(w=[%.3f, %.3f], MSE=%.3f)' % (self.params['method'],self.model['w'][0], self.model['w'][1], self.metrics['mse']))
+
+
+            x_min, x_max = X[:, 0].min(), X[:, 0].max()
+            y_min, y_max = X[:, 1].min(), X[:, 1].max()
+
+            x_step = (x_max - x_min) / 200
+            y_step = (y_max - y_min) / 200
+
+            xx, yy = meshgrid(arange(x_min-10*x_step, x_max+10*x_step, x_step), arange(y_min-10*y_step, y_max+10*y_step, y_step))
+            Z = self.predict(c_[xx.ravel(), yy.ravel()])
+            Z = Z.reshape(xx.shape)
+
+            plt.contour(xx, yy, Z, [0.5], linewidths=1, colors='k')
+            # print(X[:,1].shape)
+            # print(X[:,2].shape)
+            plt.scatter(X[:,0], X[:,1], c=squeeze(self.train_data.y))
+
+            plt.xlabel('feature #1')
+            plt.ylabel('feature #2')
+            plt.show()
+        elif info == 'mse':
+            plt.plot(range(self.params['epochs']), self.metrics['mse_i'])
+            plt.title('Mean Squared Error (%s)\n(w=[%.3f, %.3f], MSE=%.3f)' % (self.params['method'],self.model['w'][0], self.model['w'][1], self.metrics['mse']))
+            plt.xlabel('Epochs')
+            plt.ylabel('MSE')
+            plt.show()
+
 from numpy.linalg import inv
 from numpy.random import randn
 from numpy import dot, eye, ones, zeros, mean, meshgrid, arange, multiply, power, newaxis, min, max, array, exp, c_, squeeze
@@ -76,37 +110,34 @@ class LogisticRegression(Classification):
             w = self.model['w']
         return ((1 / (1 + exp(-dot(X,w)))) >= 0.5) * 1
 
-    def plot(self,info='curve',X=False):
-        if type(X) == bool:
-            X = self.train_data.X
-        if info == 'curve':
-            # Parameters
-            
-            # plt.title('Decision surface (%s)\n(w=[%.3f, %.3f], MSE=%.3f)' % (self.params['method'],self.model['w'][0], self.model['w'][1], self.metrics['mse']))
 
+from numpy import cov, unique, argmax, where, zeros
+from scipy.stats import multivariate_normal as mvn_normal
+class Bayes(Classification):
+    """docstring for LogisticRegression"""
+    def __init__(self):
+        self.model   = {'cov': list(), 'mean': list(), 'prior': list()}
+        self.metrics = dict()
 
-            x_min, x_max = X[:, 1].min(), X[:, 1].max()
-            y_min, y_max = X[:, 2].min(), X[:, 2].max()
+    def fit(self, data):
+        self.train_data = data.copy()
+        X_ = self.train_data.X
+        y_ = self.train_data.y
+        for i in unique(self.train_data.y):
+            class_indexes = where(y_==i)[0]
+            self.model['cov'].append(cov(X_[class_indexes,:], rowvar=False))
+            self.model['mean'].append(X_[class_indexes,:].mean(axis=0))
+            self.model['prior'].append(class_indexes.shape[0] / y_.shape[0])
 
-            x_step = (x_max - x_min) / 200
-            y_step = (y_max - y_min) / 200
+    def predict(self, X):
+        classes = [int(i) for i in unique(self.train_data.y)]
+        y_soft = zeros((X.shape[0],len(classes)))
+        for i in classes:
+            y_ = mvn_normal.pdf(X, self.model['mean'][i], self.model['cov'][i]) * self.model['prior'][i]
+            y_soft[:,i] = y_
 
-            xx, yy = meshgrid(arange(x_min-10*x_step, x_max+10*x_step, x_step), arange(y_min-10*y_step, y_max+10*y_step, y_step))
-
-            Z = self.predict(c_[ones(xx.ravel().shape[0]), xx.ravel(), yy.ravel()])
-            Z = Z.reshape(xx.shape)
-
-            plt.contour(xx, yy, Z, [0.5], linewidths=1, colors='k')
-            # print(X[:,1].shape)
-            # print(X[:,2].shape)
-            plt.scatter(X[:,1], X[:,2], c=squeeze(self.train_data.y))
-
-            plt.xlabel('feature #1')
-            plt.ylabel('feature #2')
-            plt.show()
-        elif info == 'mse':
-            plt.plot(range(self.params['epochs']), self.metrics['mse_i'])
-            plt.title('Mean Squared Error (%s)\n(w=[%.3f, %.3f], MSE=%.3f)' % (self.params['method'],self.model['w'][0], self.model['w'][1], self.metrics['mse']))
-            plt.xlabel('Epochs')
-            plt.ylabel('MSE')
-            plt.show()
+        return argmax(y_soft, axis=1)[newaxis].T
+        # for j in range(X.shape[0]):
+        #     y_hat[j] = argmax([mvn_normal.pdf(X, self.model['mean'][i], self.model['cov'][i]) * self.model['prior'][i]  for i in classes])
+        
+        # return y_hat[newaxis].T
