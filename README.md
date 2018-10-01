@@ -40,3 +40,6 @@
  - [index5.html](d3_crossfilter/index5.html)
  - [acoes.html](d3_crossfilter/acoes.html)
  - [movies_d3_dc.html](d3_crossfilter/movies_d3_dc.html)
+
+## 29.09.2018
+ - [index1.html](d3_crossfilter2/earthquakes.html)
