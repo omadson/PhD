@@ -42,4 +42,4 @@
  - [movies_d3_dc.html](d3_crossfilter/movies_d3_dc.html)
 
 ## 29.09.2018
- - [index1.html](d3_crossfilter2/earthquakes.html)
+ - [index1.html](d3_crossfilter_2/earthquakes.html)
