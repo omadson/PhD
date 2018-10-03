@@ -100,11 +100,18 @@ class Matrix(object):
             result = self + Matrix([[value]*self.shape[1]]*self.shape[0])
         return result
 
-    def transpose(self):
-        result = zeros((self.shape[1], self.shape[0]))
-        for i in range(self.shape[0]):
-            for j in range(self.shape[1]):
-                result[j,i] = self[i,j]
+    def __sub__(self, value):
+        if type(value) == Matrix:
+            if self.shape != value.shape:
+                print("Error: incompatible dimensions.")
+                return False
+            else:
+                result = self
+                for i in range(self.shape[0]):
+                    for j in range(self.shape[1]):
+                        result[i,j] = result[i,j] - value[i,j]
+        elif type(value) in [int,float]:
+            result = self - Matrix([[value]*self.shape[1]]*self.shape[0])
         return result
 
     def __mul__(self, value):
@@ -127,6 +134,16 @@ class Matrix(object):
                 for i in range(self.shape[0]):
                     for j in range(value.shape[1]):
                         result[i,j] = self[i,:] * value[:,j]
+        return result
+
+    def __abs__(self):
+        return self.dot_operation(abs)
+
+    def transpose(self):
+        result = zeros((self.shape[1], self.shape[0]))
+        for i in range(self.shape[0]):
+            for j in range(self.shape[1]):
+                result[j,i] = self[i,j]
         return result
 
     def sum(self, axis=0):
@@ -211,3 +228,13 @@ class Matrix(object):
             for j in range(self.shape[1]):
                 result[i,j] = operation(self[i,j])
         return result
+
+    # def gauss_elimination(self):
+    #     result = self
+    #     m, n = self.shape
+    #     for k in range(n-1):
+    #         p = self[k:n-1,k].dot_operation(abs).argmax()
+    #         p=p+k-1;
+    #         if p ~= k
+    #             result([k,p],:)  = Ab([p,k],:);
+    #         end
