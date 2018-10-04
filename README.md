@@ -42,4 +42,7 @@
  - [movies_d3_dc.html](d3_crossfilter/movies_d3_dc.html)
 
 ## 29.09.2018
- - [index1.html](d3_crossfilter_2/earthquakes.html)
+ - [earthquakes.html](d3_crossfilter_2/earthquakes.html)
+
+## 03.10.2018
+ - [chicago.html](d3_leaflet/chicago.html)
