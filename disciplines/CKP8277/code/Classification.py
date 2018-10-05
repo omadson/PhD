@@ -121,23 +121,21 @@ class Bayes(Classification):
 
     def fit(self, data):
         self.train_data = data.copy()
+
         X_ = self.train_data.X
         y_ = self.train_data.y
-        for i in unique(self.train_data.y):
+
+        self.classes = [int(i) for i in unique(self.train_data.y)]
+        for i in self.classes:
             class_indexes = where(y_==i)[0]
             self.model['cov'].append(cov(X_[class_indexes,:], rowvar=False))
             self.model['mean'].append(X_[class_indexes,:].mean(axis=0))
             self.model['prior'].append(class_indexes.shape[0] / y_.shape[0])
 
     def predict(self, X):
-        classes = [int(i) for i in unique(self.train_data.y)]
-        y_soft = zeros((X.shape[0],len(classes)))
-        for i in classes:
+        y_soft = zeros((X.shape[0],len(self.classes)))
+        for i in self.classes:
             y_ = mvn_normal.pdf(X, self.model['mean'][i], self.model['cov'][i]) * self.model['prior'][i]
             y_soft[:,i] = y_
 
         return argmax(y_soft, axis=1)[newaxis].T
-        # for j in range(X.shape[0]):
-        #     y_hat[j] = argmax([mvn_normal.pdf(X, self.model['mean'][i], self.model['cov'][i]) * self.model['prior'][i]  for i in classes])
-        
-        # return y_hat[newaxis].T
