@@ -111,8 +111,9 @@ class LogisticRegression(Classification):
         return ((1 / (1 + exp(-dot(X,w)))) >= 0.5) * 1
 
 
-from numpy import cov, unique, argmax, where, zeros
+from numpy import cov, unique, argmax, where, zeros, var
 from scipy.stats import multivariate_normal as mvn_normal
+from scipy.stats import norm as normal
 class Bayes(Classification):
     """docstring for LogisticRegression"""
     def __init__(self):
@@ -137,5 +138,37 @@ class Bayes(Classification):
         for i in self.classes:
             y_ = mvn_normal.pdf(X, self.model['mean'][i], self.model['cov'][i]) * self.model['prior'][i]
             y_soft[:,i] = y_
+
+        return argmax(y_soft, axis=1)[newaxis].T
+
+
+class NaiveBayes(Classification):
+    """docstring for LogisticRegression"""
+    def __init__(self):
+        self.model   = {'var': list(), 'mean': list(), 'prior': list()}
+        self.metrics = dict()
+
+    def fit(self, data):
+        self.train_data = data.copy()
+
+        X_ = self.train_data.X
+        y_ = self.train_data.y
+
+        self.classes = [int(i) for i in unique(self.train_data.y)]
+        for i in self.classes:
+            class_indexes = where(y_==i)[0]
+            self.model['var'].append(list())
+            self.model['mean'].append(X_[class_indexes,:].mean(axis=0))
+            self.model['prior'].append(class_indexes.shape[0] / y_.shape[0])
+            for j in range(X_.shape[1]):
+                self.model['var'][i].append(var(X_[class_indexes,j]))
+                
+
+    def predict(self, X):
+        y_soft = zeros((X.shape[0],len(self.classes)))
+        for i in self.classes:
+            for j in range(X.shape[1]):
+                y_ = mvn_normal.pdf(X, self.model['mean'][i], self.model['cov'][i]) * self.model['prior'][i]
+                y_soft[:,i] = y_
 
         return argmax(y_soft, axis=1)[newaxis].T
