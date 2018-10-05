@@ -10,7 +10,7 @@ class Data:
     def split_io(self):
         if self.output_scheme == 'n':
             self.X = self.data[:,:-1]
-            self.y = self.data[:,-1][np.newaxis].T
+            self.y = -1 + self.data[:,-1][np.newaxis].T
     def shuffle(self):
         np.random.shuffle(self.data)
         self.split_io()
