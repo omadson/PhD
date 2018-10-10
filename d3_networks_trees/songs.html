@@ -52,14 +52,16 @@
                           .enter()
                           .append("line")
                           .attr("class", "link");
-           // create node svg elements               
+           // create node svg elements
+           console.log()
+           let scaleR = d3.scaleSqrt().domain([d3.min(nodes, d => d.playcount), d3.max(nodes, d => d.playcount)]).range([2,20]);
            const node  = vis.append("g")
                           .selectAll("circle")
                           .data(nodes)
                           .enter()
                           .append("circle")
                           .attr("class", "node")
-                          .attr("r", 5);
+                          .attr("r", d =>  scaleR(d.playcount));
 
 
            
