@@ -61,12 +61,13 @@
                           .enter()
                           .append("circle")
                           .attr("class", "node")
-                          .attr("r", d =>  scaleR(d.playcount));
+                          .attr("r", d =>  scaleR(d.playcount))
+                          .call(drag(simulation));
 
 
            // add tooltip to nodes
            node.append("title")
-               .text(d => d.name + ", " + d.artist)
+               .text(d => d.name + " - " + d.artist)
            // define function ticked
            function ticked() {
             link.attr("x1", d => d.source.x)
@@ -86,7 +87,28 @@
                      .force("link", d3.forceLink(links).id(d => d.id).distance(60))
                      .force("charge", d3.forceManyBody().strength(-70).distanceMax(200))
                      .force("center", d3.forceCenter());
+          }
+          function drag(simulation){
+            function dragstarted(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+              d.fx = d.x;
+              d.fy = d.y;
             }
+            function dragged(d) {
+              d.fx = d3.event.x;
+              d.fy = d3.event.y;
+            }
+            function dragended(d) {
+            if (!d3.event.active) simulation.alphaTarget(0);
+              d.fx = null;
+              d.fy = null;
+            }
+            return d3.drag()
+                     .on("start", dragstarted)
+                     .on("drag", dragged)
+                     .on("end", dragended);
+          }
+
           });
     </script>
   </body>
