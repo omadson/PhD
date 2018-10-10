@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Similar Songs Network</title>
+    
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+  </head>
+  <body>
+    <main role="main" class="container">
+      <header>
+      <h1>Similar Song Network</h1>
+      <p>Songs similar to one another according to <a href="http://www.last.fm/api">last.fm</a> are linked together. Song nodes are sized based on playcounts, and colored by artist.</p>
+      </header>
+      <div id="main" role="main">
+        <div id="vis"></div>
+      </div>
+      <footer>
+      <p>Data from <a href="http://www.last.fm/api/show/track.getSimilar">last.fm</a>. Some songs include additional links for effect.<br/>Popular songs are defined as those with playcounts above the median for all songs in network. This example is a simpler version of the <a href="http://flowingdata.com/2012/08/02/how-to-make-an-interactive-network-visualization/">tutorial</a> by <a href="http://vallandingham.me/">Jim Vallandingham</a>.</p>
+
+      </footer>
+    </main> <!--! end of #container -->
+    <!-- Bootstrap javascript files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        const width = 960;
+        const height = 800;
+
+        // Create svg element inside #vis element and attribute it to the vis variable
+
+        // Read the contents of data/songs.json file and process it as a graph variable
+
+
+           // Set the nodes and links
+
+
+           // create simulation constant using the forceSimulation function defined down below
+
+
+           // create link svg elements
+
+
+           // create node svg elements
+
+           // define function ticked
+
+          // define function drag
+
+          // define the forceSimulation function that will receive nodes and links and 
+          // will return a d3.forceSimulation() object 
+    </script>
+  </body>
+</html>
