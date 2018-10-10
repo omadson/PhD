@@ -64,8 +64,9 @@
                           .attr("r", d =>  scaleR(d.playcount));
 
 
-           
-
+           // add tooltip to nodes
+           node.append("title")
+               .text(d => d.name + ", " + d.artist)
            // define function ticked
            function ticked() {
             link.attr("x1", d => d.source.x)
