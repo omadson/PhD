@@ -80,8 +80,8 @@
           // will return a d3.forceSimulation() object 
           function forceSimulation(nodes, links) {
             return d3.forceSimulation(nodes)
-                     .force("link", d3.forceLink(links).id(d => d.id).distance(50))
-                     .force("charge", d3.forceManyBody().strength(-50).distanceMax(270))
+                     .force("link", d3.forceLink(links).id(d => d.id).distance(60))
+                     .force("charge", d3.forceManyBody().strength(-70).distanceMax(200))
                      .force("center", d3.forceCenter());
             }
           });
