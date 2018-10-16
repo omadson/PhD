@@ -9,10 +9,10 @@ classdef Regressor < handle
     
     methods
         function obj = Regressor(varargin)
-            if isempty(cell2mat(varargin))
+            if isempty(varargin{1})
                 obj.parameters = struct();
             elseif length(varargin) == 1
-                obj.parameters = varargin(1);
+                obj.parameters = varargin{1};
             else
                 fprintf("Error, wrong arguments length.");
             end
@@ -22,16 +22,19 @@ classdef Regressor < handle
             obj.training_set = struct('X', [],...
                                       'y', []);
         end
-        function obj = fit(obj, X, y)
-            N = size(X,1);
+        function obj = get_training_set(obj, X, y)
+            [obj.training_set.N, obj.training_set.D] = size(X);
             obj.training_set.X = X;
             obj.training_set.y = y;
-
-            obj.parameters.model.w = pinv([ones(N,1) X]) * y;
+        end
+        function obj = fit(obj, X, y)
+            obj = obj.get_training_set(X,y);
+            
+            obj.parameters.w = pinv([ones(obj.training_set.N,1) X]) * y;
         end
         function y_hat = predict(obj, X)
             N = size(X,1);
-            y_hat = [ones(N,1) X] * obj.parameters.model.w;
+            y_hat = [ones(N,1) X] * obj.parameters.w;
         end
         function plot(obj,varargin)
             if nargin < 2
