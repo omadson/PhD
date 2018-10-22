@@ -51,6 +51,8 @@ let promises = [
   d3.tsv("data/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
 ]
 
+let dgreens = d3.scaleQuantize().range(d3.schemeGreens[9]).domain([2,10]);
+
 Promise.all(promises).then(ready);
 
 function ready([us]) {
@@ -60,8 +62,10 @@ function ready([us]) {
     .selectAll("path")
       .data(topojson.feature(us, us.objects.counties).features)
     .enter().append("path")
-      .attr("fill", function(d) { return "#777"; })
-      .attr("d", path);
+      .attr("fill", function(d) {return dgreens(rateById.get(d.id)); })
+      .attr("d", path)
+      .append("title")
+      .text(d => 'Unemployment rate: ' + rateById.get(d.id));
 
   svg.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))

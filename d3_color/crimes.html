@@ -62,6 +62,19 @@
 </div>
 <script type="text/javascript" src="data/bairros.js"></script>
 <script type="text/javascript">
+	function removeAcento (text)
+	{       
+	    text = text.toLowerCase();                                                         
+	    text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
+	    text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
+	    text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
+	    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
+	    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
+	    text = text.replace(new RegExp('[Ç]','gi'), 'c');
+	    return text;                 
+	}
+
+
     let blues = d3.schemeBlues[5];
 	
 	let map = L.map('map').setView([-3.792614,-38.515877], 12);
@@ -138,6 +151,39 @@
 				});
 	}
     let homicidiosByName = d3.map();
+
+	let populacaoByName = d3.map();
+
+    let promises = [
+	  d3.csv("data/pop_bairros.csv", function(d) { populacaoByName.set(removeAcento(d.Bairro), +d.Pop);})
+	]
+
+	console.log(populacaoByName);
+
+	// Promise.all(promises).then(ready);
+
+	// function ready([homicidios_2012]) {
+	//   // svg.append("g")
+	//   //     .attr("class", "counties")
+	//   //   .selectAll("path")
+	//   //     .data(topojson.feature(us, us.objects.counties).features)
+	//   //   .enter().append("path")
+	//   //     .attr("fill", function(d) {return dgreens(rateById.get(d.id)); })
+	//   //     .attr("d", path)
+	//   //     .append("title")
+	//   //     .text(d => 'Unemployment rate: ' + rateById.get(d.id));
+
+	//   // svg.append("path")
+	//   //     .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+	//   //     .attr("class", "states")
+	//   //     .attr("d", path);
+	// }
+
+
+
+
+
+
 
 	d3.csv("data/homicidios_2012.csv").then(function(data){
         //format data
