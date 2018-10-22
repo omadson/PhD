@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Número de homicídios em Fortaleza em 2012</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+
+   <script src="https://d3js.org/d3.v5.min.js"></script>	
+
+	<style>
+			#map {
+				width: 750px;
+				height: 590px;
+			}
+			.info {
+				padding: 6px 8px;
+				font: 14px/16px Arial, Helvetica, sans-serif;
+				background: white;
+				background: rgba(255,255,255,0.8);
+				box-shadow: 0 0 15px rgba(0,0,0,0.2);
+				border-radius: 5px;
+			}
+			.info h4 {
+				margin: 0 0 5px;
+				color: #777;
+			}
+
+			.legend {
+				text-align: left;
+				line-height: 18px;
+				color: #555;
+			}
+			.legend i {
+				width: 18px;
+				height: 18px;
+				float: left;
+				margin-right: 8px;
+				opacity: 0.7;
+			}
+		</style>
+</head>
+<body>
+
+<div class="container">
+	<h1> Número de Homicídios em Fortaleza em 2012</h1>
+	<p>
+		Dados retirados do site da <a href="http://www.sspds.ce.gov.br/">SSPDS</a>.
+	</p>	
+    <div id="map">
+		<strong>Homicídios por Bairro</strong>
+    </div>
+</div>
+<script type="text/javascript" src="data/bairros.js"></script>
+<script type="text/javascript">
+    let blues = d3.schemeBlues[5];
+	
+	let map = L.map('map').setView([-3.792614,-38.515877], 12);
+	L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+	{ attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
+	maxZoom: 18}).addTo(map);
+	
+	// control that shows state info on hover
+	let info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (feat) {
+            //console.log(feat);
+			this._div.innerHTML = '<h5>Número de homicídios</h5>' +  (feat ?
+				'<b>' + feat.properties.NOME + '</b><br />' + homicidiosByName.get(feat.properties.NOME) + ' homicídios'
+				: 'Passe o mouse sobre um bairro');
+	};
+
+	info.addTo(map);
+	
+	// get color depending on number of cases
+	let quantize = d3.scaleQuantize()
+    .domain([0, 70])
+    .range(blues);
+
+	function style(feature) {
+		 return {
+					weight: 1,
+					opacity: 1,
+					color: 'white',
+					dashArray: '3',
+					fillOpacity: 0.6,
+					fillColor: quantize(homicidiosByName.get(feature.properties.NOME))
+				};
+	}
+	function highlightFeature(e) {
+		let layer = e.target;
+        //console.log(e.target)
+
+		layer.setStyle({
+					weight: 2,
+					color: '#AAA',
+					dashArray: '',
+					fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature);
+	}
+	let geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+					mouseover: highlightFeature,
+					mouseout: resetHighlight,
+					click: zoomToFeature
+				});
+	}
+    let homicidiosByName = d3.map();
+
+	d3.csv("data/homicidios_2012.csv").then(function(data){
+        //format data
+        data.forEach(function(d) {
+            homicidiosByName.set(d.Bairro,+d.Homicidios);
+        });
+		
+		//bairrosData is defined in file bairros.js		 		
+		geojson = L.geoJson(bairrosData, {
+				style: style,
+				onEachFeature: onEachFeature
+		}).addTo(map);
+		
+	});			
+	
+	let legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+
+		let div = L.DomUtil.create('div', 'info legend'),
+			labels = [],
+            n = blues.length,
+			from, to;
+
+		for (let i = 0; i < n; i++) {
+			let c = blues[i];
+            let fromto = quantize.invertExtent(c);
+			labels.push(
+				'<i style="background:' + blues[i] + '"></i> ' +
+				d3.format("d")(fromto[0]) + (d3.format("d")(fromto[1]) ? '&ndash;' + d3.format("d")(fromto[1]) : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+	};
+
+   	legend.addTo(map);
+</script>
+
+<!-- Bootstrap javascript files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
