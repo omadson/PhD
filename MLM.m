@@ -17,20 +17,20 @@ classdef MLM < Regressor
             obj.parameters.rp_index_in  = obj.parameters.rp_index;
             obj.parameters.rp_index_out = obj.parameters.rp_index;
             
-            D_in  = pdist2(X, X(obj.parameters.rp_index_in,:));
-            D_out = pdist2(y, y(obj.parameters.rp_index_out,:));
+            D_in  = phi(X, X(obj.parameters.rp_index_in,:));
+            D_out = phi(y, y(obj.parameters.rp_index_out,:));
             
             obj.parameters.B = pinv(D_in) * D_out;
         end
         function cost = in_cost(obj, y, d_out_hat)
-            d_out = pdist2(y, obj.training_set.y(obj.parameters.rp_index_out,:));
+            d_out = phi(y, obj.training_set.y(obj.parameters.rp_index_out,:));
             cost = d_out.^2 - d_out_hat.^2;
         end
         function y_hat = predict(obj,X)
             N         = size(X,1);
             y_hat     = zeros(N,1);
             X_rp      = obj.training_set.X(obj.parameters.rp_index_in,:);
-            D_in      = pdist2(X, X_rp);
+            D_in      = phi(X, X_rp);
             D_out_hat = D_in * obj.parameters.B;
             y_mean    = mean(obj.training_set.y(obj.parameters.rp_index_out,:));
             
