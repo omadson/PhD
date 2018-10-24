@@ -19,9 +19,23 @@ classdef MF_MLM < MLM
             [B, gamma_ind, ~, ~] = MFOCUSS(D_in, D_out,...
                                             obj.parameters.lambda,...
                                             'p',obj.parameters.p);
-            obj.parameters.B            = B(gamma_ind,:);
-            obj.parameters.rp_index_in  = gamma_ind;
-            obj.parameters.rp_index_out = 1:size(X,1);
+            
+            % RP selection method 
+            if obj.parameters.selection_type == 1     % MF-MF
+                obj.parameters.rp_index_in  = gamma_ind;
+                obj.parameters.rp_index_out = gamma_ind;
+                obj.parameters.B            = B(gamma_ind,gamma_ind);
+            elseif obj.parameters.selection_type == 2 % MF-FL
+                obj.parameters.rp_index_in  = gamma_ind;
+                obj.parameters.rp_index_out = 1:size(X,1);
+                obj.parameters.B            = B(gamma_ind,:);
+            else                       % MF-MF
+                obj.parameters.rp_index_in  = gamma_ind;
+                obj.parameters.rp_index_out = gamma_ind;
+                obj.parameters.B            = B(gamma_ind,gamma_ind);
+            end
+            
+            
         end
     end
 end

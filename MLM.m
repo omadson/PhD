@@ -11,11 +11,30 @@ classdef MLM < Regressor
         end
         function obj = fit(obj, X, y)
             obj = obj.get_training_set(X,y);
-            obj.parameters.rp_index = randi(obj.training_set.N, ...
-                                            [obj.parameters.M,1]);
             
-            obj.parameters.rp_index_in  = obj.parameters.rp_index;
-            obj.parameters.rp_index_out = obj.parameters.rp_index;
+            if isfloat(obj.parameters.M)
+                obj.parameters.M = ceil(obj.parameters.M * obj.training_set.N);
+            end
+            
+            rp_index = randi(obj.training_set.N, ...
+                                            [obj.parameters.M,1]);
+            % RP selection method 
+            if obj.parameters.selection_type == 1     % RN-RN
+                obj.parameters.rp_index_in  = rp_index;
+                obj.parameters.rp_index_out = rp_index;
+            elseif obj.parameters.selection_type == 2 % RN-FL
+                obj.parameters.rp_index_in  = rp_index;
+                obj.parameters.rp_index_out = 1:obj.training_set.N;
+            elseif obj.parameters.selection_type == 3 % FL-RN
+                obj.parameters.rp_index_in  = 1:obj.training_set.N;
+                obj.parameters.rp_index_out = rp_index;
+            elseif obj.parameters.selection_type == 4 % FL-FL
+                obj.parameters.rp_index_in  = 1:obj.training_set.N;
+                obj.parameters.rp_index_out = 1:obj.training_set.N;
+            else                                      % RN-RN
+                obj.parameters.rp_index_in  = rp_index;
+                obj.parameters.rp_index_out = rp_index;
+            end
             
             D_in  = phi(X, X(obj.parameters.rp_index_in,:));
             D_out = phi(y, y(obj.parameters.rp_index_out,:));
