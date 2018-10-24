@@ -3,7 +3,7 @@ function [best_parameters] = cross_kfold(model_class, parameters, folds, dataset
     y = dataset(:,1:end);
     %% create all combinations of parameters
     parameter_names = fieldnames(parameters);
-    if length(parameters) > 1
+    if length(fieldnames(parameters)) > 1
         args = sprintf('%s%s', sprintf('parameters.%s, ',...
             parameter_names{1:end-1}), sprintf('parameters.%s',...
             parameter_names{end}));
