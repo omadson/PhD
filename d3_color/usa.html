@@ -50,7 +50,7 @@ let promises = [
   d3.json("data/us.json"),
   d3.tsv("data/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
 ]
-
+console.log(rateById);
 let dgreens = d3.scaleQuantize().range(d3.schemeGreens[9]).domain([2,10]);
 
 Promise.all(promises).then(ready);

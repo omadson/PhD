@@ -71,11 +71,12 @@
 	    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
 	    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
 	    text = text.replace(new RegExp('[Ç]','gi'), 'c');
+        text = text.replace('/',' ');
 	    return text;                 
 	}
 
 
-    let blues = d3.schemeBlues[5];
+    // let blues = d3.schemeBlues[8];
 	
 	let map = L.map('map').setView([-3.792614,-38.515877], 12);
 	L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
@@ -91,28 +92,40 @@
 		return this._div;
 	};
 
+	function teste(taxaHomicidios) {
+		if (!isNaN(taxaHomicidios)) {
+			return taxaHomicidios.toFixed() + ' homicídios a cada 100 mil habitantes'
+		} else {
+			return "Sem dados para este bairro"
+		}
+
+	}
+
 	info.update = function (feat) {
             //console.log(feat);
 			this._div.innerHTML = '<h5>Número de homicídios</h5>' +  (feat ?
-				'<b>' + feat.properties.NOME + '</b><br />' + homicidiosByName.get(feat.properties.NOME) + ' homicídios'
-				: 'Passe o mouse sobre um bairro');
+				'<b>' + feat.properties.NOME + '</b><br />' + teste(homicidiosByName.get(feat.properties.NOME)) : 'Passe o mouse sobre um bairro');
 	};
 
 	info.addTo(map);
 	
 	// get color depending on number of cases
-	let quantize = d3.scaleQuantize()
-    .domain([0, 70])
-    .range(blues);
+	// let quantize = d3.scaleQuantize()
+ //    .domain([0, 200])
+ //    .range(blues);
+
+    let blues = d3.quantize(d3.interpolateReds, 5);
+  	let quantize = d3.scaleQuantile().domain([0,10,50,200,450]).range(blues);
 
 	function style(feature) {
+		 taxaHomicidios = homicidiosByName.get(feature.properties.NOME);
 		 return {
 					weight: 1,
 					opacity: 1,
 					color: 'white',
 					dashArray: '3',
 					fillOpacity: 0.6,
-					fillColor: quantize(homicidiosByName.get(feature.properties.NOME))
+					fillColor: taxaHomicidios != NaN?quantize(taxaHomicidios):'#000'
 				};
 	}
 	function highlightFeature(e) {
@@ -155,40 +168,19 @@
 	let populacaoByName = d3.map();
 
     let promises = [
+      d3.csv("data/homicidios_2012.csv"),
 	  d3.csv("data/pop_bairros.csv", function(d) { populacaoByName.set(removeAcento(d.Bairro), +d.Pop);})
 	]
 
 	console.log(populacaoByName);
 
-	// Promise.all(promises).then(ready);
 
-	// function ready([homicidios_2012]) {
-	//   // svg.append("g")
-	//   //     .attr("class", "counties")
-	//   //   .selectAll("path")
-	//   //     .data(topojson.feature(us, us.objects.counties).features)
-	//   //   .enter().append("path")
-	//   //     .attr("fill", function(d) {return dgreens(rateById.get(d.id)); })
-	//   //     .attr("d", path)
-	//   //     .append("title")
-	//   //     .text(d => 'Unemployment rate: ' + rateById.get(d.id));
+	Promise.all(promises).then(ready);
 
-	//   // svg.append("path")
-	//   //     .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-	//   //     .attr("class", "states")
-	//   //     .attr("d", path);
-	// }
-
-
-
-
-
-
-
-	d3.csv("data/homicidios_2012.csv").then(function(data){
-        //format data
-        data.forEach(function(d) {
-            homicidiosByName.set(d.Bairro,+d.Homicidios);
+	function ready([homicidios_2012]) {
+		//format data
+        homicidios_2012.forEach(function(d) {
+            homicidiosByName.set(d.Bairro,100000*(+d.Homicidios)/(+populacaoByName.get(removeAcento(d.Bairro))));
         });
 		
 		//bairrosData is defined in file bairros.js		 		
@@ -196,8 +188,7 @@
 				style: style,
 				onEachFeature: onEachFeature
 		}).addTo(map);
-		
-	});			
+	}
 	
 	let legend = L.control({position: 'bottomright'});
 
