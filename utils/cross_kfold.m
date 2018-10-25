@@ -1,6 +1,6 @@
 function [best_parameters] = cross_kfold(model_class, parameters, folds, dataset)
     X = dataset(:,1:end-1);
-    y = dataset(:,1:end);
+    y = dataset(:,end);
     %% create all combinations of parameters
     parameter_names = fieldnames(parameters);
     if length(fieldnames(parameters)) > 1
@@ -15,9 +15,16 @@ function [best_parameters] = cross_kfold(model_class, parameters, folds, dataset
     [N, M] = size(parameter_combination);
     for i=1:N
         parameters_ = cell2struct(num2cell(parameter_combination(i,:)), parameter_names',2);
-        clf = eval(sprintf('%s(parameters_);',model_class));
+        fprintf('\n - ');
+        for j=1:length(parameter_names)
+            fprintf('%s: %f, ',parameter_names{j}, eval(sprintf('parameters_.%s',parameter_names{j})));
+        end
+        fprintf(' | fold: ');
         %% K-fold LOOP
         for k=1:length(folds)
+            fprintf('%d, ', k);
+
+            clf = eval(sprintf('%s(parameters_);',model_class));
             clf.fit(X(folds{k}.train,:), y(folds{k}.train,:));
             y_hat  = clf.predict(X(folds{k}.test,:));
             mse(i,k) = mean((y_hat - y(folds{k}.test,:)).^2);
