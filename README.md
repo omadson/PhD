@@ -49,3 +49,10 @@
 
 ## 10.10.2018
  - [songs.html](d3_networks_trees/songs.html)
+
+## 10.10.2018
+ - [songs.html](d3_networks_trees/songs.html)
+
+## 22.10.2018
+ - [usa.html](d3_color/usa.html)
+ - [crimes.html](d3_color/crimes.html)
