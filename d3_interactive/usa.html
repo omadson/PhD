@@ -26,6 +26,7 @@
 </head>
 <body>
   <div id="tooltip" class="hidden">
+    <strong id="name"></strong><br />
     <p>Taxa de desemprego: <span id="taxa"></span>%</p>
   </div>
   <main id="container" class="container">
@@ -41,6 +42,7 @@ let width = 960,
     height = 600;
 
 let rateById = d3.map();
+let nameById = d3.map();
 
 //Create a quantize color scale here
 // We want to see the unemployment rate that goes from 2 to 10%
@@ -58,8 +60,10 @@ let svg = d3.select("#map").append("svg")
 
 let promises = [
   d3.json("data/us.json"),
-  d3.tsv("data/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
+  d3.tsv("data/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); }),
+  d3.csv("data/county_names.csv", function(d) { nameById.set(d.id, d.name); })
 ]
+// console.log(nameById)
 
 Promise.all(promises).then(ready);
 
@@ -70,6 +74,11 @@ function showTooltip(county_id, x, y){
     .style("top", y + "px")
     .select("#taxa")
     .text(rateById.get(county_id));
+
+  d3.select("#tooltip")
+    .select("#name")
+    .text(nameById.get(county_id));
+
   d3.select("#tooltip")
     .classed("hidden", false);
 }
@@ -107,9 +116,9 @@ function ready([us]) {
           .attr("stroke-width", 0)
           .attr("stroke","none"); //volta ao valor padrão
           hideTooltip();
-      })
-      .append("title")
-      .text(function(d) { return "Taxa de desemprego: " + rateById.get(d.id) + "%"; });
+      });
+      // .append("title")
+      // .text(function(d) { return "Taxa de desemprego: " + rateById.get(d.id) + "%"; });
 
   svg.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
