@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+    <title> Earthquake Data</title>
+             
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/dc.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/crossfilter.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="js/dc.min.js"></script>
+</head>
+<body>
+  <main role="main" class="container">
+    <div class="row">
+      <h1> Earthquakes in New Zealand</h1>
+    </div>
+    <div class='row'>
+        <div id="mapid" class="col-6">
+        </div>
+        <div class = "col-6">
+          <div id='magnitude-chart'>
+            <h4> Number of Events by Magnitude </h4>
+          </div>
+              
+          <div id='depth-chart'>
+            <h4> Events by Depth (km) </h4>
+          </div>
+        </div>
+    </div>
+    <div class='row'>
+      <div id='time-chart' class="single-col">
+        <h4> Events per hour </h4>
+      </div>
+    </div>
+    <table class="table table-hover" id="dc-table-graph">
+        <thead>
+            <tr class="header">
+                <th>DTG</th>
+                <th>Magnitude</th>
+                <th>Depth</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+    </table>
+  </main>
+    <script type="text/javascript">
+    // Create the dc.js chart objects & link to divs
+    let dataTable = dc.dataTable("#dc-table-graph");
+    let magnitudeChart = dc.barChart("#magnitude-chart");
+    let depthChart = dc.barChart("#depth-chart");
+    let timeChart = dc.lineChart("#time-chart");
+
+    let map = L.map('mapid', {preferCanvas: true}).setView([-41.05,172.93], 5);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 17
+    }).addTo(map);
+    
+    // load data from a csv file
+    d3.csv("data/earthquakes.csv").then(function (data) {
+      // format our data
+      let dtgFormat = d3.utcParse("%Y-%m-%dT%H:%M:%S");
+      let magFormat = d3.format(".1f");
+      let depthFormat = d3.format("d");
+
+      data.forEach(function(d) {
+        d.dtg = dtgFormat(d.origintime.substr(0,19));
+        d.lat = +d.latitude;
+        d.long = +d.longitude;
+        d.mag = magFormat(+d.magnitude, 1);
+        d.depth = depthFormat(+d.depth, 0);
+
+        let size = d.mag * 10000;
+        let circle = L.circle([d.lat, d.long], size, {
+                        color: '#fd8d3c',
+                        weight: 2,
+                        fillColor: '#fecc5c',
+                        fillOpacity: 0.5
+                    }).addTo(map);
+        circle.bindPopup("Magnitude: "+d.mag+"<br>Time: "+d.dtg);
+        
+      });
+      // Run the data through crossfilter and load our 'facts'
+      let facts = crossfilter(data);
+
+      //Create dataTable dimension using the date (dtg)
+     let dateDimension = facts.dimension(function (d){
+        return d.dtg;
+     });
+
+      //Create a dimension for Magnitude
+      let magDimension = facts.dimension(function (d) {
+        return d.mag;
+      });
+
+      //Create a group for Magnitude that just counts the number of elements in the group
+      let magDimensionCount = magDimension.group();
+
+      // Create a dimension for Depth
+     let depthDimension = facts.dimension(function (d) {
+        return d.depth;
+     });
+
+      //Create a group for Depth that just counts the number of elements in the group
+     let depthDimensionCount = depthDimension.group(); 
+
+      // Create a dimension just for the hour from the datetime in the dataset
+      //hint: use d3.time.hour() function
+      let hourDimension = facts.dimension(function (d){
+        return d3.timeHour(d.dtg);
+      });
+
+      let hourDimensionCount = hourDimension.group();
+
+      //Create a group for the hour dimension that just counts the number of elements per hour
+
+      // Setup the charts
+
+      // Configure Magnitude Bar Graph
+      // 480 x 150
+      // x dimension domain: [0, 8]
+      //use a gap of 56, this number is very obscure. It seems to depend on the width of the chart and on the number of dimensions. It was found using trial and error.
+      //set elasticY to true
+      magnitudeChart.width(480)
+          .height(150)
+          .margins({top: 10, right: 10, bottom: 20, left:40})
+          .dimension(magDimension)
+          .group(magDimensionCount)
+          .transitionDuration(500)
+          .centerBar(true)
+          .gap(56)
+          .x(d3.scaleLinear().domain([0, 8]))
+          .elasticY(true); 
+
+      // Configure Depth bar graph
+      // 480 x 150
+      // x dimension domain: [0, 100]
+     depthChart.width(600)
+         .height(150)
+          .margins({top: 10, right: 10, bottom: 20, left:40})
+          .dimension(depthDimension)
+          .group(depthDimensionCount)
+          .transitionDuration(500)
+          .centerBar(true)
+          .gap(1)
+          .x(d3.scaleLinear().domain([0, 100]))
+          .elasticY(true);
+      // Configure Time line graph
+      // height: 150
+      //x dimension: build the time scale from the data: d3.time.scale().domain(d3.extent(data, function(d) { return d.dtime; }))
+      timeChart.width(960)
+           .height(150)
+           .transitionDuration(500)
+           .margins({top: 10, right: 10, bottom: 20, left:40})
+           .dimension(hourDimension)
+           .group(hourDimensionCount)
+           .brushOn(false)
+           .elasticY(true)
+           .x(d3.scaleTime().domain(d3.extent(data, function(d) { return d.dtg; })));
+      dataTable.width(960)
+          .height(800)
+          .dimension(dateDimension)
+          .group(function(d) {
+            return "Earthquake Table";
+          })
+          .size(10)
+          .columns([
+            'dtg',
+            'mag',
+            'lat',
+            'long'])
+          .sortBy(function(d) { return d.dtg; })
+          .order(d3.ascending);
+
+      // Render the Charts
+      dc.renderAll();
+
+    });
+    </script>
+
+     <!-- Bootstrap javascript files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+</body>
+</html>
