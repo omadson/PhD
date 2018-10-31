@@ -35,11 +35,22 @@
         </div>
         <div class = "col-6">
           <div id='magnitude-chart'>
-            <h4> Number of Events by Magnitude </h4>
+            <h4> Number of Events by Magnitude
+              <span>
+                <a class="reset" href="javascript:magnitudeChart.filterAll();dc.redrawAll();" style="display: none;"> reset</a>
+              </span>
+            </h4>
           </div>
+
+
+
               
           <div id='depth-chart'>
-            <h4> Events by Depth (km) </h4>
+            <h4> Events by Depth (km)
+              <span>
+                <a class="reset" href="javascript:depthChart.filterAll();dc.redrawAll();" style="display: none;"> reset</a>
+              </span>
+            </h4>
           </div>
         </div>
     </div>
@@ -67,6 +78,13 @@
     let depthChart = dc.barChart("#depth-chart");
     let timeChart = dc.lineChart("#time-chart");
 
+    var markers = d3.map();
+    var markerLayer = L.layerGroup();
+
+    //ids
+    var idDimension, idGrouping;
+
+
     let map = L.map('mapid', {preferCanvas: true}).setView([-41.05,172.93], 5);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a> contributors',
@@ -87,18 +105,24 @@
         d.mag = magFormat(+d.magnitude, 1);
         d.depth = depthFormat(+d.depth, 0);
 
-        let size = d.mag * 10000;
-        let circle = L.circle([d.lat, d.long], size, {
+        // let size = d.mag * 5000;
+        var circle = L.circle([d.lat, d.long], d.mag * 5000, {
                         color: '#fd8d3c',
                         weight: 2,
                         fillColor: '#fecc5c',
                         fillOpacity: 0.5
-                    }).addTo(map);
+                    });
+
         circle.bindPopup("Magnitude: "+d.mag+"<br>Time: "+d.dtg);
-        
+        circle.publicid = d.publicid; //this is for linking on the other direction
+        markers.set(d.publicid, circle);
       });
       // Run the data through crossfilter and load our 'facts'
       let facts = crossfilter(data);
+      let all = facts.groupAll();
+
+      idDimension = facts.dimension(function(d) { return d.publicid; });
+      idGrouping = idDimension.group(function(id) { return id; });
 
       //Create dataTable dimension using the date (dtg)
      let dateDimension = facts.dimension(function (d){
@@ -147,7 +171,11 @@
           .centerBar(true)
           .gap(56)
           .x(d3.scaleLinear().domain([0, 8]))
-          .elasticY(true); 
+          .elasticY(true)
+          .on("filtered", function(chart,filter){
+                            updateMarkers();
+          });
+
 
       // Configure Depth bar graph
       // 480 x 150
@@ -191,8 +219,27 @@
 
       // Render the Charts
       dc.renderAll();
-
+      updateMarkers(); //this function will be defined below
     });
+
+    function updateMarkers(){
+      var ids = idGrouping.all();
+      var todisplay = new Array(ids.length); //preallocate array to be faster
+      var mc = 0; //counter of used positions in the array
+      for (var i = 0; i < ids.length; i++) {
+        var tId = ids[i];
+        if(tId.value > 0){ //when an element is filtered, it has value > 0
+          todisplay[mc] = markers.get(tId.key);
+          mc = mc + 1;
+        }
+      }
+      todisplay.length = mc; //resize the array so Leaflet does not complain
+      markerLayer.clearLayers(); //remove markers in layerGroup
+      if (map.hasLayer(markerLayer)){
+        map.removeLayer(markerLayer); //remove layerGroup if present
+      }
+      markerLayer = L.layerGroup(todisplay).addTo(map); //add it again passing the array of markers
+    }
     </script>
 
      <!-- Bootstrap javascript files -->
