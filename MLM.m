@@ -6,36 +6,59 @@ classdef MLM < Regressor
     end
     
     methods
-        function obj = MLM(parameters)
+        function obj = MLM(varargin)
+            if nargin == 0
+                parameters = struct();
+            else
+                parameters = varargin{1};
+            end
             obj@Regressor(parameters);
         end
         function obj = fit(obj, X, y)
+            % test and fix parameters
+            if ~isfield(obj.parameters, 'selection_type') && ...
+               ~isfield(obj.parameters, 'M')
+                obj.parameters.selection_type = 4;
+            elseif ~isfield(obj.parameters, 'selection_type') && ...
+                    isfield(obj.parameters, 'M')
+                obj.parameters.selection_type = 1;
+            elseif  isfield(obj.parameters, 'selection_type') && ...
+                   ~isfield(obj.parameters, 'M')
+                 fprintf('The M parameter is necessary.\n');
+            end
+            
+            
             obj = obj.get_training_set(X,y);
             
-            if isfloat(obj.parameters.M)
-                obj.parameters.M = ceil(obj.parameters.M * obj.training_set.N);
-            end
-            
-            rp_index = randi(obj.training_set.N, ...
-                                            [obj.parameters.M,1]);
-            % RP selection method 
-            if obj.parameters.selection_type == 1     % RN-RN
-                obj.parameters.rp_index_in  = rp_index;
-                obj.parameters.rp_index_out = rp_index;
-            elseif obj.parameters.selection_type == 2 % RN-FL
-                obj.parameters.rp_index_in  = rp_index;
-                obj.parameters.rp_index_out = 1:obj.training_set.N;
-            elseif obj.parameters.selection_type == 3 % FL-RN
-                obj.parameters.rp_index_in  = 1:obj.training_set.N;
-                obj.parameters.rp_index_out = rp_index;
-            elseif obj.parameters.selection_type == 4 % FL-FL
+            % full in / full out
+            if obj.parameters.selection_type == 4
                 obj.parameters.rp_index_in  = 1:obj.training_set.N;
                 obj.parameters.rp_index_out = 1:obj.training_set.N;
-            else                                      % RN-RN
-                obj.parameters.rp_index_in  = rp_index;
-                obj.parameters.rp_index_out = rp_index;
+            else
+                % convert percentage value to integer value
+                if isfloat(obj.parameters.M)
+                    obj.parameters.M = ceil(obj.parameters.M * obj.training_set.N);
+                end
+                % select randomly M points into dataset
+                rp_index = randi(obj.training_set.N, [obj.parameters.M,1]);
+                
+                % random in / random out
+                if obj.parameters.selection_type == 1
+                    obj.parameters.rp_index_in  = rp_index;
+                    obj.parameters.rp_index_out = rp_index;
+                    
+                % random in / full out
+                elseif obj.parameters.selection_type == 2
+                    obj.parameters.rp_index_in  = rp_index;
+                    obj.parameters.rp_index_out = 1:obj.training_set.N;
+                    
+                % full in / random out
+                elseif obj.parameters.selection_type == 3
+                    obj.parameters.rp_index_in  = 1:obj.training_set.N;
+                    obj.parameters.rp_index_out = rp_index;
+                end 
             end
-            
+             
             D_in  = phi(X, X(obj.parameters.rp_index_in,:));
             D_out = phi(y, y(obj.parameters.rp_index_out,:));
             
