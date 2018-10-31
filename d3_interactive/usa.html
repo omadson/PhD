@@ -23,6 +23,9 @@
 	</style>
 </head>
 <body>
+  <div id="tooltip" class="hidden">
+    <p>Taxa de desemprego: <span id="taxa"></span>%</p>
+  </div>
   <main id="container" class="container">
     <header>
 	   <h1>Taxa de desemprego nos EUA em agosto de 2016</h1>
@@ -66,8 +69,20 @@ function ready([us]) {
     .enter().append("path")
       .attr("fill", function(d) { return quantize(rateById.get(d.id)); }) //
       .attr("d", path)
-      // .append("title")
-      // .text(function(d) { return "Taxa de desemprego: " + rateById.get(d.id) + "%"; });
+      .on("mouseover", function(d){
+        d3.select(this)               // seleciona o elemento atual
+          .style("cursor", "pointer") //muda o mouse para mãozinha
+          .attr("stroke-width", 3)
+          .attr("stroke","#FFF5B1");
+      })
+      .on("mouseout", function(d){
+        d3.select(this)
+          .style("cursor", "default")
+          .attr("stroke-width", 0)
+          .attr("stroke","none"); //volta ao valor padrão
+      })
+      .append("title")
+      .text(function(d) { return "Taxa de desemprego: " + rateById.get(d.id) + "%"; });
 
   svg.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
