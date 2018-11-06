@@ -1,15 +1,15 @@
 clear; clc; close all; addpath(genpath('../'));
 %% experiment setup
 % 
-experiment_name = 'esann_2019';
+experiment_name = 'esann_2019_2';
 k_out           = 10;
-k_in            = 5;
+k_in            = 10;
 % data set list
-datasets = {'housing','forestfires','concrete'};
+datasets = {'motorcycle','cpu','housing','forestfires' ,'concrete'};
 % model list and configurations
 
 m_distribuition      = 0.05:0.1:0.95;
-lambda_distribuition = 2.^[-8:2:0];
+lambda_distribuition = 2.^[-8:3:10];
 d                    = [10e-5, 0.4, 1]; 
 
 models   = {struct('name', 'MLM',...
