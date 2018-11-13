@@ -36,7 +36,7 @@ classdef MLM < Regressor
                 obj.parameters.rp_index_out = 1:obj.training_set.N;
             else
                 % convert percentage value to integer value
-                if isfloat(obj.parameters.M)
+                if obj.parameters.M < 1
                     obj.parameters.M = ceil(obj.parameters.M * obj.training_set.N);
                 end
                 % select randomly M points into dataset
