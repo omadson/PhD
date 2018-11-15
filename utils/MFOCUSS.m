@@ -66,7 +66,7 @@ function [X, gamma_ind, gamma_est, count] = MFOCUSS(Phi, Y, lambda, varargin)
 PRUNE_GAMMA = 1e-4;        % threshold for prunning small gamma_i
 p           = 0.8;         % p-norm
 EPSILON     = 1e-8;        % threshold for stopping iteration. 
-MAX_ITERS   = 800;         % maximum iterations
+MAX_ITERS   = 600;         % maximum iterations
 PRINT       = 0;           % not show progress information
 
 % get input argument values
