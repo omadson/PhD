@@ -1,6 +1,7 @@
 function [best_parameters] = cross_kfold(model_class, parameters, folds, dataset)
     X = dataset(:,1:end-1);
     y = dataset(:,end);
+    
     %% create all combinations of parameters
     parameter_names = fieldnames(parameters);
     if length(fieldnames(parameters)) > 1
@@ -25,9 +26,37 @@ function [best_parameters] = cross_kfold(model_class, parameters, folds, dataset
 %             fprintf('%d, ', k);
 
             clf = eval(sprintf('%s(parameters_);',model_class));
-            clf.fit(X(folds{k}.train,:), y(folds{k}.train,:));
-            y_hat  = clf.predict(X(folds{k}.test,:));
-            mse(i,k) = mean((y_hat - y(folds{k}.test,:)).^2);
+            
+            
+            X_train = X(folds{k}.train,:);
+            max_x = repmat(max(X_train),size(X_train,1),1);
+            min_x = repmat(min(X_train),size(X_train,1),1);
+            
+            X_test = X(folds{k}.test,:);
+            
+            max_x_test = repmat(max(X_train),size(X_test,1),1);
+            min_x_test = repmat(min(X_train),size(X_test,1),1);
+            % normalize X_train and X_test
+            X_train = (X_train - min_x) ./ (max_x - min_x);
+            X_test = (X_test - min_x_test) ./ (max_x_test - min_x_test);
+            
+            
+            y_train = y(folds{k}.train,:);
+            max_y = max(y_train);
+            min_y = min(y_train);
+            y_train = (y_train - min_y) ./ (max_y-min_y);
+            
+            
+            
+            
+            y_test = y(folds{k}.test,:);
+            try
+                clf.fit(X_train, y_train);
+            catch exception
+                parameters_
+            end
+            y_hat  = (clf.predict(X_test) .* (max_y - min_y)) + min_y;
+            mse(i,k) = mean((y_hat - y_test).^2);
         end
 %         fprintf(' (mse=%.3f), ', mean(mse(i,:)));
     end
