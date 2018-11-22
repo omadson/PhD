@@ -20,11 +20,10 @@ A partir desse dataset, criar todas essas visualizações
   c) Relação com o número de viagens e condições climáticas (chuva e temperatura)
   d) Origem e destinos mais comuns
   e) Número de viagens 'estranhas': provenientes de erros, problemas na bike, aquelas com um tempo muito curto e origem/destino igual
-
-
+ 
 
 ~~~> 3. Visualizações dos Usuários
-  a) Sexo
-  b) Idade
+  a) Sexo (DADOS OK)
+  b) Idade (OK)
   c) Distribuição do número de viagens por usuário
   d) Perfil dos usuários + e - ativos
