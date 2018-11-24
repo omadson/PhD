@@ -27,3 +27,4 @@ A partir desse dataset, criar todas essas visualizações
   b) Idade (OK)
   c) Distribuição do número de viagens por usuário
   d) Perfil dos usuários + e - ativos
+  e) Tipo de Acesso (cartão ou aplicativo)
