@@ -1,0 +1,217 @@
+﻿/* ============================================================================================== 
+This copyright notice must be kept untouched in the stylesheet at all times.
+The original version of this stylesheet and the associated (x)html 
+is available at http://www.script-tutorials.com/bootstrap-one-page-template-with-parallax-effect/
+Copyright (c) Script Tutorials. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any way to fit your requirements.
+================================================================================================= */
+
+/* general styles */
+html, body {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth
+}
+
+/* padded section */
+.pad-section {
+  padding: 50px 0;
+}
+.pad-section img {
+  width: 100%;
+}
+
+/* vertical-centered text */
+.text-vcenter {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.text-vcenter h1 {
+  font-size: 4.5em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+.text-vcenter h2 {
+  font-size: 3.5em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+/* additional sections */
+#home {
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%), url(../images/home.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#about {
+}
+
+#services {
+  background-color: #306d9f;
+  color: #ffffff;
+}
+#services .glyphicon {
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 60px;
+  height: 140px;
+  line-height: 140px;
+  text-align: center;
+  vertical-align: middle;
+  width: 140px;
+}
+
+#information {
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%), url(../images/estacoes2.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 150px;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#information .panel {
+  opacity: 0.85;
+}
+
+
+#usuarios {
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%), url(../images/estacoes3.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 150px;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#usuarios .panel {
+  opacity: 0.85;
+}
+
+
+#estacoes_info {
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%), url(../images/estacoes.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 150px;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
+#google_map {
+  height: 500px;
+}
+
+footer {
+  padding: 20px 0;
+}
+footer .glyphicon {
+  color: #333333;
+  font-size: 60px;
+}
+footer .glyphicon:hover {
+  color: #306d9f;
+}
+
+
+
+
+#map_estacoes {
+  width: 100%;
+  height: 450px;
+  color: #000;
+  background-color: #FFF;
+  float: left;
+}
+#map_estacoes_pontual {
+    width: 750px;
+    height: 590px;
+    color: #000;
+    background-color: #FFF;
+    float: right;
+}
+.info {
+  padding: 6px 6px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  /*background: rgba(255,255,255,0.8);*/
+          border-color: #000;
+  /*box-shadow: 0 0 15px rgba(0,0,0,0.2);*/
+  border-radius: 5px;
+          border-width: 2px;
+}
+.info h4 {
+  margin: 0 0;
+  padding 
+  color: #777;
+}
+
+.legend {
+  text-align: left;
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  font-size:5pt;
+  /*opacity: 0.7;*/
+}
+
+
+
+
+.month {
+    fill: none;
+    stroke: #000;
+    stroke-width: 3px;
+}
+.day {
+    fill: #fff;
+    stroke: #fff;
+    stroke-width: 2px;
+}
+text    {
+    font-family:sans-serif;
+    font-size:1.5em;
+}
+.dayLabel   {
+    fill:#333;
+    font-size:7pt;
+}
+.monthLabel {
+    text-anchor:middle;
+    font-size:7pt;
+    fill:#333;
+}
+.yearLabel  {
+    fill:#000;
+    font-size:8pt;
+    font-weight: 900;
+}
+
+.key    {font-size:0.5em;}

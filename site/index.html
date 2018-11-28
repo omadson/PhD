@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Script Tutorials" />
+  <title>Bicicletar | Um passeio com os usuários do programa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- attach CSS styles -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+
+   <script src="https://d3js.org/d3.v5.min.js"></script>  
+   <script src="js/require.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script> -->
+</head>
+<body>
+
+  <!-- navigation panel -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Bicicletar</a>
+      </div>
+
+
+      <div class="collapse navbar-collapse" id="navbar-collapse-main">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#estacoes_info">Estações</a></li>
+          <li><a href="#information">Viagens</a></li>
+          <li><a href="#usuarios">Usuários</a></li>
+          <li><a href="http://github.com/">Conato</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <!-- first section - Home -->
+  <div id="home" class="home">
+    <div class="text-vcenter">
+      <h1>Bicicletar</h1>
+      <h3>Um passeio com os usuários do programa</h3>
+      <a href="#sobre" class="btn btn-default btn-lg">Iniciar passeio</a>
+    </div>
+  </div>
+  <!-- /first section -->
+
+  <!-- second section - About -->
+  <div id="sobre" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="images/logo.png" alt="" />
+        </div>
+        <div class="col-sm-9">
+          <h2>O que é o Bicicletar?</h2>
+          <p>Bicicletar é o sistema de bicicletas públicas de Fortaleza, no Brasil. O sistema foi lançado em 15 de dezembro de 2014, por meio de parceria da Prefeitura de Fortaleza com a Unimed, operado pela concessionária Serttel. Inicialmente, o sistema possuía 150 bicicletas disponíveis em 15 estações de aluguel distribuídas nos bairros Aldeota, Varjota, Meireles e Praia de Iracema.</p>
+          <p>Em março de 2015, o sistema contava com 40 estações e 400 bicicletas disponíveis para aluguel em diversos bairros da cidade.[4] A Unimed foi a patrocinadora da primeira fase do projeto. Nos primeiros três meses de funcionamento, o sistema contabilizou 73 mil viagens.[5] Mais utilizado nos dias úteis, o sistema conta com mais de 120 mil usuários cadastrados, sendo 83% desse total usuário do Bilhete Único. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /second section -->
+  <div id="estacoes_info" class="pad-section">
+    <div class="container">
+      <div class="text-vcenter">
+        <h2>Estações</h2>
+      </div>
+    </div>
+  </div>
+  <div id="about" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+        <div class="col-sm-12"><h3>Etapas de implantação</h3></div>
+         <div class="col-sm-12">
+          <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+        <div class="col-sm-12"><h4>----- Gráfico de implantação das estações -----</h4></div>
+
+        <div class="col-sm-12"><h3>Distribuição das estações</h3></div>
+
+        <div class="col-sm-5">
+          <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+          <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+        <div class="col-sm-7">
+          <div id="map_estacoes"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  <div id="services" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7">
+          <h3>Distribuição das estações</h3>
+          <p>Bicicletar é o sistema de bicicletas públicas de Fortaleza, no Brasil. O sistema foi lançado em 15 de dezembro de 2014, por meio de parceria da Prefeitura de Fortaleza com a Unimed, operado pela concessionária Serttel. Inicialmente, o sistema possuía 150 bicicletas disponíveis em 15 estações de aluguel distribuídas nos bairros Aldeota, Varjota, Meireles e Praia de Iracema.</p>
+          <p>Em março de 2015, o sistema contava com 40 estações e 400 bicicletas disponíveis para aluguel em diversos bairros da cidade.[4] A Unimed foi a patrocinadora da primeira fase do projeto. Nos primeiros três meses de funcionamento, o sistema contabilizou 73 mil viagens.[5] Mais utilizado nos dias úteis, o sistema conta com mais de 120 mil usuários cadastrados, sendo 83% desse total usuário do Bilhete Único. </p>
+        </div>
+        <div class="col-sm-4">
+          <img src="images/logo.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- third section - Services -->
+<!--   <div id="services" class="pad-section">
+    <div class="container">
+      <h2 class="text-center">Serviços prestados</h2> <hr />
+      <div class="row text-center">
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-cloud"> </i>
+          <h4>Service 1</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-leaf"> </i>
+          <h4>Service 2</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-phone-alt"> </i>
+          <h4>Service 3</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-bullhorn"> </i>
+          <h4>Service 4</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- /third section -->
+
+  <!-- fourth section - Information -->
+
+  <div id="information" class="pad-section">
+    <div class="container">
+      <div class="text-vcenter">
+        <h2>Viagens</h2>
+      </div>
+    </div>
+  </div>
+  <div id="about" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+
+        <div class="col-sm-12"><h3>Viagens por sexo</h3></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+        <div class="col-sm-8">
+          <div id="rides_per_sex"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Viagens diárias</h3>
+          <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+        <div class="col-sm-12" id="calendar_viagens"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="usuarios" class="pad-section">
+    <div class="container">
+      <div class="text-vcenter">
+        <h2>Usuários</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- /fourth section -->
+
+  <!-- fifth section -->
+  <div id="services" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h3>Parallax scrolling effect is in action</h3>
+          <h4>The next is the address on Google maps</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /fifth section -->
+
+  <!-- google map -->
+  <!-- <div id="google_map"></div> -->
+  <!-- /google map -->
+
+  <!-- footer -->
+  <footer>
+    <hr />
+    <div class="container">
+      <p class="text-right">Copyright &copy; Your Company 2014</p>
+    </div>
+  </footer>
+  <!-- /footer -->
+
+  <!-- attach JavaScripts -->
+  <script src="js/jquery-1.10.2.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+
+<script type="text/javascript" src="data/bairros.js"></script>
+<script type="text/javascript" src="js/station_distribuition.js"></script>
+<script src="js/rides_per_day.js"></script>
+</script>
+
+</html>
