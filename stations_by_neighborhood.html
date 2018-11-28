@@ -18,12 +18,20 @@
    <script src="https://d3js.org/d3.v5.min.js"></script>	
 
 	<style>
-			#map {
+			#map_estacoes {
 				width: 750px;
 				height: 590px;
                 color: #000;
                 background-color: #FFF;
+                float: left;
 			}
+            #map_estacoes_pontual {
+                width: 750px;
+                height: 590px;
+                color: #000;
+                background-color: #FFF;
+                float: right;
+            }
 			.info {
 				padding: 6px 8px;
 				font: 14px/16px Arial, Helvetica, sans-serif;
@@ -51,17 +59,72 @@
 				margin-right: 8px;
 				/*opacity: 0.7;*/
 			}
+            #info_estacoes {
+                margin: 30px;
+            }
+            .spacer {
+              height: 60px;
+            }
+            .parallax {
+                /* The image used */
+                background-image: url("graphs/img/bicicletar_estacao2.jpg");
+
+                /* Set a specific height */
+                height: 400px;
+
+                /* Create the parallax scrolling effect */
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                z-index: 30000;
+            }
 		</style>
 </head>
 <body>
 
 <div class="container">
-	<h1> Número de Estações do Bicicletar e Minibicicletar</h1>
-	<p>
-		Dados retirados do site da <a href="http://www.sspds.ce.gov.br/">SSPDS</a>.
+    <div class="parallax"></div>
+    <div class="row">
+        <h1>Bicicletar</h1>
+        <p>
+            Bicicletar é o sistema de bicicletas públicas de Fortaleza, no Brasil. O sistema foi lançado em 15 de dezembro de 2014, por meio de parceria da Prefeitura de Fortaleza com a Unimed, operado pela concessionária Serttel. Inicialmente, o sistema possuía 150 bicicletas disponíveis em 15 estações de aluguel distribuídas nos bairros Aldeota, Varjota, Meireles e Praia de Iracema. [3]
+        </p>
+        <p>
+            Em março de 2015, o sistema contava com 40 estações e 400 bicicletas disponíveis para aluguel em diversos bairros da cidade.[4] A Unimed foi a patrocinadora da primeira fase do projeto. Nos primeiros três meses de funcionamento, o sistema contabilizou 73 mil viagens.[5] Mais utilizado nos dias úteis, o sistema conta com mais de 120 mil usuários cadastrados, sendo 83% desse total usuário do Bilhete Único. .[6] 
+        </p>
+    </div>
+    
+
+
+	<h2>Estações</h2>
+	<p>Dados retirados do site da <a href="http://www.sspds.ce.gov.br/">SSPDS</a>.
 	</p>	
-    <div id="map">
-		<!-- <strong>Estações por bairro</strong> -->
+    
+    <div class="row">
+    
+    <div class="col-1-3">
+        <div id="map_estacoes"></div>
+    </div>
+    <div class="col-4" id="stations_number">
+        <h4>Etapas de implantação</h4>
+        <p>
+        Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur.
+        </p>
+    </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="row">
+        <div class="col-4" id="stations_point">
+            <h4>Localização pontual</h4>
+            <p>
+            Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur.
+            </p>
+        </div>
+        <div class="col-1-3">
+            <div id="map_estacoes_pontual"></div>
+        </div>
+        
     </div>
 </div>
 <script type="text/javascript" src="data/bairros.js"></script>
@@ -70,10 +133,10 @@
 
     // let blues = d3.schemeBlues[8];
 	// &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>
-	let map = L.map('map', {zoomControl: false}).setView([-3.792614,-38.515877], 12);
+	let map = L.map('map_estacoes', {zoomControl: false}).setView([-3.792614,-38.515877], 12);
 	L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
 	{ attribution: '',
-	maxZoom: 12, minZoom: 12, opacity: 0}).addTo(map);
+	maxZoom: 15, minZoom: 15, opacity: 0}).addTo(map);
 
     map.dragging.disable();
     map.touchZoom.disable();
@@ -90,7 +153,7 @@
 
 	info.update = function (feat) {
             //console.log(feat);
-			this._div.innerHTML = '<h5>Número de estações</h5>' +  (feat ?
+			this._div.innerHTML =  (feat ?
 				'<b>' + feat.properties.NOME + '</b><br />Bicicletar: ' + bicicletarByName.get(feat.properties.NOME) + '<br />Mini bicicletar: ' + minibicicletarByName.get(feat.properties.NOME) : 'Passe o mouse sobre um bairro');
 	};
 
@@ -174,7 +237,7 @@
 		}).addTo(map);
 	}
 	
-	let legend = L.control({position: 'topright'});
+	let legend = L.control({position: 'bottomright'});
 
 	legend.onAdd = function (map) {
 
