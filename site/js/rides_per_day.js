@@ -3,8 +3,10 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function 
     var title="";
     var units=" Viagens";
     var breaks=[500,1000,1500,2000,2500];
-    var colours=["#FFFFCC","#C7E9B4","#7FCDBB","#41B6C4","#2C7FB8","#253494"];
-    
+    // var colours=["#FFFFCC","#C7E9B4","#7FCDBB","#41B6C4","#2C7FB8","#253494"];
+    // var colours=["#edf8fb","#ccece6","#99d8c9","#66c2a4","#2ca25f","#006d2c"];
+    var colours=["#99d8c9","#66c2a4","#41ae76","#238b45","#006d2c","#00441b"]
+
     //general layout information
     var cellSize = 17;
     var xOffset=30;

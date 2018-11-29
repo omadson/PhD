@@ -1,0 +1,51 @@
+.tooltipleft {
+    display:inline-block;
+    position:absolute;
+    border-bottom:1px dotted #666;
+    text-align:left;
+    /*white-space: nowrap;*/
+    pointer-events: none;
+    margin-right:20px;
+    transform:translate(0, -50%);
+    padding:10px;
+    color:#666666;
+    background-color:#FFFFE0;
+    font-weight:normal;
+    font-size:10pt;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    /*display:none;*/
+    border:1px solid #DCA;
+}
+
+.tooltipleft h3 {margin:3pt 0;}
+
+.tooltipleft:hover .left {
+    display:block;
+}
+
+.tooltipleft i {
+    position:absolute;
+    top:50%;
+    left:100%;
+    margin-top:-12px;
+    width:12px;
+    height:24px;
+    overflow:hidden;
+}
+#circle circle {
+fill: none;
+pointer-events: all;
+}
+path.group {
+fill-opacity: .8;
+}
+path.chord {
+fill-opacity: .8;
+stroke: #000;
+stroke-width: .25px;
+}
+#circle:hover path.fade {
+display: none;
+}
