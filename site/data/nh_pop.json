@@ -1,0 +1,10 @@
+{
+	"pop": [
+		{ "sit": "atendida", "count": 528725},
+		{ "sit": "nao_atendida", "count": 2452185}		
+	],
+	"bairros": [
+		{ "sit": "possui", "count": 29},
+		{ "sit": "nao_possui", "count": 88}		
+	]
+}
