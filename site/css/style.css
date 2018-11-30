@@ -381,3 +381,12 @@ transition: opacity 0.15s linear;
     /*stroke: #293b47;*/
     fill: rgba(0,88,36, 0.5);
 }
+
+#install_station {
+  width: 100%;
+  height: 500px;
+}
+.leaflet-popup-content-wrapper{
+  background-color: white;
+  opacity: 0.9;
+}
