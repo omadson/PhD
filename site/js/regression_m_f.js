@@ -6,10 +6,17 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function(
             total = d.x + d.y;
             pM = 100 * (d.x / total);
             pF = 100 * (d.y / total);
-            return   `<strong>Data: ${formatDate(d.date)}</strong><br />
-                              Total: ${d.x + d.y} <br />
-                              Masculino: ${d.x} (${formatP(pM)}%)<br />
-                              Feminino: ${d.y} (${formatP(pF)}%)`;
+            if (pM > pF) {
+                return   `<strong>Data: ${formatDate(d.date)}</strong><br />
+                                  Total: ${d.x + d.y} <br />
+                                  Masculino: ${d.x} (${formatP(pM)}%)<br />
+                                  Feminino: ${d.y} (${formatP(pF)}%)`;
+            } else {
+                return   `<strong>Data: ${formatDate(d.date)}</strong><br />
+                                  Total: ${d.x + d.y} <br />
+                                  Feminino: ${d.y} (${formatP(pF)}%)<br />
+                                  Masculino: ${d.x} (${formatP(pM)}%)`;
+            }
         }
         var margin = {
                 top: 20,
@@ -42,10 +49,14 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function(
 
         var data = create_data(data_);
 
+        var data_m = [];
         data.forEach(function(d) {
             d.x = +d.x;
             d.y = +d.y;
             d.yhat = +d.yhat;
+            if (d.y > d.x) {
+                data_m.push({'x': d.x, 'y': d.y});
+            }
         });
 
         var line = d3.svg.line()
@@ -84,6 +95,22 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function(
             .attr("dy", ".71em")
             .style("text-anchor", "end")
             .text("Feminino");
+
+        console.log(data_m)
+        svg.selectAll(".dot2")
+           .data(data_m)
+           .enter().append("circle")
+           .attr("class", "dot")
+            .attr("r", 5.5)
+            .attr("cx", function(d) {
+                return x(d.x);
+            })
+            .attr("cy", function(d) {
+                return y(d.y);
+            })
+            .style("stroke", "black")
+            .style("stroke-width", 2);
+
 
         svg.selectAll(".dot")
             .data(data)

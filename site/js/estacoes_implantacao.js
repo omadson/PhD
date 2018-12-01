@@ -12,17 +12,20 @@ require(["http://d3js.org/d3.v5.min.js", "https://unpkg.com/leaflet@1.3.4/dist/l
     // escala de cores
     
 
-    let map = L.map('install_station').setView([-3.742616,-38.5035877], 13);
+    let map = L.map('install_station',{zoomControl: false}).setView([-3.742616,-38.5035877], 13);
     // L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",{ attribution: 'aasd', maxZoom: 11.5, minZoom: 11.5, opacity: 0}).addTo(map2);
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 13, minZoom: 12
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 13, minZoom: 13
     }).addTo(map);
-
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
     var bounds = L.latLngBounds([[-3.68,-38.585713], [-3.806353,-38.43156]]);
     map.setMaxBounds(bounds);
     stations = []
     d3.csv("data/stations_with_new_neighborhood.csv").then(function (data) {
         data.forEach(function(d) {
+            d.media_viagens = 1450;
             stations.push(d);
             var circle = L.circle([d.lat, d.lon], {
                 color: colorScale(d.etapa),

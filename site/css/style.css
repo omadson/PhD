@@ -382,6 +382,13 @@ transition: opacity 0.15s linear;
     fill: rgba(0,88,36, 0.5);
 }
 
+.dot2 {
+    /*stroke: #293b47;*/
+    fill: rgba(0,88,36, 1);    
+}
+
+
+
 #install_station {
   width: 100%;
   height: 500px;
@@ -389,4 +396,44 @@ transition: opacity 0.15s linear;
 .leaflet-popup-content-wrapper{
   background-color: white;
   opacity: 0.9;
+}
+
+
+
+
+
+
+
+
+#dashboard path {  stroke: #fff; }
+#dashboard path:hover {  opacity:0.9; }
+#dashboard rect:hover {  fill:blue; }
+#dashboard .axis {  font: 10px sans-serif; }
+#dashboard .legend tr { border-bottom:1px solid grey; }
+#dashboard .legend tr:first-child {    border-top:1px solid grey; }
+
+#dashboard .axis path,
+#dashboard .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#dashboard .x.axis path {  display: none; }
+#dashboard .legend{
+    margin-bottom:80px;
+    display:inline-block;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+#dashboard .legend td{
+    padding:4px 5px;
+    vertical-align:bottom;
+}
+#dashboard .legendFreq, #dashboard .legendPerc{
+    align:right;
+    width:50px;
+}
+#dashboard text {
+  font-size: 10pt;
 }
