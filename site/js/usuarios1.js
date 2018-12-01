@@ -2,7 +2,9 @@ require(["http://d3js.org/d3.v3.min.js"], function (d3) {
 
 function dashboard(id, fData){
     var barColor = 'steelblue';
-    function segColor(c){ return {M:"#807dba", F:"#e08214",O:"#41ab5d"}[c]; }
+    
+    function segColor(c){ return {M:"#7fc97f", F:"#beaed4",O:"#fdc086"}[c]; }
+    // function segColor(c){ return {M:"#807dba", F:"#e08214",O:"#41ab5d"}[c]; }
     
     // compute total for each state.
 

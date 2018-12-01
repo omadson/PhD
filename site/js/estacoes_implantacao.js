@@ -4,7 +4,8 @@ require(["http://d3js.org/d3.v5.min.js", "https://unpkg.com/leaflet@1.3.4/dist/l
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
     }
-    colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99'];
+
+    colors = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00'];
     let colorScale = d3.scaleOrdinal().domain([1,2,3,4,5]).range(colors);
 
     
@@ -15,11 +16,11 @@ require(["http://d3js.org/d3.v5.min.js", "https://unpkg.com/leaflet@1.3.4/dist/l
     let map = L.map('install_station',{zoomControl: false}).setView([-3.742616,-38.5035877], 13);
     // L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",{ attribution: 'aasd', maxZoom: 11.5, minZoom: 11.5, opacity: 0}).addTo(map2);
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 13, minZoom: 13
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 15, minZoom: 13
     }).addTo(map);
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
+    // map.scrollWheelZoom.disable();
     var bounds = L.latLngBounds([[-3.68,-38.585713], [-3.806353,-38.43156]]);
     map.setMaxBounds(bounds);
     stations = []
