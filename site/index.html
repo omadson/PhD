@@ -24,6 +24,7 @@
    
    <script src="js/underscore.js"></script>
    <script src="js/mapper.js"></script>
+   <script src="js/multiline.js" charset="utf-8"></script>
    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/dc/3.0.2/dc.min.js"></script>
    <script src="js/crossfilter.min.js"></script> -->
 
@@ -191,11 +192,36 @@
   <div id="about" class="pad-section">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-4">
+          <h2>Viagens por hora</h2>
+        </div>
+        <div class="col-sm-8">
+          <div id="rides_per_hour" class="chart-wrapper"></div>
+        </div>
+        
+        <div class="col-sm-4"></div>
+
+        <div class="col-sm-4"><p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="chart-wrapper" id="rides_per_month_2015"></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="chart-wrapper" id="rides_per_month_2016"></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="chart-wrapper" id="rides_per_month_2017"></div>
+        </div>
+
+      </div>
+      <div class="row">
+<!--         <div class="col-sm-12">
         <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
         <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
         </div>
-
+ -->
         <div class="col-sm-12"><h3>Viagens por gênero</h3></div>
       </div>
       <div class="row">
@@ -310,7 +336,8 @@
 <script src="js/station_distribuition.js"></script>
 <script src="js/rides_per_day.js"></script>
 <script src="js/regression_m_f.js"></script>
-
+<script src="js/rides_per_hour.js"></script>
+<script src="js/rides_per_month.js"></script>
 
 </script>
 

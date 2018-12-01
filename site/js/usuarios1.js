@@ -2,8 +2,8 @@ require(["http://d3js.org/d3.v3.min.js"], function (d3) {
 
 function dashboard(id, fData){
     var barColor = 'steelblue';
-    
-    function segColor(c){ return {M:"#7fc97f", F:"#beaed4",O:"#fdc086"}[c]; }
+    // ['#1b9e77', '#d95f02', '#7570b3']
+    function segColor(c){ return {M:"#d95f02", F:"#1b9e77",O:"#7570b3"}[c]; }
     // function segColor(c){ return {M:"#807dba", F:"#e08214",O:"#41ab5d"}[c]; }
     
     // compute total for each state.
@@ -49,7 +49,9 @@ function dashboard(id, fData){
             .attr("width", x.rangeBand())
             .attr("height", function(d) { return hGDim.h - y(d[1]); })
             .attr('fill',barColor)
-            .on("mouseover",mouseover)// mouseover is defined below.
+            .on("mouseover",function(d) {
+                mouseover(d);
+            })// mouseover is defined below.
             .on("mouseout",mouseout);// mouseout is defined below.
             
         //Create the frequency labels above the rectangles.
@@ -62,7 +64,7 @@ function dashboard(id, fData){
             // filter for selected state.
             var st = fData.filter(function(s){ return s.ano_cadastro == d[0];})[0],
                 nD = d3.keys(st.sex).map(function(s){ return {type:s, sex:st.sex[s]};});
-               
+            
             // call update functions of pie-chart and legend.    
             pC.update(nD);
             leg.update(nD);
