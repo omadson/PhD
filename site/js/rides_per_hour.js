@@ -9,7 +9,7 @@ require(["http://d3js.org/d3.v3.js"], function (d3){
         var chart = makeLineChart(data, 'mes', {
             'Dias úteis': {column: 'M'},
             'Feriados e finais de semana': {column: 'F'},
-        }, {xAxis: 'Horário de retirada (h)', yAxis: 'Média de viagens'}, 800, 300,'hora');
+        }, {xAxis: 'Horário de retirada', yAxis: 'Média de viagens'}, 800, 300,'hora');
         chart.bind("#rides_per_hour");
         chart.render();
     });

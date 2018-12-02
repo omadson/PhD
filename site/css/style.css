@@ -497,13 +497,18 @@ transition: opacity 0.15s linear;
   stroke-width: 5px;
 }
 
+#rides_per_month_2016.chart-wrapper .legend, #rides_per_month_2017.chart-wrapper .legend  {
+  display: none;
+}
+
 .chart-wrapper .legend  {
     min-width: 200px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    font-size: 16px;
-    padding: 10px 40px;
+    font-size: 9pt;
+    padding: 5px 5px;
+    padding-left: 90px;
 }
 .chart-wrapper .legend > div {
     margin: 0px 25px 10px 0px;

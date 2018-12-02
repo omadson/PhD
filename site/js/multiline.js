@@ -70,7 +70,12 @@ function makeLineChart(dataset, xName, yObjs, axisLables, height, width, chart_t
 
 // Get the max of every yFunct
     chartObj.max = function (fn) {
-        return d3.max(chartObj.data, fn);
+        // 
+        if (chart_type == 'sexo') {
+            return 49000;
+        } else {
+            return d3.max(chartObj.data, fn);
+        }
     };
     chartObj.yScale = d3.scale.linear().range([chartObj.height, 0]).domain([0, d3.max(chartObj.yFuncts.map(chartObj.max))]);
 
