@@ -1,4 +1,85 @@
-require(["http://d3js.org/d3.v5.min.js", "https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"], function (d3,A) {
+require(["http://d3js.org/d3.v5.min.js"], function (d3) {
+    
+ var blueIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-blue.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var redIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-red.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var greenIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-green.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var orangeIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-orange.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var yellowIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-yellow.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var violetIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-violet.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var greyIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-grey.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var blackIcon = new L.Icon({
+  iconUrl: 'images/img/marker-icon-2x-black.png',
+  shadowUrl: 'images/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+
+var translateColors = [blackIcon, blueIcon, redIcon, greenIcon, violetIcon, greyIcon]
+var translateColors2 = ['#3c3c3c', '#4698d0', '#cb293c', '#24ac21', '#9a27ca', '#787878']
+
+
+
+
+
     function toTitleCase(str) {
       return str.replace(/\w\S*/g, function(txt){
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -28,12 +109,16 @@ require(["http://d3js.org/d3.v5.min.js", "https://unpkg.com/leaflet@1.3.4/dist/l
         data.forEach(function(d) {
             d.media_viagens = 1450;
             stations.push(d);
-            var circle = L.circle([d.lat, d.lon], {
-                color: colorScale(d.etapa),
-                fillColor: colorScale(d.etapa),
-                fillOpacity: 0.5,
-                opacity: 1,
-                radius: 80
+            // var circle = L.circle([d.lat, d.lon], {
+            //     color: colorScale(d.etapa),
+            //     fillColor: colorScale(d.etapa),
+            //     fillOpacity: 0.5,
+            //     opacity: 1,
+            //     radius: 80,
+            // })
+            var circle = L.marker([d.lat, d.lon], {
+              icon: translateColors[d.etapa],
+              number: 10
             })
             circle.bindPopup(`<h5><strong>Estação ${d.id}: ${d.nome_estacao}</strong></h5>
                   Localizada no bairro <strong>${toTitleCase(d.bairro)}</strong>, a estação <strong>${d.id}</strong> participa do programa <strong>${d.programa}</strong> e foi instalada na etapa <strong>${d.etapa}</strong>.`);
@@ -53,13 +138,14 @@ require(["http://d3js.org/d3.v5.min.js", "https://unpkg.com/leaflet@1.3.4/dist/l
               n = colors.length,
         from, to;
       for (let i = 0; i < n; i++) {
-         let c = colors[i];
+         let c = translateColors2[i];
         //       let fromto = quantize.invertExtent(c);
-        str = `<i style="background:${colors[i]}"></i> Etapa ${i+1}`;
+        str = `<i style="background:${translateColors2[i+1]}"></i> Etapa ${i+1}`;
         console.log(str)
         labels.push(str)
         //   d3.format("d")(fromto[0]) + (d3.format("d")(fromto[1]) ? '&ndash;' + d3.format("d")(fromto[1]) : '+'));
       }
+      labels.push(`<i style="background:${translateColors2[0]}"></i> Minibicicletar`)
       div.innerHTML = labels.join('<br>');
       return div;
     };

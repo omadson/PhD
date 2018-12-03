@@ -31,11 +31,18 @@ info.addTo(map);
 //    .domain([0, 200])
 //    .range(blues);
 
-  let blues = d3.quantize(d3.interpolateGreens, 6);
-  let quantize = d3.scaleQuantile().domain([1,2,3,4,10,13]).range(blues);
+  // let blues = d3.quantize(d3.interpolateGreens, 6);
+  // let blues = ['white', '#d9f0a3', '#78c679', '#41ab5d', '#238443', '#005a32']
+  let blues = d3.quantize(d3.interpolateGreens, 5);
+  // let blues = ['#fff', '#f7fcb9', '#addd8e', '#78c679', '#41ab5d', '#238443', '#006837', '#004529']
+  // let blues = ['#fff', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#005a32']
+  blues[0] = '#fff';
+  let quantize = d3.scaleQuantile().domain([0,1,2,5,10,12]).range(blues);
+
+
 
 function style(feature) {
-   stationsCount = bicicletarByName.get(feature.properties.NOME) + minibicicletarByName.get(feature.properties.NOME);
+   stationsCount = bicicletarByName.get(feature.properties.NOME);
    return {
         weight: 1,
         opacity: 1,
@@ -113,14 +120,14 @@ legend.onAdd = function (map) {
           n = blues.length,
     from, to;
 
-  for (let i = 0; i < n; i++) {
+  for (let i = 1; i < n; i++) {
     let c = blues[i];
           let fromto = quantize.invertExtent(c);
     labels.push(
-      '<i style="background:' + blues[i] + '"></i> ' +
-      d3.format("d")(fromto[0]) + (d3.format("d")(fromto[1]) ? '&ndash;' + d3.format("d")(fromto[1]) : '+'));
+      '<i style="background:' + blues[i] + '"></i>' +
+      d3.format("d")(fromto[0]) + (d3.format("d")(fromto[1]) ? '&#8211;' + d3.format("d")(fromto[1]) : '+'));
   }
-
+  labels[0] = '<i style="background:' + blues[1] + '"></i> 1';
   div.innerHTML = labels.join('<br>');
   return div;
 };
