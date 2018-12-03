@@ -1,4 +1,36 @@
 require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function (d3) {
+    var formatDate1 = d3.time.format('%Y-%m-%d');
+    var formatDate2 = d3.time.format('%d/%m/%Y');
+    var formatP = d3.format('.1f');
+    // var dias = {1: 'Seg', 2: 'Ter', 3: 'Quar', 4: 'Qui', 5: 'Sex', 6: 'Sab', 0: };
+    var dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
+
+    function chordTip (d) {
+            total = d.Men + d.Women + d.Others;
+            pM = 100 * d.Men / total;
+            pW = 100 * d.Women / total;
+            pO = 100 * d.Others / total;
+            return    `<strong>Data: ${formatDate2(d.dia)} (${dias[d.dia.getDay()]}) </strong><br /><div id='viagens_dia'></div><hr />
+                               Total: ${total} <br />
+                               Masculino: ${d.Men} (${formatP(pM)}%)<br />
+                               Feminino: ${d.Women} (${formatP(pW)}%)<br />
+                               Outros: ${d.Others} (${pO == 0? 0.0:formatP(pO)}%)`;
+
+            // total = d.x + d.y;
+            // pM = 100 * (d.x / total);
+            // pF = 100 * (d.y / total);
+            // if (pM > pF) {
+            //     return   `<strong>Data: ${formatDate(d.date)}</strong><br />
+            //                       Total: ${d.x + d.y} <br />
+            //                       Masculino: ${d.x} (${formatP(pM)}%)<br />
+            //                       Feminino: ${d.y} (${formatP(pF)}%)`;
+            // } else {
+            //     return   `<strong>Data: ${formatDate(d.date)}</strong><br />
+            //                       Total: ${d.x + d.y} <br />
+            //                       Feminino: ${d.y} (${formatP(pF)}%)<br />
+            //                       Masculino: ${d.x} (${formatP(pM)}%)`;
+            // }
+        }
     // var title="Número de viagens ao longo dos anos";
     var title="";
     var units=" Viagens";
@@ -130,10 +162,29 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function 
                     return colours[breaks.length]   
                 }
             })
-        
+        dataRects.on("mouseover", function (d) {
+                    d3.select(this)
+                      .attr("stroke", "#fff")
+                      .attr("stroke-width", 3);
+                    d3.select(".tooltipleft")
+                      .style("visibility", "visible")
+                      .html(chordTip(d))
+                      .style("top", function () { return (d3.event.pageY - 150)+"px"})
+                      .style("left", function () { return (d3.event.pageX - 150)+"px";});
+
+                    plot_rides(formatDate1(d.dia), "#viagens_dia")
+                 })
+                 .on("mouseout", function (d) {
+                    d3.select(this)
+                      .attr("stroke", "#FFF")
+                      .attr("stroke-width", 1);
+                    d3.select(".tooltipleft").style("visibility", "hidden");
+                 })
+
+
         //append a title element to give basic mouseover info
-        dataRects.append("title")
-            .text(function(d) { return toolDate(d.dia)+"\nSoma: "+(d.Men + d.Women + d.Others)+units+"\nHomens: "+d.Men+units+"\nMulheres: "+d.Women+units+"\nOutros: "+d.Others+units;});
+        // dataRects.append("title")
+            // .text(function(d) { return toolDate(d.dia)+"\nSoma: "+(d.Men + d.Women + d.Others)+units+"\nHomens: "+d.Men+units+"\nMulheres: "+d.Women+units+"\nOutros: "+d.Others+units;});
         
         // dataRects.on("mouseover", function(d){
         //     d3.select(this)

@@ -36,8 +36,7 @@ require(["http://d3js.org/d3.v5.min.js", "https://unpkg.com/leaflet@1.3.4/dist/l
                 radius: 80
             })
             circle.bindPopup(`<h5><strong>Estação ${d.id}: ${d.nome_estacao}</strong></h5>
-                  Localizada no bairro <strong>${toTitleCase(d.bairro)}</strong>, a estação <strong>${d.id}</strong> participa do programa <strong>${d.programa}</strong> e foi instalada na etapa <strong>${d.etapa}</strong>.
-                  Deste de sua instalação, esta estação tem uma média de <strong>1045</strong> viagens diárias.`);
+                  Localizada no bairro <strong>${toTitleCase(d.bairro)}</strong>, a estação <strong>${d.id}</strong> participa do programa <strong>${d.programa}</strong> e foi instalada na etapa <strong>${d.etapa}</strong>.`);
             circle.addTo(map);
             // console.log(circle);
         });

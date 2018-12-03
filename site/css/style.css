@@ -294,7 +294,6 @@ text    {
 .tooltipleft {
     display:inline-block;
     position:absolute;
-    border-bottom:1px dotted #666;
     text-align:left;
     /*white-space: nowrap;*/
     pointer-events: none;
@@ -302,15 +301,16 @@ text    {
     transform:translate(0, -50%);
     padding:10px;
     color:#666666;
-    background-color:#FFFFE0;
+    background-color:#FFF;
     font-weight:normal;
     font-size:10pt;
-    border-radius:8px;
+    border-radius:10px;
     position:absolute;
-    z-index:99999999;
+    z-index:500;
     /*display:none;*/
-    border:1px solid #DCA;
+    /*border:1px solid #aaa;*/
     visibility: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .tooltip-hidden {
@@ -557,3 +557,14 @@ transition: opacity 0.15s linear;
     .chart-wrapper .legend {font-size: 14px;}
 }
 
+
+.tooltipleft .axis {
+    font: 5px sans-serif;
+  }
+
+  .tooltipleft .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
