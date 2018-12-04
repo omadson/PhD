@@ -1,11 +1,13 @@
 require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function(d3){
-    d3.csv('data/rides_sex.csv', function (error, data_) {
+    d3.csv('data/rides_per_sex.csv', function (error, data_) {
+
         formatDate = d3.time.format("%d/%m/%Y");
         formatP   = d3.format(".1f");
         function chordTip (d) {
             total = d.x + d.y;
             pM = 100 * (d.x / total);
             pF = 100 * (d.y / total);
+            console.log(d)
             if (pM > pF) {
                 return   `<strong>Data: ${formatDate(d.date)}</strong><br />
                                   Total: ${d.x + d.y} <br />
@@ -166,14 +168,11 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function(
             // create x and y values
             ii = 0
             data_.forEach(function(d) {
-                x.push(d.x);
-                y.push(d.y);
-                date.push(new Date(d.dia));
-                x_mean += +d.x;
-                y_mean += +d.y;
-
-
-
+                x.push(d.M_0);
+                y.push(d.F_0);
+                date.push(new Date(`${d.dia}T00:00:00.000-03:00`));
+                x_mean += +d.M_0;
+                y_mean += +d.F_0;
 
                 ii+=1;
             });

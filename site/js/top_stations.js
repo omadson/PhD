@@ -68,9 +68,7 @@ require(['https://d3js.org/d3.v4.min.js'], function(d3) {
 
   var nodes = d3.hierarchy(dataset)
       .sum(function(d) { 
-        console.log(d);
         return d.Count; });
-  console.log(nodes);
   var node = svg.selectAll(".node")
       .data(bubble(nodes).descendants())
       .enter()
