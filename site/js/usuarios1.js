@@ -3,20 +3,20 @@ require(["http://d3js.org/d3.v3.min.js"], function (d3) {
 function dashboard(id, fData){
     var barColor = 'steelblue';
     // ['#1b9e77', '#d95f02', '#7570b3']
-    function segColor(c){ return {M:"#d95f02", F:"#1b9e77",O:"#7570b3"}[c]; }
+    function segColor(c){ return {Masculino:"#d95f02", Feminino:"#1b9e77",Outros:"#7570b3"}[c]; }
     // function segColor(c){ return {M:"#807dba", F:"#e08214",O:"#41ab5d"}[c]; }
     
     // compute total for each state.
 
     fData.forEach(function(d){
-        d['sex'] = {'M': +d.M, 'F': +d.F, 'O': +d.O};        
-        d.total = (+d.sex.M) + (+d.sex.M) + (+d.sex.O);
+        d['sex'] = {'Masculino': +d.M, 'Feminino': +d.F, 'Outros': +d.O};        
+        d.total = (+d.sex.Masculino) + (+d.sex.Feminino) + (+d.sex.Outros);
     }); 
         
     // function to handle histogram.
     function histoGram(fD){
         var hG={},    hGDim = {t: 60, r: 0, b: 30, l: 0};
-        hGDim.w = 500 - hGDim.l - hGDim.r, 
+        hGDim.w = 650 - hGDim.l - hGDim.r, 
         hGDim.h = 300 - hGDim.t - hGDim.b;
             
         //create svg for histogram.
@@ -193,7 +193,7 @@ function dashboard(id, fData){
     }
     
     // calculate total frequency by segment for all state.
-    var tF = ['M','F','O'].map(function(d){ 
+    var tF = ['Masculino','Feminino','Outros'].map(function(d){ 
         return {type:d, sex: d3.sum(fData.map(function(t){ return t.sex[d];}))}; 
     });    
     

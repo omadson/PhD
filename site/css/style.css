@@ -493,7 +493,7 @@ transition: opacity 0.15s linear;
 
 .chart-wrapper .line {
   fill: none;
-  stroke: steelblue;
+  /*stroke: steelblue;*/
   stroke-width: 5px;
 }
 
@@ -509,6 +509,7 @@ transition: opacity 0.15s linear;
     font-size: 9pt;
     padding: 5px 5px;
     padding-left: 90px;
+    color: black;
 }
 .chart-wrapper .legend > div {
     margin: 0px 25px 10px 0px;
@@ -518,13 +519,13 @@ transition: opacity 0.15s linear;
     display:inline;
     font-size: 0.8em;
     font-family: sans-serif;
-    font-weight: 600;
+    /*font-weight: 600;*/
 }
 .chart-wrapper .legend .series-marker {
     height: 1em;
     width: 1em;
-    border-radius: 35%;
-    background-color: crimson;
+    /*border-radius: 35%;*/
+    /*background-color: crimson;*/
     display: inline-block;
     margin-right: 4px;
     margin-bottom: -0.16rem;

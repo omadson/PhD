@@ -59,9 +59,9 @@
           <li><a href="#home">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#estacoes_info">Estações</a></li>
-          <li><a href="#information">Viagens</a></li>
           <li><a href="#usuarios">Usuários</a></li>
-          <li><a href="http://github.com/">Contato</a></li>
+          <li><a href="#information">Viagens</a></li>
+          <li><a target="_blank" href="https://github.com/omadson/datavis-project">Projeto</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -71,7 +71,7 @@
   <div id="home" class="home">
     <div class="text-vcenter">
       <h1>Bicicletar</h1>
-      <h3>Um passeio com os dados do programa (2014-2017)</h3>
+      <h3>Uma análise dos dados do programa (2014-2017)</h3>
       <a href="#sobre" class="btn btn-success btn-lg">Iniciar passeio</a>
     </div>
   </div>
@@ -92,7 +92,7 @@
           <p align="justify"> O site apresenta algumas visualizações divididas em 3 grupos:            
             <ul>
               <li>Estações: Conjunto de gráficos que exibem informações e localizações das estações;</li>
-              <li>Viagens: Conjunto de visualizações que exibem informações como tempo da jornada, destino mais comunis, entre outras informações sobre os trajetos dos usuários;</li>
+              <li>Viagens: Conjunto de visualizações que exibem informações como tempo da jornada, destino mais comuns, entre outras informações sobre os trajetos dos usuários;</li>
               <li>Usuários: Conjunto de visualizações que exibem informações sobre os usuários dos programa, como por exemplo, distribuição por idade e sexo;</li>
             </ul> 
           </p>
@@ -112,13 +112,28 @@
   <div id="about" class="pad-section">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
-        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        <div class="col-sm-8"><img src="images/home.jpg" alt="" /></div>
+
+        <div class="col-sm-4">
+          <p align="justify"> As estações são o ponto de partida e chegada de todas as viagens do bicicletar. O usuário deve retirar e devolver a bicicleta em uma dos diversas estações espalhadas pela cidade. Atualmente, é possível retirar uma bicicleta através de passes anuais, mensais ou diários. Usuários do bilhete único tem acesso gratuito através do cadastro no site do  <a href="https://www.bicicletar.com.br">Bicicletar</a>.</p>
+
+          <p align="justify"> Cada estação possui espaço para <strong>8</strong>, <strong>12</strong> ou <strong>14</strong> bicicletas, conforme visto no <a href="http://www.bicicletar.com.br/sobre.aspx">site</a> oficial do programa. Algumas características das estações:</p>
+          <ul>
+            <li>Gerenciada por computador;</li>
+            <li>Uso de energia solar e comunicação wireless;</li>
+            <li>Painel com Instruções de uso e mapa com a localização das Estações;</li>
+            <li>Diversos modelos de Estações;</li>
+            <li>Dispositivos eletromecânicos de travamento e liberação das Bicicletas;</li>
+            <li>Lâmpadas de sinalização;</li>
+            <li>Liberação da Bicicleta via aplicativos inteligentes para telefone celular</li>            
+          </ul> 
         </div>
+        </div>
+        <div class="row">
+
         <div class="col-sm-12"><h3>Localização e Etapas de implantação</h3></div>
          <div class="col-sm-12">
-          <p align="justify"> A visualização abaixo exibe a localização das estações em Fortaleza. As diferentes cores das estações indicam em qual etapa a estação foi implantada, conforma a legenda no canto superior direito. Ao clicar em uma estação, é possível ver seu número, nome e qual o número médio de viagens por dia. Não possuímos informação exata da data de implantação das estações.</p>
+          <p align="justify"> A visualização abaixo exibe a localização das <strong>85 estações</strong> em Fortaleza, sendo <strong>5</strong> delas do programa <strong><a href="http://www.bicicletar.com.br/miniBicicletar.aspx">minibicicletar</a></strong>. Até o exato momento, foram executadas <strong>5 etapas</strong> de implantação. As diferentes cores das estações indicam em qual etapa a estação foi implantada, conforme a legenda no canto superior direito. Não foram encontradas, em fontes confiáves, as datas exatas de suas implantações. Ao clicar em uma estação, é possível ver seu id único e nome. É possível arrastar o mapa e perceber uma estação do minibicicletar mais ao sul da cidade, assim como aproximar pontos com grande densidade de estações.</p>
         </div>
         <div class="col-sm-12">
           <div id="install_station"></div>
@@ -127,7 +142,9 @@
         <div class="col-sm-12"><h3>Distribuição das estações nos bairros</h3></div>
 
         <div class="col-sm-5">
-           <p align="justify">À direita, temos Fortaleza dividida pelos seus bairros. A visualização mostra que o Bicicletar possui pelo menos uma estação em 29 dos 119 bairros da cidade, onde 39 das 80 estações (ou 41 das 85 estações, considerando as estações do minibicicletar) estão distribuidas em 5 bairros: Centro, Meireles, Aldeota, Cocó e Papicu. Abaixo, o pie chart exibe duas informações, acessíveis através do filtro: a) a quantidade de bairros que possuem pelo menos uma estação do bicicletar; b) a população dos bairros que contém pelo menos uma estação do bicicletar. Duas considerações, contudo, devem ser feitas em relação a tais visualizações: 1) Os dados populacionais são de 2010; 2) O número de pessoas que habitam os bairros que possuem estações deve ser vista como outro ponto interessante quanto a distribuição dos terminais das bicicletas. É possível ver que o programa não atende grande parte dos bairros. Isso poderia ser justificado se os bairros selecionados concentrassem grande parte da população da cidade, mas não é o que acontece: os bairros com pelo menos uma estação contém 21,5% da população de Fortaleza. Por não sabermos dos critérios de escolha dos locais dos terminais e nem de futuras implantações, não é possível inferir muito além de que há uma concentração do programa em poucos bairros e que não estão acessíveis para grande parecela da população.</p>
+           <p align="justify">À direita, temos Fortaleza dividida pelos seus bairros. A visualização mostra que o Bicicletar possui pelo menos uma estação em 29 dos 119 bairros da cidade, onde 39 das 80 estações (ou 41 das 85 estações, considerando as estações do minibicicletar) estão distribuidas em 5 bairros: Centro, Meireles, Aldeota, Cocó e Papicu. É possível ver que o programa não atende grande parte dos bairros. Isso poderia ser justificado se os bairros selecionados concentrassem grande parte da população da cidade, mas não é o que acontece: a população dos bairros com pelo menos uma estação reprenta 21,5% do total de Fortaleza, conforme dados do senso de 2010. Por não sabermos dos critérios de escolha dos locais dos terminais e nem de futuras implantações, não é possível inferir muito além de que há uma concentração do programa em poucos bairros e que não estão acessíveis para grande parcela da população.</p>
+
+           <p align="justify">Na visualização à X, um gráfico de bolha, é exibido o número de estações em bairros que contém mais de 3 terminais. A intensidade do verde, assim como a área dos círculos são outros canais para exibir tal informação. Através deste gráfico reforçamos a disparidade da distribuição das estações. Há também a concentração em poucos bairros da maioria das estações.</p>
           
         </div>
         <div class="col-sm-7">
@@ -135,6 +152,7 @@
         </div>
         <div class="col-sm-12"><h3>Bairros com mais estações</h3></div>
         <div class="col-sm-12"><div id="top_stations"></div></div>
+
       </div>
     </div>
   </div>
@@ -186,90 +204,7 @@
 
   <!-- fourth section - Information -->
 
-  <div id="information" class="pad-section">
-    <div class="container">
-      <div class="text-vcenter">
-        <h2>Viagens</h2>
-      </div>
-    </div>
-  </div>
-  <div id="about" class="pad-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8"></div>
-        <div class="col-sm-4">
-          <h2>Viagens por hora</h2>
-        </div>
-        <div class="col-sm-8">
-          <div id="rides_per_hour" class="chart-wrapper"></div>
-        </div>
-        
-        <div class="col-sm-4"></div>
-
-        <div class="col-sm-4"><p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <h3>Número de viagens por mês</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro soluta voluptatibus laboriosam commodi blanditiis veniam laudantium nostrum sapiente libero tenetur, esse modi aliquid. Quas, maiores cupiditate asperiores alias harum perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod possimus laborum ex magnam debitis praesentium cupiditate sit quos harum libero, error, recusandae maiores voluptas sapiente voluptates at enim adipisci reiciendis!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates sit inventore, suscipit unde, cum fugit accusamus aliquid, ea dolorum quae asperiores harum explicabo, totam alias consectetur obcaecati omnis dolor impedit?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio necessitatibus enim porro dolorum. Unde possimus repellat, earum velit adipisci facilis ipsam, magni nam expedita nobis eos accusantium facere quas, temporibus. </p>
-        </div>
-        <div class="col-sm-4">
-          <h4>2015</h4>
-          <div class="chart-wrapper" id="rides_per_month_2015"></div>
-        </div>
-        <div class="col-sm-4">
-          <h4>2016</h4>
-          <div class="chart-wrapper" id="rides_per_month_2016"></div>
-        </div>
-        <div class="col-sm-4">
-          <h4>2017</h4>
-          <div class="chart-wrapper" id="rides_per_month_2017"></div>
-        </div>
-
-      </div>
-      <div class="row">
-<!--         <div class="col-sm-12">
-        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
-        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
-        </div>
- -->
-        <div class="col-sm-12"><h3>Viagens por gênero</h3></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
-        </div>
-        <div class="col-sm-8">
-          <div id="rides_per_sex"></div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <!-- <div class="col-sm-5"></div>
-        <div class="col-sm-7"><h3>De onde para onde?</h3></div> -->
-        <div class="tooltipleft"></div>
-        <div class="col-sm-5" id="rides_between_neighborhood"></div>
-        <div class="col-sm-7">
-          <h3>De onde para onde?</h3>
-          <p align="justify">A visualização à esquerda é um diagrama de acordes e mostra o as viagens do bicicletar em que o bairro da estação de retirada é diferente do bairro da estação de devolução. Por questões de visibilidade, escolhemos mostrar os 10 bairros com o maior número de viagens. Esse gráfico contém duas informações. A primeira, o tamanho do arco nos limites do gráfico, é referente a um bairro e mostra a quantidade de viagens que partem de alguma estação da mesma. Dessa forma, vemos que do total de todas as viagens que partiram dos bairros da visualização, mais de 50% se originam do Meireles, Aldeota e Centro. É possível ver o valor exato ao passar o mouse em cima de arco. </p> 
-
-          <p align="justify"> Outra informação está contida nos centro da visualização, os chamados acordes. Com o mouse em cima de um arco de bairro, podemos ver que acordes conectam os outros arcos ao arco selecionado. A largura de um acorde em um arco representa a quantidade de viagens que partem daquele bairro. A cor assumida pelo acorde indica qual dos dois bairros é um destino mais comum (proporcionalmente) em relação ao outro dentre todas as viagens que tem como origem e destino as extremidades do acorde. Por exemplo, ao selecionar o bairro "Centro", vemos que a maioria dos acordes são da mesma cor que seu arco. Isso indica que o número percentual de viagens que parte dos outros bairros para o centro é maior do que o número percentual de viagens que partem do centro para esses mesmos bairro, uma informação que faz sentido, visto o valor comercial, econômico e cultural do Centro da cidade. Esse fenômeno só não acontece em um bairro: Cocó e Meireles. Nesse caso, é maior o número percentual de viagens que partem do Meireles para o Centro do que o inverso. Essas informações são visiveis também ao colocar o mouse sobre um acorde.</p>
-
-        </div>
-        
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <h3>Viagens diárias</h3>
-          <p align="justify"> Na visualização abaixo, temos um calendar chart exibindo o número de viagens por dia. É possível verificar o número exato, assim como o número de viagens feitas por cada sexo ao passar o mouse por cima de uma data. Pelas cores, percebemos que houve dois picos maiores de viagens: nos meses de novembro e dezembro de 2015 e junho a setembro de 2016. Observamos também que o número de viagens diminuiu em 2017 relação aos anos anteriores, principamente no segundo semestre. </p>
-        </div>
-        <div class="col-sm-12" id="calendar_viagens"></div>
-      </div>
-    </div>
-  </div>
-  
-  <div id="usuarios" class="pad-section">
+<div id="usuarios" class="pad-section">
     <div class="container">
       <div class="text-vcenter">
         <h2>Usuários</h2>
@@ -286,17 +221,30 @@
         <h3>Número de Usuários ativos por sexo</h3>
         <p align="justify">A visualização abaixo contém dois gráficos: um de barra e um gráfico de pizza. O gráfico de barra mostra o número total de pessoas que se cadastraram por ano, independente do sexo. Nos dados, haviam alguns poucos cadastros de 2008 a 2013, mesmo o programa tendo sido iniciado em 2014. Para manter a fidelidade dos dados, mantivemos na visualização. Esses dados não representam todos os usuários cadastrados nos anos e sim os usuários cadastrados que fizeram ao menos uma viagem.</p>
 
-        <p align="justify"> Já o gráfico de pizza mostra a quantidade de usuários ativos por sexo, onde há 3 categorias: masculino, feminino e outros. A categoria "outros" agrupa uma série de cadastros que estavam com o campo "sexo" ou vazio ou com algum caractere diferente (havia nos dados amostras com '0' e '-') de 'M' e 'F'. Não sabemos se tais cadastros foram feitos dessa forma por erro no sistema de cadastro, por que a pessoa não inseriu tal informação ou se ela não se identificava como 'M' ou 'F'. Um filtro pode ser aplicado na visualização ao colocar o mouse sobre algum dos elementos da visuzalição. Ao focar uma barra, o gráfico de pizza exibe os cadastros por sexo no referente ano da barra. Focar uma fatia no gráfico de pizza altera os gráficos de barra mostrando o número de cadastros por ano referente ao sexo. Vale atentar para pequena barra de "outros" localizado na fronteira superior entre as fatias de 'M' e 'F'. </p>
+        <p align="justify"> Já o gráfico de pizza mostra a quantidade de usuários ativos por sexo, onde há 3 categorias: masculino, feminino e outros. A categoria "outros" agrupa uma série de cadastros que estavam com o campo "sexo" ou vazio ou com algum caractere diferente de 'M' e 'F'(havia nos dados amostras com '0', 'O' e '-'). Não sabemos se tais cadastros foram feitos dessa forma por erro no sistema de cadastro, por que a pessoa não inseriu tal informação ou se ela não se identificava como 'M' ou 'F'. Um filtro pode ser aplicado na visualização ao colocar o mouse sobre algum dos elementos da visualização. Ao focar uma barra, o gráfico de pizza exibe os cadastros por sexo no referente ano da barra. Focar uma fatia no gráfico de pizza altera os gráficos de barra mostrando o número de cadastros por ano referente ao sexo. Vale atentar para pequena barra de "outros" localizado na fronteira superior entre as fatias de 'M' e 'F'. </p>
 
-        <p align="justify">Podemos destacar dois pontos na visualização: 1) o programa aparenta não conseguir captar novos usuários, visto a diminuição do número de usuários cadastrados por ano; 2) O número de homens e mulheres cadastrados é muito próximo. </p>
+        <p align="justify">Podemos destacar dois pontos na visualização: 1) o programa aparenta não conseguir captar novos usuários, visto a diminuição do número de usuários ativos cadastrados por ano; 2) O número de homens e mulheres cadastrados é muito próximo, independente do ano, sendo 2015 o único com mais mulheres cadastradas do que homens.</p>
 
 
         </div>
         <div class="col-sm-12"><div id='dashboard'></div></div>
+        
+        
+        <div class="col-sm-12"><h3>Distribuição dos usuários por ano de nascimento</h3></div>
+         <div class="col-sm-12">
+          <p align="justify"> Visto que o número de usuários ativos é distribuído de forma semelhante quanto ao gênero, na visualização abaixo é exibido os usuários ativos cadastrados através de outra dimensão: o ano de nascimento. Com isso, busca-se verificar se essa proximidade de número de usuários por gênero se mantém independente do ano de nascimento. Os dados possuiam registros de anos de nascimento desde 1900 até 2016. Os limites inferior e superior, respectivamente, para exibição no gráfico foram 1940 e 2000. O limite superior é justificado pelo fato do bicicletar só permitir pessoas maiores de 18 anos utilizar do programa. Com isso, quase 24.000 registros foram excluídos (cadastros com ano de nascimento entre 2001 e 2016). A escolha do limite inferior foi de certa forma arbitrária e por questões estéticas, mas provavelmente com pouco impacto na distribuição uma vez que somente um pouco mais de 300 registros foram apagados. </p>
+
+          <p align="justify">Observa-se que o maior concentração de usuários ativos nasceram entre 1987 e 1996. Percebe-se também que quase </p>
+        </div>
+        <div class="col-sm-12">
+          <div class="histogram" id="users_by_birth_year"></div>
+        </div>
+
+
 
         <div class="col-sm-12"><h3>Qual gênero mais usa o serviço?</h3></div>
         <div class="col-sm-5">
-          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, quais dos dois sexos utiliza mais o programa? A visualização à direita, um scatter plot, tenta responder a essa questão. Temos que cada ponto representa um dia desde dezembro de 2014 a 31 de dezembro de 2017. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
+          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, quais dos dois sexos utiliza mais o programa? A visualização à direita, um gráfico de dispersão, tenta responder à questão. Cada ponto representa um dia desde dezembro de 2014 a 31 de dezembro de 2017. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
           <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homems sempre utilizam mais o programa que as mulheres, aproximadamente em uma proporção de 2 para 1. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecando uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
         </div>
         <div class="col-sm-7">
@@ -304,16 +252,7 @@
         </div>
 
       </div>
-      <div class="row">
-        <div class="col-sm-12"><h3>Distribuição do número de usuários por ano de nascimento</h3></div>
-         <div class="col-sm-12">
-          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, quais dos dois sexos utiliza mais o programa? A visualização à direita, um scatter plot, tenta responder a essa questão. Temos que cada ponto representa um dia desde dezembro de 2014 a 31 de dezembro de 2017. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
-          <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homems sempre utilizam mais o programa que as mulheres, aproximadamente em uma proporção de 2 para 1. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecando uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
-        </div>
-        <div class="col-sm-12">
-          <div class="histogram" id="users_by_birth_year"></div>
-        </div>
-      </div>
+      
       <div class="row">
         <div class="col-sm-12"><h3>Distribuição do número de viagens por ano de nascimento</h3></div>
          <div class="col-sm-12">
@@ -326,6 +265,110 @@
       </div>
     </div>
   </div>
+
+
+
+
+  <div id="information" class="pad-section">
+    <div class="container">
+      <div class="text-vcenter">
+        <h2>Viagens</h2>
+      </div>
+    </div>
+  </div>
+  <div id="about" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quis earum atque aliquam fugit totam eum, animi consequatur in rem maxime magnam a non harum esse nihil voluptatem tenetur reprehenderit.Nulla, quidem, natus numquam, corrupti suscipit minima distinctio commodi harum, consequatur asperiores voluptatum repellat ipsa alias quasi! Consequatur eum nesciunt laudantium cupiditate placeat corrupti quos accusamus nemo modi, provident praesentium?</p>
+          <p>Laudantium, repudiandae nemo non ab ipsum aperiam libero sint eligendi nobis earum quibusdam temporibus excepturi error beatae, quos, a ad. Nesciunt, eos in repellendus quisquam! Atque commodi itaque ab odio.
+          Nulla voluptates saepe blanditiis illum, deleniti laborum hic, adipisci aliquid excepturi, quae voluptatem fugit dolores. Vitae suscipit asperiores animi aut cupiditate dicta, inventore, repellendus labore harum in maiores quasi! Repudiandae?</p>
+          <p>Nam voluptatibus ipsa dignissimos cum, ipsam laboriosam eaque, perspiciatis, commodi nesciunt eos, non provident ut quis vel explicabo animi eius ab similique qui rem voluptas molestiae modi ad praesentium dolorem!</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Quantidade de viagens</h3>
+          <p align="justify"> Na visualização abaixo, temos um gráfico de calor em formato de calendário no qual é exibido o número de viagens por dia. A cor da célula representa o número de viagens em determinado dia, conforme legenda acima do gráfico. Pelas cores, percebemos que houve dois picos maiores de viagens: nos meses de novembro e dezembro de 2015 e junho a setembro de 2016. Observamos também que o número de viagens diminuiu em 2017 relação aos anos anteriores, principamente no segundo semestre. É possível verificar o número exato, assim como o número de viagens feitas por cada sexo ao passar o mouse por cima de uma data.</p>
+        </div>
+        <div class="col-sm-12" id="calendar_viagens"></div>
+        <div class="col-sm-12">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quis earum atque aliquam fugit totam eum, animi consequatur in rem maxime magnam a non harum esse nihil voluptatem tenetur reprehenderit.Nulla, quidem, natus numquam, corrupti suscipit minima distinctio commodi harum, consequatur asperiores voluptatum repellat ipsa alias quasi! Consequatur eum nesciunt laudantium cupiditate placeat corrupti quos accusamus nemo modi, provident praesentium?</p>
+          <p>Laudantium, repudiandae nemo non ab ipsum aperiam libero sint eligendi nobis earum quibusdam temporibus excepturi error beatae, quos, a ad. Nesciunt, eos in repellendus quisquam! Atque commodi itaque ab odio.
+          Nulla voluptates saepe blanditiis illum, deleniti laborum hic, adipisci aliquid excepturi, quae voluptatem fugit dolores. Vitae suscipit asperiores animi aut cupiditate dicta, inventore, repellendus labore harum in maiores quasi! Repudiandae?</p>
+        </div>
+        <div class="col-sm-4">
+          <h4>2015</h4>
+          <div class="chart-wrapper" id="rides_per_month_2015"></div>
+        </div>
+        <div class="col-sm-4">
+          <h4>2016</h4>
+          <div class="chart-wrapper" id="rides_per_month_2016"></div>
+        </div>
+        <div class="col-sm-4">
+          <h4>2017</h4>
+          <div class="chart-wrapper" id="rides_per_month_2017"></div>
+        </div>
+      </div>
+
+
+      <div class="row">
+
+
+        <div class="col-sm-12">
+          <h3>Dias úteis e não úteis</h3>
+        </div>
+        <div class="col-sm-12">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro soluta voluptatibus laboriosam commodi blanditiis veniam laudantium nostrum sapiente libero tenetur, esse modi aliquid. Quas, maiores cupiditate asperiores alias harum perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod possimus laborum ex magnam debitis praesentium cupiditate sit quos harum libero, error, recusandae maiores voluptas sapiente voluptates at enim adipisci reiciendis!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates sit inventore, suscipit unde, cum fugit accusamus aliquid, ea dolorum quae asperiores harum explicabo, totam alias consectetur obcaecati omnis dolor impedit?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio necessitatibus enim porro dolorum. Unde possimus repellat, earum velit adipisci facilis ipsam, magni nam expedita nobis eos accusantium facere quas, temporibus. </p>
+        </div>
+
+        <div class="col-sm-6">
+          <div id="time_ride_by_wd" class="chart-wrapper"></div>
+        </div>
+        <div class="col-sm-6">
+          <div id="rides_per_hour" class="chart-wrapper"></div>
+        </div>
+
+
+      </div>
+      <div class="row">
+<!--         <div class="col-sm-12">
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+ -->
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Duração da viagem por gênero</h3>
+        </div>
+         <div class="col-sm-5">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi facere, qui ullam, tenetur explicabo commodi vero atque quae ipsum animi, minus provident molestias. Doloremque nobis labore aspernatur quae hic rem!</p>
+        </div>
+        <div class="col-sm-7">
+          <div id="time_ride_by_sex" class="chart-wrapper"></div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-sm-5"></div>
+        <div class="col-sm-7"><h3>De onde para onde?</h3></div> -->
+        <div class="tooltipleft"></div>
+        <div class="col-sm-5" id="rides_between_neighborhood"></div>
+        <div class="col-sm-7">
+          <h3>De onde para onde?</h3>
+          <p align="justify">A visualização à esquerda é um diagrama de acordes e mostra o as viagens do bicicletar em que o bairro da estação de retirada é diferente do bairro da estação de devolução. Por questões de visibilidade, escolhemos mostrar os 10 bairros com o maior número de viagens. Esse gráfico contém duas informações. A primeira, o tamanho do arco nos limites do gráfico, é referente a um bairro e mostra a quantidade de viagens que partem de alguma estação da mesma. Dessa forma, vemos que do total de todas as viagens que partiram dos bairros da visualização, mais de 50% se originam do Meireles, Aldeota e Centro. É possível ver o valor exato ao passar o mouse em cima de arco. </p> 
+
+          <p align="justify"> Outra informação está contida nos centro da visualização, os chamados acordes. Com o mouse em cima de um arco de bairro, podemos ver que acordes conectam os outros arcos ao arco selecionado. A largura de um acorde em um arco representa a quantidade de viagens que partem daquele bairro. A cor assumida pelo acorde indica qual dos dois bairros é um destino mais comum (proporcionalmente) em relação ao outro dentre todas as viagens que tem como origem e destino as extremidades do acorde. Por exemplo, ao selecionar o bairro "Centro", vemos que a maioria dos acordes são da mesma cor que seu arco. Isso indica que o número percentual de viagens que parte dos outros bairros para o centro é maior do que o número percentual de viagens que partem do centro para esses mesmos bairro, uma informação que faz sentido, visto o valor comercial, econômico e cultural do Centro da cidade. Esse fenômeno só não acontece em um bairro: Cocó e Meireles. Nesse caso, é maior o número percentual de viagens que partem do Meireles para o Centro do que o inverso. Essas informações são visiveis também ao colocar o mouse sobre um acorde.</p>
+
+        </div>
+        
+      </div>
+
+      
+    </div>
+  </div>
+  
+  
   <!-- /fourth section -->
 
   <!-- fifth section -->
@@ -349,7 +392,7 @@
   <footer>
     <hr />
     <div class="container">
-      <p class="text-right">Copyright &copy; Your Company 2014</p>
+      <p class="text-right"> 🖤  feito com muito amor por @danilo-avilar, @omadson e @renangv</p>
     </div>
   </footer>
   <!-- /footer -->
@@ -372,7 +415,8 @@
 <script src="js/rides_per_month.js"></script>
 <script src="js/users_by_birth_year.js"></script>
 <script src="js/rides_by_birth_year.js"></script>
+<script src="js/time_ride_by_wd.js"></script>
+<script src="js/time_ride_by_sex.js"></script>
 
-</script>
 
 </html>

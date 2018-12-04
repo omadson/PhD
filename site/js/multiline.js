@@ -24,7 +24,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables, height, width, chart_t
 
     chartObj.data = dataset;
     //console.log(chartObj.data);
-    chartObj.margin = {top: 15, right: 60, bottom: 30, left: 90};
+    chartObj.margin = {top: 15, right: 30, bottom: 30, left: 60};
     chartObj.width = height - chartObj.margin.left - chartObj.margin.right;
     chartObj.height = width - chartObj.margin.top - chartObj.margin.bottom;
 
