@@ -96,7 +96,6 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function(
             .style("text-anchor", "end")
             .text("Feminino");
 
-        console.log(data_m)
         svg.selectAll(".dot2")
            .data(data_m)
            .enter().append("circle")

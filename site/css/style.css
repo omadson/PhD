@@ -185,7 +185,7 @@ footer .glyphicon:hover {
 
 
 
-.month {
+#calendar_viagens .month {
     fill: none;
     stroke: #000;
     stroke-width: 3px;
@@ -195,26 +195,26 @@ footer .glyphicon:hover {
     stroke: #fff;
     stroke-width: 2px;
 }
-text    {
+#calendar_viagens text {
     font-family:sans-serif;
     font-size:1.5em;
 }
-.dayLabel   {
+#calendar_viagens .dayLabel   {
     fill:#333;
     font-size:7pt;
 }
-.monthLabel {
+#calendar_viagens .monthLabel {
     text-anchor:middle;
     font-size:7pt;
     fill:#333;
 }
-.yearLabel  {
+#calendar_viagens .yearLabel  {
     fill:#000;
     font-size:8pt;
     font-weight: 900;
 }
 
-.key    {font-size:0.5em;}
+#calendar_viagens .key    {font-size:0.5em;}
 
 
 
@@ -562,9 +562,50 @@ transition: opacity 0.15s linear;
     font: 5px sans-serif;
   }
 
-  .tooltipleft .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
+.tooltipleft .axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
+
+svg#users_by_birth_year, svg#rides_by_birth_year {
+    font: 10px sans-serif;
     shape-rendering: crispEdges;
   }
+
+#users_by_birth_year .axis path, #users_by_birth_year .axis line, #rides_by_birth_year .axis path, #rides_by_birth_year .axis line {
+    fill: none;
+    stroke: none;
+  }
+ 
+#users_by_birth_year path.domain, #rides_by_birth_year path.domain {
+    stroke: none;
+  }
+ 
+#users_by_birth_year .y .tick line, #rides_by_birth_year .y .tick line {
+    stroke: #ddd;
+  }
+
+
+
+#users_by_birth_year text, #rides_by_birth_year text {
+  font: 10px sans-serif;
+    shape-rendering: crispEdges;
+}
+
+
+
+
+
+#top_stations svg {
+  font: 9pt"Verdana";
+  text-align: center;
+}
+
+.node {
+  text-align: center;
+}

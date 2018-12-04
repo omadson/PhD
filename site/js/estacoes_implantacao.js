@@ -141,7 +141,6 @@ var translateColors2 = ['#3c3c3c', '#4698d0', '#cb293c', '#24ac21', '#9a27ca', '
          let c = translateColors2[i];
         //       let fromto = quantize.invertExtent(c);
         str = `<i style="background:${translateColors2[i+1]}"></i> Etapa ${i+1}`;
-        console.log(str)
         labels.push(str)
         //   d3.format("d")(fromto[0]) + (d3.format("d")(fromto[1]) ? '&ndash;' + d3.format("d")(fromto[1]) : '+'));
       }

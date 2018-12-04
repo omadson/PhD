@@ -32,7 +32,7 @@
 // Setup svg using Bostock's margin convention
  
 
-d3.csv("/data/perc_num_of_users_birth_per_year.csv", function (data) {
+d3.csv("data/perc_num_of_users_birth_per_year.csv", function (data) {
 
   data.forEach(function(d){   
     d.Homens = d.M;
@@ -167,7 +167,7 @@ d3.csv("/data/perc_num_of_users_birth_per_year.csv", function (data) {
 
   // Prep the tooltip bits, initial display is hidden
   var tooltip = svg.append("g")
-    .attr("class", "tooltip")
+    .attr("class", "tooltip_a")
     .style("display", "none");
       
   tooltip.append("rect")

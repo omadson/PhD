@@ -133,7 +133,8 @@
         <div class="col-sm-7">
           <div id="map_estacoes"></div>
         </div>
-
+        <div class="col-sm-12"><h3>Bairros com mais estações</h3></div>
+        <div class="col-sm-12"><div id="top_stations"></div></div>
       </div>
     </div>
   </div>
@@ -303,6 +304,26 @@
         </div>
 
       </div>
+      <div class="row">
+        <div class="col-sm-12"><h3>Distribuição do número de usuários por ano de nascimento</h3></div>
+         <div class="col-sm-12">
+          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, quais dos dois sexos utiliza mais o programa? A visualização à direita, um scatter plot, tenta responder a essa questão. Temos que cada ponto representa um dia desde dezembro de 2014 a 31 de dezembro de 2017. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
+          <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homems sempre utilizam mais o programa que as mulheres, aproximadamente em uma proporção de 2 para 1. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecando uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
+        </div>
+        <div class="col-sm-12">
+          <div class="histogram" id="users_by_birth_year"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12"><h3>Distribuição do número de viagens por ano de nascimento</h3></div>
+         <div class="col-sm-12">
+          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, quais dos dois sexos utiliza mais o programa? A visualização à direita, um scatter plot, tenta responder a essa questão. Temos que cada ponto representa um dia desde dezembro de 2014 a 31 de dezembro de 2017. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
+          <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homems sempre utilizam mais o programa que as mulheres, aproximadamente em uma proporção de 2 para 1. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecando uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
+        </div>
+        <div class="col-sm-12">
+          <div class="histogram" id="rides_by_birth_year"></div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- /fourth section -->
@@ -311,7 +332,7 @@
   <div id="services" class="pad-section">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 text-center">
+        <div class="col-sm-8 text-center">
           <h3>Parallax scrolling effect is in action</h3>
           <h4>The next is the address on Google maps</h4>
         </div>
@@ -338,7 +359,7 @@
   <script src="js/bootstrap.min.js"></script> 
   <script src="js/main.js"></script>
 </body>
-
+<script src="js/top_stations.js"></script>
 <script src="js/estacoes_implantacao.js"></script>
 <script src="js/rides_between_neighborhood.js"></script>
 <script src="data/bairros.js"></script>
@@ -349,6 +370,8 @@
 <script src="js/regression_m_f.js"></script>
 <script src="js/rides_per_hour.js"></script>
 <script src="js/rides_per_month.js"></script>
+<script src="js/users_by_birth_year.js"></script>
+<script src="js/rides_by_birth_year.js"></script>
 
 </script>
 

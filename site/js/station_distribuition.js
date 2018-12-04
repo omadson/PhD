@@ -33,10 +33,12 @@ info.addTo(map);
 
   // let blues = d3.quantize(d3.interpolateGreens, 6);
   // let blues = ['white', '#d9f0a3', '#78c679', '#41ab5d', '#238443', '#005a32']
-  let blues = d3.quantize(d3.interpolateGreens, 5);
-  // let blues = ['#fff', '#f7fcb9', '#addd8e', '#78c679', '#41ab5d', '#238443', '#006837', '#004529']
-  // let blues = ['#fff', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#005a32']
-  blues[0] = '#fff';
+  // let blues = d3.quantize(d3.interpolateGreens, 5);
+  // // let blues = ['#fff', '#f7fcb9', '#addd8e', '#78c679', '#41ab5d', '#238443', '#006837', '#004529']
+  // // let blues = ['#fff', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#005a32']
+  // blues[0] = '#fff';
+  let blues = ['#fff','#f7fcb9', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#005a32']
+  // blues[0] = '#fff';
   let quantize = d3.scaleQuantile().domain([0,1,2,5,10,12]).range(blues);
 
 
