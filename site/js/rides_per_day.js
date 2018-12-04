@@ -73,7 +73,7 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function 
         
         var svg = d3.selectAll("#calendar_viagens").append("svg")
             .attr("width","100%")
-            .attr("viewBox","0 0 "+(xOffset+width)+" 1000")
+            .attr("viewBox","0 0 "+(xOffset+width)+" 870")
             
         //title
         svg.append("text")

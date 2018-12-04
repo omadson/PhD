@@ -11,7 +11,7 @@ require(["http://d3js.org/d3.v3.js"], function (d3){
             'Feminino': {column: 'F'},
             'Masculino': {column: 'M'},
             'Outros': {column: 'O'},
-        }, {xAxis: 'Minutos', yAxis: 'Total de viagens'}, 680, 250, 'sexo');
+        }, {xAxis: 'Minutos', yAxis: 'Total de viagens'}, 680, 200, 'sexo');
         chart.bind("#time_ride_by_sex");
         chart.render();
     });
