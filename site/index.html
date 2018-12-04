@@ -141,17 +141,14 @@
 
         <div class="col-sm-12"><h3>Distribuição das estações nos bairros</h3></div>
 
-        <div class="col-sm-5">
-           <p align="justify">À direita, temos Fortaleza dividida pelos seus bairros. A visualização mostra que o Bicicletar possui pelo menos uma estação em 29 dos 119 bairros da cidade, onde 39 das 80 estações (ou 41 das 85 estações, considerando as estações do minibicicletar) estão distribuidas em 5 bairros: Centro, Meireles, Aldeota, Cocó e Papicu. É possível ver que o programa não atende grande parte dos bairros. Isso poderia ser justificado se os bairros selecionados concentrassem grande parte da população da cidade, mas não é o que acontece: a população dos bairros com pelo menos uma estação reprenta 21,5% do total de Fortaleza, conforme dados do senso de 2010. Por não sabermos dos critérios de escolha dos locais dos terminais e nem de futuras implantações, não é possível inferir muito além de que há uma concentração do programa em poucos bairros e que não estão acessíveis para grande parcela da população.</p>
+        <div class="col-sm-12">
+           <p align="justify">Abaixo, temos Fortaleza dividida pelos seus bairros. A visualização mostra que o Bicicletar possui pelo menos uma estação em 29 dos 119 bairros da cidade, onde 39 das 80 estações (ou 41 das 85 estações, considerando as estações do minibicicletar) estão distribuidas em 5 bairros: Centro, Meireles, Aldeota, Cocó e Papicu. É possível ver que o programa não atende grande parte dos bairros. Isso poderia ser justificado se os bairros selecionados concentrassem grande parte da população da cidade, mas não é o que acontece: a população dos bairros com pelo menos uma estação reprenta 21,5% do total de Fortaleza, conforme dados do senso de 2010. Por não sabermos dos critérios de escolha dos locais dos terminais e nem de futuras implantações, não é possível inferir muito além de que há uma concentração do programa em poucos bairros e que não estão acessíveis para grande parcela da população.</p>
 
-           <p align="justify">Na visualização à X, um gráfico de bolha, é exibido o número de estações em bairros que contém mais de 3 terminais. A intensidade do verde, assim como a área dos círculos são outros canais para exibir tal informação. Através deste gráfico reforçamos a disparidade da distribuição das estações. Há também a concentração em poucos bairros da maioria das estações.</p>
+           <p align="justify">Na visualização à esquerda, um gráfico de bolha, é exibido o número de estações em bairros que contém mais de 3 terminais. A intensidade do verde, assim como a área dos círculos são outros canais para exibir tal informação. Através deste gráfico reforçamos a disparidade da distribuição das estações. Há também a concentração em poucos bairros da maioria das estações.</p>
           
         </div>
-        <div class="col-sm-7">
-          <div id="map_estacoes"></div>
-        </div>
-        <div class="col-sm-12"><h3>Bairros com mais estações</h3></div>
-        <div class="col-sm-12"><div id="top_stations"></div></div>
+        <div class="col-sm-6"><div id="map_estacoes"></div></div>
+        <div class="col-sm-6"><div id="top_stations"></div></div>
 
       </div>
     </div>
@@ -214,8 +211,15 @@
 
   
 
+
+
   <div id="about" class="pad-section">
     <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Nesta seção, são apresentadas cinco visualizações, número de Usuários ativos por sexo, Distribuição dos usuários por ano de nascimento, Qual gênero mais usa o serviço e Distribuição do número de viagens por ano de nascimento</p>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-12">
         <h3>Número de Usuários ativos por sexo</h3>
@@ -234,18 +238,19 @@
          <div class="col-sm-12">
           <p align="justify"> Visto que o número de usuários ativos é distribuído de forma semelhante quanto ao gênero, na visualização abaixo é exibido os usuários ativos cadastrados através de outra dimensão: o ano de nascimento. Com isso, busca-se verificar se essa proximidade de número de usuários por gênero se mantém independente do ano de nascimento. Os dados possuiam registros de anos de nascimento desde 1900 até 2016. Os limites inferior e superior, respectivamente, para exibição no gráfico foram 1940 e 2000. O limite superior é justificado pelo fato do bicicletar só permitir pessoas maiores de 18 anos utilizar do programa. Com isso, quase 24.000 registros foram excluídos (cadastros com ano de nascimento entre 2001 e 2016). A escolha do limite inferior foi de certa forma arbitrária e por questões estéticas, mas provavelmente com pouco impacto na distribuição uma vez que somente um pouco mais de 300 registros foram apagados. </p>
 
-          <p align="justify">Observa-se que o maior concentração de usuários ativos nasceram entre 1987 e 1996. Percebe-se também que quase </p>
+          
         </div>
         <div class="col-sm-12">
           <div class="histogram" id="users_by_birth_year"></div>
         </div>
+        <div class="col-sm-12">
+          <p align="justify">Observa-se que o maior concentração de usuários ativos nasceram entre 1987 e 1996. Percebe-se também que em todos os anos a distribuição por gênero se mantém.</p>
+        </div>
 
-
-
-        <div class="col-sm-12"><h3>Qual gênero mais usa o serviço?</h3></div>
+        <div class="col-sm-12"><h3>Número de viagens por gênero</h3></div>
         <div class="col-sm-5">
-          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, quais dos dois sexos utiliza mais o programa? A visualização à direita, um gráfico de dispersão, tenta responder à questão. Cada ponto representa um dia desde dezembro de 2014 a 31 de dezembro de 2017. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
-          <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homems sempre utilizam mais o programa que as mulheres, aproximadamente em uma proporção de 2 para 1. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecando uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
+          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, independente da idade, quais dos dois sexos utiliza mais o programa? A visualização à direita, um gráfico de dispersão, tenta responder à questão. Cada ponto representa um dia desde <strong>16 de dezembro de 2014 até 31 de dezembro de 2017</strong>. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
+          <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homems sempre utilizam mais o programa que as mulheres, aproximadamente em uma <strong>proporção de 2 para 1</strong>. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecando uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
         </div>
         <div class="col-sm-7">
           <div id="regression_m_f"></div>
@@ -256,8 +261,7 @@
       <div class="row">
         <div class="col-sm-12"><h3>Distribuição do número de viagens por ano de nascimento</h3></div>
          <div class="col-sm-12">
-          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, quais dos dois sexos utiliza mais o programa? A visualização à direita, um scatter plot, tenta responder a essa questão. Temos que cada ponto representa um dia desde dezembro de 2014 a 31 de dezembro de 2017. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
-          <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homems sempre utilizam mais o programa que as mulheres, aproximadamente em uma proporção de 2 para 1. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecando uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
+          <p align="justify">Mais uma vez o ano de nascimento é objeto de estudo. Neste caso, uma vez que homens utilizam mais o programa do que as mulheres, procura-se verificar se esse comportamento se mantém independente da idade. E mais uma vez, a resposta é sim. Além disso, é possível observar que os usuários mais ativos nasceram entre 1992 e 1996, de ambos os sexos.</p>          
         </div>
         <div class="col-sm-12">
           <div class="histogram" id="rides_by_birth_year"></div>
@@ -289,25 +293,31 @@
       <div class="row">
         <div class="col-sm-12">
           <h3>Quantidade de viagens</h3>
-          <p align="justify"> Na visualização abaixo, temos um gráfico de calor em formato de calendário no qual é exibido o número de viagens por dia. A cor da célula representa o número de viagens em determinado dia, conforme legenda acima do gráfico. Pelas cores, percebemos que houve dois picos maiores de viagens: nos meses de novembro e dezembro de 2015 e junho a setembro de 2016. Observamos também que o número de viagens diminuiu em 2017 relação aos anos anteriores, principamente no segundo semestre. É possível verificar o número exato, assim como o número de viagens feitas por cada sexo ao passar o mouse por cima de uma data.</p>
+          <p align="justify"> Na visualização abaixo, temos um gráfico de calor em formato de calendário no qual é exibido o número de viagens por dia. A cor da célula representa o número de viagens em determinado dia, conforme legenda acima do gráfico. Ao passar o mouse por cima de uma célula é possível verificar o número de viagens separado por gênero. Além disso é apresentado um gráfico de barras com a distribuição das viagens por hora do dia.</p>
         </div>
         <div class="col-sm-12" id="calendar_viagens"></div>
         <div class="col-sm-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quis earum atque aliquam fugit totam eum, animi consequatur in rem maxime magnam a non harum esse nihil voluptatem tenetur reprehenderit.Nulla, quidem, natus numquam, corrupti suscipit minima distinctio commodi harum, consequatur asperiores voluptatum repellat ipsa alias quasi! Consequatur eum nesciunt laudantium cupiditate placeat corrupti quos accusamus nemo modi, provident praesentium?</p>
-          <p>Laudantium, repudiandae nemo non ab ipsum aperiam libero sint eligendi nobis earum quibusdam temporibus excepturi error beatae, quos, a ad. Nesciunt, eos in repellendus quisquam! Atque commodi itaque ab odio.
-          Nulla voluptates saepe blanditiis illum, deleniti laborum hic, adipisci aliquid excepturi, quae voluptatem fugit dolores. Vitae suscipit asperiores animi aut cupiditate dicta, inventore, repellendus labore harum in maiores quasi! Repudiandae?</p>
+          <p class="text-justify">Pelas cores, percebemos que houve dois picos maiores de viagens: nos meses de novembro e dezembro de 2015 e junho a setembro de 2016. Observamos também que o número de viagens diminuiu em 2017 relação aos anos anteriores, principamente no segundo semestre.</p> 
         </div>
-        <div class="col-sm-4">
-          <h4>2015</h4>
-          <div class="chart-wrapper" id="rides_per_month_2015"></div>
+        <div class="col-sm-12">
+          <p>Os resultados observados na visualização anterior são sumarizados nos três gráficos de linha abaixo. Neles são mostrados o total de viagens por mês, separados por anos. Cada cor representa um gênero. Como o programa se iniciou no dia 16 de dezembro de 2014, decidiu-se apresentar gráficos somente para os anos de 2015, 2016 e 2017.</p>
         </div>
-        <div class="col-sm-4">
-          <h4>2016</h4>
-          <div class="chart-wrapper" id="rides_per_month_2016"></div>
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>2015</h4>
+            <div class="chart-wrapper" id="rides_per_month_2015"></div>
+          </div>
+          <div class="col-sm-4">
+            <h4>2016</h4>
+            <div class="chart-wrapper" id="rides_per_month_2016"></div>
+          </div>
+          <div class="col-sm-4">
+            <h4>2017</h4>
+            <div class="chart-wrapper" id="rides_per_month_2017"></div>
+          </div>
         </div>
-        <div class="col-sm-4">
-          <h4>2017</h4>
-          <div class="chart-wrapper" id="rides_per_month_2017"></div>
+        <div class="col-sm-12">
+          <p>De acordo com a visualização, é possível observar que concluir que: 1) Sempre há uma queda de utilização de Janeiro para Fevereiro e de Novembro para Dezembro; 2) O maior período de utilização ocorreu entre junho e novembro de 2016; 3) Mesmo com o aumento de estações, o número de utilizações do serviço está diminuindo desde agosto de 2017.</p>
         </div>
       </div>
 
@@ -319,7 +329,7 @@
           <h3>Dias úteis e não úteis</h3>
         </div>
         <div class="col-sm-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro soluta voluptatibus laboriosam commodi blanditiis veniam laudantium nostrum sapiente libero tenetur, esse modi aliquid. Quas, maiores cupiditate asperiores alias harum perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod possimus laborum ex magnam debitis praesentium cupiditate sit quos harum libero, error, recusandae maiores voluptas sapiente voluptates at enim adipisci reiciendis!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates sit inventore, suscipit unde, cum fugit accusamus aliquid, ea dolorum quae asperiores harum explicabo, totam alias consectetur obcaecati omnis dolor impedit?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio necessitatibus enim porro dolorum. Unde possimus repellat, earum velit adipisci facilis ipsam, magni nam expedita nobis eos accusantium facere quas, temporibus. </p>
+          <p style="text-align: justify">Afim de verificar o comportamento em relação ao número de viagens em dias úteis (segunda à sexta) e não úteis (feriados e fins de semana), duas visualizações são apresentadas. A primeira delas é referente a duração das viagens e a segunda é referente ao horário de retirada da bicicleta. Ńo gráfico de duração de viagens, foram consideradas viagens com mais de três minutos e menos de três horas (180 minutos). O gráfico de hora de retirada considera retiradas entre 5 e 23 horas. Para os dois gráficos são apresentados valores médios de viagens nos dias úteis ou feriados e finais de semana.</p>
         </div>
 
         <div class="col-sm-6">
@@ -328,7 +338,14 @@
         <div class="col-sm-6">
           <div id="rides_per_hour" class="chart-wrapper"></div>
         </div>
-
+        <div class="col-sm-12">
+          <p style="text-align: justify">
+            Na primeira visualização, à esquerda, observa-se que a maioria das viagens em dias úteis são de curta duração, entre 3 e 30 minutos. Observa-se também que aos 60 minutos, há outra queda no número de viagens, provavelmente relacionado à gratuidade concedida a viagens até uma hora utilizando o bilhete único ou passe diário. Já em dias não úteis, é mais comum ocorrer viagens mais longa do que em dias úteis. 
+          </p>
+          <p style="text-align: justify">
+            Já na segunda visualização, à direita, observa-se que os picos de retirada em dias úteis são de 7h às 8h, ao meio dia e às 17 horas. Já nos dias não úteis, o programa é mais utilizado pela manhã de forma mais uniforme do que em dias úteis e com um pico de uso no fim da tarde.
+          </p>
+        </div>
 
       </div>
       <div class="row">
@@ -343,7 +360,7 @@
           <h3>Duração da viagem por gênero</h3>
         </div>
          <div class="col-sm-5">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi facere, qui ullam, tenetur explicabo commodi vero atque quae ipsum animi, minus provident molestias. Doloremque nobis labore aspernatur quae hic rem!</p>
+          <p align="justify">Na visualização à direita, um gráfico de linha, é exibido o tempo de viagem por gênero. Como visto ateriormente, o número de viagens de homens é maior que o de mulheres. Contudo, a medida que a duração da viagem aumenta, a diferença no número de viagens diminue, chegando a basicamente igualar aos 60 minutos.</p>
         </div>
         <div class="col-sm-7">
           <div id="time_ride_by_sex" class="chart-wrapper"></div>
@@ -356,9 +373,9 @@
         <div class="col-sm-5" id="rides_between_neighborhood"></div>
         <div class="col-sm-7">
           <h3>De onde para onde?</h3>
-          <p align="justify">A visualização à esquerda é um diagrama de acordes e mostra o as viagens do bicicletar em que o bairro da estação de retirada é diferente do bairro da estação de devolução. Por questões de visibilidade, escolhemos mostrar os 10 bairros com o maior número de viagens. Esse gráfico contém duas informações. A primeira, o tamanho do arco nos limites do gráfico, é referente a um bairro e mostra a quantidade de viagens que partem de alguma estação da mesma. Dessa forma, vemos que do total de todas as viagens que partiram dos bairros da visualização, mais de 50% se originam do Meireles, Aldeota e Centro. É possível ver o valor exato ao passar o mouse em cima de arco. </p> 
+          <p align="justify">A visualização à esquerda é um diagrama de acordes e mostra as viagens do bicicletar em que o bairro da estação de retirada é diferente do bairro da estação de devolução. Por questões de visibilidade, escolhemos mostrar os 10 bairros com o maior número de viagens. Esse gráfico contém duas informações. A primeira, o tamanho do arco nos limites do gráfico, é referente a um bairro e mostra a quantidade de viagens que partem de alguma estação da mesma. Dessa forma, vemos que do total de todas as viagens que partiram dos bairros da visualização, mais de 50% se originam do Meireles, Aldeota e Centro. É possível ver o valor exato ao passar o mouse em cima de arco. </p> 
 
-          <p align="justify"> Outra informação está contida nos centro da visualização, os chamados acordes. Com o mouse em cima de um arco de bairro, podemos ver que acordes conectam os outros arcos ao arco selecionado. A largura de um acorde em um arco representa a quantidade de viagens que partem daquele bairro. A cor assumida pelo acorde indica qual dos dois bairros é um destino mais comum (proporcionalmente) em relação ao outro dentre todas as viagens que tem como origem e destino as extremidades do acorde. Por exemplo, ao selecionar o bairro "Centro", vemos que a maioria dos acordes são da mesma cor que seu arco. Isso indica que o número percentual de viagens que parte dos outros bairros para o centro é maior do que o número percentual de viagens que partem do centro para esses mesmos bairro, uma informação que faz sentido, visto o valor comercial, econômico e cultural do Centro da cidade. Esse fenômeno só não acontece em um bairro: Cocó e Meireles. Nesse caso, é maior o número percentual de viagens que partem do Meireles para o Centro do que o inverso. Essas informações são visiveis também ao colocar o mouse sobre um acorde.</p>
+          <p align="justify">Outra informação está contida nos centro da visualização, os chamados acordes. Com o mouse sobre um bairro, podemos ver que acordes conectam os outros arcos ao arco selecionado. A largura de um acorde em um arco representa a quantidade de viagens que partem daquele bairro. A cor assumida pelo acorde indica qual dos dois bairros é um destino mais comum (proporcionalmente) em relação ao outro dentre todas as viagens que tem como origem e destino as extremidades do acorde. Por exemplo, ao selecionar o bairro "Centro", vemos que a maioria dos acordes são da mesma cor que seu arco. Isso indica que o número percentual de viagens que parte dos outros bairros para o centro é maior do que o número percentual de viagens que partem do centro para esses mesmos bairro, uma informação que faz sentido, visto o valor comercial, econômico e cultural do Centro da cidade. Esse fenômeno só não acontece em um bairro: Cocó e Meireles. Nesse caso, é maior o número percentual de viagens que partem do Meireles para o Centro do que o inverso. Essas informações são visiveis também ao colocar o mouse sobre um acorde.</p>
 
         </div>
         
@@ -392,7 +409,7 @@
   <footer>
     <hr />
     <div class="container">
-      <p class="text-right"> 🖤  feito com muito amor por @danilo-avilar, @omadson e @renangv</p>
+      <p class="text-right">Desenvolvido por @danilo-avilar, @omadson e @renangv</p>
     </div>
   </footer>
   <!-- /footer -->

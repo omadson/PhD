@@ -53,7 +53,7 @@ require(['https://d3js.org/d3.v4.min.js'], function(d3) {
   let blues = ['#f7fcb9', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#005a32'].reverse()
   let color = d3.scaleQuantile().domain([0,1,2,5,10,12]).range(blues);
 
-  var diameter = 500;
+  var diameter = 450;
   // var color = d3.scaleOrdinal(d3.schemeCategory20);
 
   var bubble = d3.pack(dataset)
