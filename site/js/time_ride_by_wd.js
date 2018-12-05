@@ -1,5 +1,4 @@
 require(["http://d3js.org/d3.v3.js"], function (d3){
-    console.log('renan')
     d3.csv('data/time_ride_by_wd.csv', function(error, data) {
         data.forEach(function (d) {
             d.mes = +d.minutos;
