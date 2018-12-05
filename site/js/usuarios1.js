@@ -55,7 +55,7 @@ function dashboard(id, fData){
             .on("mouseout",mouseout);// mouseout is defined below.
             
         //Create the frequency labels above the rectangles.
-        bars.append("text").text(function(d){ return d3.format(",")(d[1])})
+        bars.append("text").text(function(d){ return d3.format(".")(d[1])})
             .attr("x", function(d) { return x(d[0])+x.rangeBand()/2; })
             .attr("y", function(d) { return y(d[1])-5; })
             .attr("text-anchor", "middle");
@@ -92,7 +92,7 @@ function dashboard(id, fData){
 
             // transition the frequency labels location and change value.
             bars.select("text").transition().duration(500)
-                .text(function(d){ return d3.format(",")(d[1])})
+                .text(function(d){ return d3.format(".")(d[1])})
                 .attr("y", function(d) {return y(d[1])-5; });            
         }        
         return hG;
@@ -167,7 +167,7 @@ function dashboard(id, fData){
 
         // create the third column for each segment.
         tr.append("td").attr("class",'legendFreq')
-            .text(function(d){ return d3.format(",")(d.sex);});
+            .text(function(d){ return d3.format(".")(d.sex);});
 
         // create the fourth column for each segment.
         tr.append("td").attr("class",'legendPerc')
@@ -179,7 +179,7 @@ function dashboard(id, fData){
             var l = legend.select("tbody").selectAll("tr").data(nD);
 
             // update the frequencies.
-            l.select(".legendFreq").text(function(d){ return d3.format(",")(d.sex);});
+            l.select(".legendFreq").text(function(d){ return d3.format(".")(d.sex);});
 
             // update the percentage column.
             l.select(".legendPerc").text(function(d){ return getLegend(d,nD);});        
