@@ -1,4 +1,4 @@
-require(['http://d3js.org/d3.v3.min.js'], function (d3) {
+require(['https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'], function (d3) {
   d3.csv("data/perc_num_of_rides_per_birth_year.csv", function (data) {
 
     data.forEach(function(d){   

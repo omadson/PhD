@@ -1,4 +1,4 @@
-require(["http://d3js.org/d3.v3.min.js"], function (d3) {
+require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"], function (d3) {
 
 function dashboard(id, fData){
     var barColor = 'steelblue';

@@ -1,4 +1,4 @@
-require(["https://d3js.org/d3.v5.min.js"], function (d3) {
+require(["https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"], function (d3) {
 
   // let blues = d3.schemeBlues[8];
   // &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>

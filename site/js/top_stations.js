@@ -1,4 +1,4 @@
-require(['https://d3js.org/d3.v4.min.js'], function(d3) {
+require(['https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'], function(d3) {
 
   // dataset = {"children": []};
   // d3.csv("data/top_count_stations.csv", function(data) {

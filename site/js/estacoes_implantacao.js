@@ -1,4 +1,4 @@
-require(["http://d3js.org/d3.v5.min.js"], function (d3) {
+require(["https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"], function (d3) {
     
  var blueIcon = new L.Icon({
   iconUrl: 'images/img/marker-icon-2x-blue.png',
