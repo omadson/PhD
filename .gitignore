@@ -1,3 +1,10 @@
+# src and notebook directory
+notebooks/.ipynb_checkpoints
+src/__pycache__/
+
+# tests directory
+tests/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
