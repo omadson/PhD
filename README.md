@@ -8,7 +8,7 @@ my codes of the computational linear algebra course.
 
 ### direct Methods
  - [x] gauss elimination
- - [ ] LU decomposition
+ - [x] LU decomposition
  - [ ] Cholesky decomposition (positive definide matrices)
   
 ### iterative methods

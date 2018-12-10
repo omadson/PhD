@@ -1,4 +1,5 @@
 import math
+import copy
 from random import random
 
 # ones method
@@ -17,6 +18,16 @@ def rand(dimensions):
     if type(dimensions) == int:
         dimensions = (dimensions, dimensions)
     return Matrix([[random() for i in range(dimensions[1])] for j in range(dimensions[0])])
+
+# eye method
+def eye(dimension):
+    if type(dimension) is int:
+        result = zeros(dimension)
+        for i in range(result.shape[0]): result[i,i] = 1
+        return result
+    else:
+        print("error: dimension not int")
+        return False
 
 # Matrix class
 class Matrix(object):
@@ -110,12 +121,12 @@ class Matrix(object):
                 print("Error: incompatible dimensions.")
                 return False
             else:
-                result = self
+                result = copy.deepcopy(self)
                 for i in range(self.shape[0]):
                     for j in range(self.shape[1]):
                         result[i,j] = result[i,j] + value[i,j]
         elif type(value) in [int,float]:
-            result = self + Matrix([[value]*self.shape[1]]*self.shape[0])
+            result = copy.deepcopy(self) + Matrix([[value]*self.shape[1]]*self.shape[0])
         return result
 
     def __sub__(self, value):
@@ -124,16 +135,16 @@ class Matrix(object):
                 print("Error: incompatible dimensions.")
                 return False
             else:
-                result = self
+                result = copy.deepcopy(self)
                 for i in range(self.shape[0]):
                     for j in range(self.shape[1]):
                         result[i,j] = result[i,j] - value[i,j]
         elif type(value) in [int,float]:
-            result = self - Matrix([[value]*self.shape[1]]*self.shape[0])
+            result = copy.deepcopy(self) - Matrix([[value]*self.shape[1]]*self.shape[0])
         return result
 
     def __mul__(self, value):
-        result = self
+        result = copy.deepcopy(self)
         if type(value) in [int, float]:
             for i in range(self.shape[0]):
                 for j in range(self.shape[1]):
@@ -198,11 +209,11 @@ class Matrix(object):
     def concat(self, value, axis=1):
         if axis == 1 and self.shape[0] == value.shape[0]:
             result = zeros((self.shape[0], self.shape[1] + value.shape[1]))
-            result[:,0:self.shape[1]] = self
+            result[:,0:self.shape[1]] = copy.deepcopy(self)
             result[:,self.shape[1]:]  = value
         elif axis == 0 and self.shape[1] == value.shape[1]:
             result = zeros((self.shape[0] + value.shape[0], self.shape[1]))
-            result[:self.shape[0],:] = self
+            result[:self.shape[0],:] = copy.deepcopy(self)
             result[self.shape[0]:,:] = value
         else:
             print("Error: matrices with incompatible dimensions.")
@@ -242,7 +253,7 @@ class Matrix(object):
             return False
     def gauss_elimination(self):
         N, M = self.shape
-        Ab_ = self
+        Ab_ = copy.deepcopy(self)
         # phase 1: convert A to a superior triangular matrix
         for n in range(N):
             pivot = Ab_[n,n]
@@ -251,3 +262,16 @@ class Matrix(object):
                 Ab_[i,:] = Ab_[i,:] - (Ab_[n,:] * f)
         # phase 2: solve the system using back substituition
         return Ab_.back_substituition()
+
+    def lu_decomposition(self):
+        N = self.shape[0]
+        L = eye(N)
+        U = copy.deepcopy(self)
+        for n in range(N):
+            L[n+1:,n] = U[n+1:,n] * (1/U[n,n])
+            for l  in range(n+1,N):
+                U[l,:] = U[l,:] - (U[n,:] * L[l,n])
+                # A(l, :) = A(l, :) - L(l, k) * A(k, :);
+            # end            
+            # U[n+1:,:] = U[n+1:,:] - L[n,n+1:].dot(U[n,:])
+        return L, U
