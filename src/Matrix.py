@@ -42,11 +42,8 @@ class Matrix(object):
             s =  s + '|' + ss + '|\n'
         return s
     
-    def __getitem__(self, item):
-        i,j = item
-        if type(i) is int and type(j) is int:
-            return self.linhas[i][j]
 
+    def __item2list__(self, i,j):
         list_index = [0,0]
         for dim,count in [(i,0),(j,1)]:
             if type(dim) is int:
@@ -65,6 +62,15 @@ class Matrix(object):
 
             if type(dim) is list:
                 list_index[count] = dim
+        return list_index
+
+
+    def __getitem__(self, item):
+        i,j = item
+        if type(i) is int and type(j) is int:
+            return self.linhas[i][j]
+
+        list_index = self.__item2list__(i,j)
 
         result = list()
         for row in list_index[0]:
@@ -74,63 +80,26 @@ class Matrix(object):
             result.append(aux_list)
 
         return Matrix(result)
-                # slice(dim.start, dim.step, dim.stop)
-                # list_index.append(range(self.shape[dimension]+1) if dimension == None else 1)
-                # print(list_index[dimension])
-
-
-
-
-
-        # if type(i) is slice or type(j) is slice:
-        #     for n in [i,j]:
-        #         n_ = n
-        #         n = slice(n, n+1) if type(n) != slice else n
-        #         n = slice(0, -1) if type(n) == None else n
-        #         n = slice(0, n.stop) if n.start == None else n
-        #         n = slice(n.start, self.shape[0 if n_ == i else 1]) if n.stop == None else n
-        #         i = n if n_ == i else i
-        #         j = n if n_ == j else j
-
-        #     result = zeros((i.stop-i.start, j.stop-j.start))
-        #     for linha in range(i.start, i.stop) if self.shape[0] != 1 else [0]:
-        #         for coluna in range(j.start, j.stop) if self.shape[1] != 1 else [0]:
-        #             # print(linha,coluna)
-        #             result[linha-i.start,coluna-j.start] = self.linhas[linha][coluna]
-        #     return result
-        # else:
-        #     return self.linhas[i][j]
     
                 
     def __setitem__(self, item, value):
         i, j = item
-        if type(i) is slice or type(j) is slice:
-            for n in [i,j]:
-                n_ = n
-                n = slice(n, n+1) if type(n) != slice else n
-                n = slice(0, -1) if type(n) == None else n
-                n = slice(0, n.stop) if n.start == None else n
-                n = slice(n.start, self.shape[0 if n_ == i else 1]) if n.stop == None else n
-                i = n if n_ == i else i
-                j = n if n_ == j else j
-
-            if type(value) in [float,int]:
-                value = Matrix([[value]*self.shape[1]]*self.shape[0])
-            elif value.shape[0] != i.stop - i.start or value.shape[1] != j.stop - j.start:
-                print("Error: incompatible dimensions.")
-                return False
-            elif value.shape[0] == self.shape[0] or value.shape[1] == self.shape[1]:
-                if value.shape[0] == 1:
-                    value = Matrix([value.linhas[0]] * self.shape[1])
-                elif value.shape[1] == 1:
-                    value = Matrix([n*self.shape[0] for n in value.linhas])
-            for linha in range(i.start, i.stop) if self.shape[0] != 1 else [0]:
-                for coluna in range(j.start, j.stop) if self.shape[1] != 1 else [0]:
-                    self[linha,coluna] = value[linha-i.start,coluna-j.start]
-
-        else:
+        if type(i) is int and type(j) is int:
             self.linhas[i][j] = value
+        else:
 
+            list_index = self.__item2list__(i, j)
+
+            if type(value) is int:
+                value = ones((len(list_index[0]), len(list_index[1]))) * value
+
+            row_ = 0
+            col_ = 0
+            for row in list_index[0]:
+                for col in list_index[1]:
+                    self[row,col] = value[row_,col_]
+                    col_ += 1
+                row_ += 1
 
     def __add__(self, value):
         if type(value) == Matrix:
@@ -182,8 +151,7 @@ class Matrix(object):
                         result[i,j] = self[i,:] * value[:,j]
         return result
 
-    def __abs__(self):
-        return self.dot_operation(abs)
+    def __abs__(self): return self.__dot_operation__(abs)
 
     def transpose(self):
         result = zeros((self.shape[1], self.shape[0]))
@@ -192,56 +160,27 @@ class Matrix(object):
                 result[j,i] = self[i,j]
         return result
 
-    def sum(self, axis=0):
-        if 1 in self.shape:
-            result = 0
-            if self.shape[0] == 1:
-                for i in range(self.shape[1]):
-                    result = result + self[0,i]
-            else:
-                for i in range(self.shape[0]):
-                    result = result + self[i,0]
+    def __operation__(self, operation, axis=0, arg=0):
+        operations_list = {'sum': sum, 'min': min, 'max': max}
+        result = list()
+        if axis == 1:
+            for i in range(self.shape[0]):
+                if arg == 0: result.append([operations_list[operation](self.linhas[i])])
+                else: result.append([self.linhas[i].index(operations_list[operation](self.linhas[i]))])
         else:
-            if axis == 0:
-                result = zeros((1,self.shape[1]))
-                for i in range(self.shape[1]):
-                    result[0,i] = self[:,i].sum()
-            else:
-                result = zeros((self.shape[0],1))
-                for i in range(self.shape[0]):
-                    result[i,0] = self[i,:].sum()
-        return result
+            if arg == 0: return self.transpose().__operation__(operation, axis=1).transpose()
+            else: return self.transpose().__operation__(operation, axis=1, arg=1).transpose()
+        return Matrix(result)
 
-    # def min_max(self, axis=0, op='max', arg=False):
-    #     if 1 in self.shape:
-    #         result = 0
-    #         if self.shape[0] == 1:
-    #             linhas = self.linhas[0]
-    #             if op == 'max':
-    #                 op_value = max(linhas)
-    #             elif op == 'min':
-    #                 op_value = min(linhas)
-    #             result = op_value if not arg else linhas.index(op_value)
-    #         else:
-    #             result = self.transpose().min_max(axis=axis, op=op, arg=arg)
-    #     else:
-    #         aux = self
-    #         result = zeros((1,self.shape[1]))
-    #         aux = self.transpose() if axis == 0 else aux
-    #         for i in range(self.shape[1]):
-    #             result[0,i] = aux[:,i].min_max(axis=axis, op=op, arg=arg)
-    #         result = result.transpose() if axis == 0 else result
-    #     return result
+    def sum(self, axis=0): return self.__operation__('sum', axis=axis)
+    def max(self, axis=0): return self.__operation__('max', axis=axis)
+    def argmax(self, axis=0): return self.__operation__('max', axis=axis, arg=1)
+    def min(self, axis=0): return self.__operation__('min', axis=axis)
+    def argmin(self, axis=0): return self.__operation__('min', axis=axis, arg=1)
 
-    # def min(self, axis=0):
-    #     return self.min_max(axis=axis, op='min')
-    # def argmin(self, axis=0):
-    #     return self.min_max(axis=axis, op='min', arg=True)
 
-    # def max(self, axis=0):
-    #     return self.min_max(axis=axis, op='max')
-    # def argmax(self, axis=0):
-    #     return self.min_max(axis=axis, op='max', arg=True)
+
+
 
     def dot(self, value):
         result = zeros(self.shape)
@@ -268,7 +207,7 @@ class Matrix(object):
             result = None
         return result
     
-    def dot_operation(self, operation):
+    def __dot_operation__(self, operation):
         result = zeros(self.shape)
         for i in range(self.shape[0]):
             for j in range(self.shape[1]):
