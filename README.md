@@ -3,8 +3,8 @@ my codes of the computational linear algebra course.
 
 ## to-do list
 ### basic
- - [ ] Matrix class
- - [ ] multiplication of vector-matrix and matrix-vector
+ - [x] Matrix class
+ - [x] multiplication of vector-matrix and matrix-vector
 
 ### direct Methods
  - [ ] gauss elimination
