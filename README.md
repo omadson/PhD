@@ -7,7 +7,7 @@ my codes of the computational linear algebra course.
  - [x] multiplication of vector-matrix and matrix-vector
 
 ### direct Methods
- - [ ] gauss elimination
+ - [x] gauss elimination
  - [ ] LU decomposition
  - [ ] Cholesky decomposition (positive definide matrices)
   
