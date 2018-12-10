@@ -60,8 +60,10 @@ class Matrix(object):
 
                 list_index[count] = list(range(start, stop,step))
 
-            if type(dim) is list:
-                list_index[count] = dim
+            if type(dim) is Matrix:
+                dim = dim.transpose().linhas[0] if dim.shape[0] > dim.shape[1] else dim.linhas[0]
+                print(dim)
+            if type(dim) is list: list_index[count] = dim
         return list_index
 
 
