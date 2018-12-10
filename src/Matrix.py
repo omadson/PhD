@@ -233,8 +233,6 @@ class Matrix(object):
         b = self[:,-1]
 
         if sum([A[i,i] == 0 for i in range(N)]) == 0:
-            # print(b[N-1,0])
-            # print(A[N-1,N-1])
             x[0,N-1] = b[N-1,0] / A[N-1,N-1]
             for j in range(N-2,-1,-1):
                 x[0,j] = (b[j,0] - A[j,j+1:].dot(x[0,j+1:]).sum(axis=1).to_number() ) / A[j,j]
@@ -242,12 +240,14 @@ class Matrix(object):
         else:
             print("the system not can solved by back substituition.")
             return False
-    
-
-
-    # def gauss_elimination(self):
-    #     result = self
-    #     N, M = self.shape
-    #     for m in range(M-1):
-    #         p = result[i:,j].__dot_operation__(abs).argmax().to_number()
-            
+    def gauss_elimination(self):
+        N, M = self.shape
+        Ab_ = self
+        # phase 1: convert A to a superior triangular matrix
+        for n in range(N):
+            pivot = Ab_[n,n]
+            for i in range(n+1,N):
+                f = Ab_[i,n] / pivot
+                Ab_[i,:] = Ab_[i,:] - (Ab_[n,:] * f)
+        # phase 2: solve the system using back substituition
+        return Ab_.back_substituition()
