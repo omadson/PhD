@@ -55,15 +55,12 @@ class Matrix(object):
                 stop = self.shape[count] if dim.stop == None else dim.stop
                 step = -1 if start > stop and step == 1 else step
 
-                if stop > start and step < 0:
-                    stop, start = start, stop-1
+                if stop > start and step < 0: stop, start = start, stop-1
 
                 list_index[count] = list(range(start, stop,step))
 
-            if type(dim) is Matrix:
-                dim = dim.transpose().linhas[0] if dim.shape[0] > dim.shape[1] else dim.linhas[0]
-                print(dim)
-            if type(dim) is list: list_index[count] = dim
+            if type(dim) is Matrix: dim = dim.transpose().linhas[0] if dim.shape[0] > dim.shape[1] else dim.linhas[0]
+            if type(dim) is list: list_index[count] = [i.linhas[0] if type(i) is Matrix else i for i in dim]
         return list_index
 
 
@@ -144,8 +141,7 @@ class Matrix(object):
             result = zeros((self.shape[0], value.shape[1]))
             if self.shape[0] == 1 and value.shape[1] == 1:
                 result = 0
-                for i in range(self.shape[1]):
-                    result = result + self[0,i] * value[i,0]
+                for i in range(self.shape[1]): result = result + self[0,i] * value[i,0]
             else:
                 result = zeros((self.shape[0], value.shape[1]))
                 for i in range(self.shape[0]):
@@ -215,3 +211,23 @@ class Matrix(object):
             for j in range(self.shape[1]):
                 result[i,j] = operation(self[i,j])
         return result
+
+
+
+
+    # def gauss_elimination(self):
+    #     result = self
+    #     _, n = self.shape
+    #     for k in range(n):
+    #         p = result[k:n-1,k].__dot_operation__(abs).argmax().linhas[0][0]
+    #         p = p+k;
+    #         print(result[[p,k],:])
+    #         print(result[[k,p],:])
+    #         result[[k,p],:] = result[[p,k],:] if p != k else result[[k,p],:]
+
+    #         for i in range(k+1,n+1):# i=k+1:n
+    #             # print(self[i,k], self[k,k])
+    #             m = result[i,k] / result[k,k]
+    #             print(result)    
+    #             result[i,k:] = result[i,k:] - (result[k,k:] * m);
+    #     return result
