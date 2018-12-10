@@ -53,9 +53,10 @@ class Matrix(object):
                 start = 0 if dim.start == None else dim.start
                 step  = 1 if dim.step == None else dim.step
                 stop = self.shape[count] if dim.stop == None else dim.stop
-                step = -1 if start > stop and step == 1 else step
+                # step = -1 if start > stop and step == 1 else step
 
                 if stop > start and step < 0: stop, start = start, stop-1
+                stop = self.shape[count] + stop if stop < 0 else stop
 
                 list_index[count] = list(range(start, stop,step))
 
@@ -92,12 +93,15 @@ class Matrix(object):
             if type(value) is int:
                 value = ones((len(list_index[0]), len(list_index[1]))) * value
 
+            
+            
             row_ = 0
-            col_ = 0
             for row in list_index[0]:
+                col_ = 0
                 for col in list_index[1]:
                     self[row,col] = value[row_,col_]
                     col_ += 1
+                
                 row_ += 1
 
     def __add__(self, value):
@@ -212,22 +216,38 @@ class Matrix(object):
                 result[i,j] = operation(self[i,j])
         return result
 
+    def to_number(self):
+        if self.shape == (1,1):
+            return self.linhas[0][0]
 
+    def trace(self):
+        return sum([self[i,i] for i in range(self.shape[0])]) if self.shape[0] == self.shape[1] else False
+    
+    def back_substituition(self):
+        N, M = self.shape
+        # vector of soluctions
+        x = zeros((1,N))
+
+        # auxiliary matrices
+        A = self[:,:-1]
+        b = self[:,-1]
+
+        if sum([A[i,i] == 0 for i in range(N)]) == 0:
+            # print(b[N-1,0])
+            # print(A[N-1,N-1])
+            x[0,N-1] = b[N-1,0] / A[N-1,N-1]
+            for j in range(N-2,-1,-1):
+                x[0,j] = (b[j,0] - A[j,j+1:].dot(x[0,j+1:]).sum(axis=1).to_number() ) / A[j,j]
+            return x
+        else:
+            print("the system not can solved by back substituition.")
+            return False
+    
 
 
     # def gauss_elimination(self):
     #     result = self
-    #     _, n = self.shape
-    #     for k in range(n):
-    #         p = result[k:n-1,k].__dot_operation__(abs).argmax().linhas[0][0]
-    #         p = p+k;
-    #         print(result[[p,k],:])
-    #         print(result[[k,p],:])
-    #         result[[k,p],:] = result[[p,k],:] if p != k else result[[k,p],:]
-
-    #         for i in range(k+1,n+1):# i=k+1:n
-    #             # print(self[i,k], self[k,k])
-    #             m = result[i,k] / result[k,k]
-    #             print(result)    
-    #             result[i,k:] = result[i,k:] - (result[k,k:] * m);
-    #     return result
+    #     N, M = self.shape
+    #     for m in range(M-1):
+    #         p = result[i:,j].__dot_operation__(abs).argmax().to_number()
+            
