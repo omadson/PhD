@@ -143,6 +143,9 @@ class Matrix(object):
             result = copy.deepcopy(self) - Matrix([[value]*self.shape[1]]*self.shape[0])
         return result
 
+    def __neg__(self):
+        return self * (-1)
+
     def __mul__(self, value):
         result = copy.deepcopy(self)
         if type(value) in [int, float]:
@@ -192,9 +195,6 @@ class Matrix(object):
     def argmin(self, axis=0): return self.__operation__('min', axis=axis, arg=1)
 
 
-
-
-
     def dot(self, value):
         result = zeros(self.shape)
         if type(value) == Matrix and self.shape == value.shape:
@@ -226,6 +226,9 @@ class Matrix(object):
             for j in range(self.shape[1]):
                 result[i,j] = operation(self[i,j])
         return result
+
+    def power(self, n):
+        return self.__dot_operation__(lambda x: pow(x,n))
 
     def to_number(self):
         if self.shape == (1,1):
@@ -271,7 +274,13 @@ class Matrix(object):
             L[n+1:,n] = U[n+1:,n] * (1/U[n,n])
             for l  in range(n+1,N):
                 U[l,:] = U[l,:] - (U[n,:] * L[l,n])
-                # A(l, :) = A(l, :) - L(l, k) * A(k, :);
-            # end            
-            # U[n+1:,:] = U[n+1:,:] - L[n,n+1:].dot(U[n,:])
         return L, U
+
+    def chol_decomposition(self):
+        N = self.shape[0]
+        L = zeros(N)
+        for i in range(N):
+            L[i,i] = pow(- (L[i,:] * L[i,:].transpose()) + self[i,i], 1/2)
+            for j in range(i+1,N):
+                L[j,i] = (- (L[i,:] * L[j,:].transpose()) + self[j,i]) / L[i,i]
+        return L
