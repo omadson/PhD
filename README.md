@@ -14,11 +14,11 @@ my codes of the computational linear algebra course.
 ### iterative methods
  - [x] Jacobi
  - [x] Gauss-Seidel
- - [x] Successive over-relaxation
- - [ ] conjugate gradients Gradientes Conjugados
+ - [x] successive over-relaxation
+ - [ ] conjugate gradients
 
 ### least square methods
- - [ ] Gram-Schidt
+ - [ ] Gram-Schmidt
  - [ ] QR decomposition (Jacobi and Householder)
 
 ### eigenvalues and eigenvectors of matrices
