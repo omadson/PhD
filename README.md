@@ -13,7 +13,7 @@ my codes of the computational linear algebra course.
   
 ### iterative methods
  - [x] Jacobi
- - [ ] Gauss-Seidel
+ - [x] Gauss-Seidel
  - [ ] Successive over-relaxation
  - [ ] conjugate gradients Gradientes Conjugados
 
