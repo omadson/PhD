@@ -72,6 +72,7 @@ class Matrix(object):
                 list_index[count] = list(range(start, stop,step))
 
             if type(dim) is Matrix: dim = dim.transpose().linhas[0] if dim.shape[0] > dim.shape[1] else dim.linhas[0]
+            if type(dim) is set: dim = list(dim)
             if type(dim) is list: list_index[count] = [i.linhas[0] if type(i) is Matrix else i for i in dim]
         return list_index
 
@@ -284,3 +285,15 @@ class Matrix(object):
             for j in range(i+1,N):
                 L[j,i] = (- (L[i,:] * L[j,:].transpose()) + self[j,i]) / L[i,i]
         return L
+
+    def jacob(self, b, K):
+        N, M  = self.shape
+        x_old = zeros((1,M))
+        x_new = zeros((1,M))
+
+        for k in range(K):
+            x_old = copy.deepcopy(x_new)
+            for i in range(M):
+                list_index = set(range(M)) - {i}
+                x_new[0,i] = (b[i,0] - self[i,list_index].dot(x_old[0,list_index]).sum(axis=1).to_number()) * (1 / self[i,i])
+        return x_new

@@ -12,7 +12,7 @@ my codes of the computational linear algebra course.
  - [x] Cholesky decomposition (positive definide matrices)
   
 ### iterative methods
- - [ ] Jacobi
+ - [x] Jacobi
  - [ ] Gauss-Seidel
  - [ ] Successive over-relaxation
  - [ ] conjugate gradients Gradientes Conjugados
