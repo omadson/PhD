@@ -197,7 +197,11 @@ class Matrix(object):
     def min(self, axis=0): return self.__operation__('min', axis=axis)
     def argmin(self, axis=0): return self.__operation__('min', axis=axis, arg=1)
 
-    def norm(self): return pow(self.transpose() * self, 1/2)
+    def norm(self):
+        if self.shape[1] == 1:
+            return pow(self.transpose() * self, 1/2)
+        else:
+            return pow(self * self.transpose(), 1/2)
 
     def dot(self, value):
         result = zeros(self.shape)
@@ -370,3 +374,50 @@ class Matrix(object):
                 V[:,j] = V[:,j] - Q[:,i] * R[i,j]
 
         return Q,R
+
+
+# function [H] = make_householder_matrix(A,j)
+#     m = size(A,1);
+#     H = eye(m);
+#     v = zeros(1,m);
+#     v_ = zeros(1,m);
+
+#     v(j:m) = A(j:m,j);
+    
+    
+#     v_(j) = (-1) * (abs(v(j))/v(j)) * norm(v);
+
+#     N = v - v_;
+#     n = N / norm(N);
+#     H = H - 2 .* n' * n;
+# end
+    def __make_householder_matrix__(self, A, j):
+        N,M  = A.shape
+        H  = eye(N)
+        v  = zeros((N,1))
+        v_ = zeros((N,1))
+        
+        v[j:N,0] = A[j:N,1]
+
+
+        v_[j,0] = -((abs(v[j,0]) / v[j,0]) * v.norm())
+
+        N_ = v - v_;
+
+        n = N_ * (1/N_.norm())
+        # print(n.transpose() * n)
+        H = H - (n * n.transpose()) * 2
+
+        return H
+
+
+
+    def householder_decomposition(self):
+        N,M   = self.shape
+        A_j = self.copy()
+        H   = eye(N)
+        for j in range(N):
+            H_j = self.__make_householder_matrix__(A_j, j)
+            A_j = H_j * A_j
+            H   = H * H_j
+        return H, A_j

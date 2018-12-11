@@ -19,7 +19,8 @@ my codes of the computational linear algebra course.
 
 ### least square methods
  - [x] Gram-Schmidt
- - [ ] QR decomposition (Jacobi and Householder)
+ - [x] QR decomposition using Householder
+ - [ ] QR decomposition using Jacobi
 
 ### eigenvalues and eigenvectors of matrices
  - [ ] power method (regular, inverse and with displacement)
