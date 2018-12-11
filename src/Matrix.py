@@ -189,12 +189,15 @@ class Matrix(object):
             else: return self.transpose().__operation__(operation, axis=1, arg=1).transpose()
         return Matrix(result)
 
+    def copy(self): return copy.deepcopy(self)
+
     def sum(self, axis=0): return self.__operation__('sum', axis=axis)
     def max(self, axis=0): return self.__operation__('max', axis=axis)
     def argmax(self, axis=0): return self.__operation__('max', axis=axis, arg=1)
     def min(self, axis=0): return self.__operation__('min', axis=axis)
     def argmin(self, axis=0): return self.__operation__('min', axis=axis, arg=1)
 
+    def norm(self): return pow(self.transpose() * self, 1/2)
 
     def dot(self, value):
         result = zeros(self.shape)
@@ -331,7 +334,7 @@ class Matrix(object):
         x = b
         
         r = b - self * x
-        p = copy.copy(r)
+        p = copy.deepcopy(r)
 
         rs_old = r.transpose() * r
 
@@ -350,3 +353,20 @@ class Matrix(object):
             rs_old = rs_new
 
         return x.transpose()
+
+    def gram_schmidt(self):
+        N,M = self.shape
+        V = self.copy()
+
+        Q = zeros((N,M))
+        R = zeros((N,M))
+
+        for i in range(M):
+            R[i,i] = V[:,i].norm()
+            Q[:,i] = V[:,i] * (1/R[i,i])
+
+            for j in range(i+1,M):
+                R[i,j] = Q[:,i].transpose() * V[:,j]
+                V[:,j] = V[:,j] - Q[:,i] * R[i,j]
+
+        return Q,R

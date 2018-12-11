@@ -18,7 +18,7 @@ my codes of the computational linear algebra course.
  - [x] conjugate gradients
 
 ### least square methods
- - [ ] Gram-Schmidt
+ - [x] Gram-Schmidt
  - [ ] QR decomposition (Jacobi and Householder)
 
 ### eigenvalues and eigenvectors of matrices
