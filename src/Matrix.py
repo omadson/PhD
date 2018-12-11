@@ -287,7 +287,7 @@ class Matrix(object):
         return L
 
     def jacob(self, b, K):
-        N, M  = self.shape
+        M  = self.shape[1]
         x_old = zeros((1,M))
         x_new = zeros((1,M))
 
@@ -295,5 +295,19 @@ class Matrix(object):
             x_old = copy.deepcopy(x_new)
             for i in range(M):
                 list_index = set(range(M)) - {i}
-                x_new[0,i] = (b[i,0] - self[i,list_index].dot(x_old[0,list_index]).sum(axis=1).to_number()) * (1 / self[i,i])
+                sum_1 = self[i,list_index].dot(x_old[0,list_index]).sum(axis=1).to_number()
+                x_new[0,i] = (b[i,0] - sum_1) * (1 / self[i,i])
+        return x_new
+
+    def gauss_seidel(self, b, K):
+        M  = self.shape[1]
+        x_old = zeros((1,M))
+        x_new = zeros((1,M))
+        for k in range(K):
+            x_old = copy.deepcopy(x_new)
+            for i in range(M):
+
+                sum_1 = self[i,:i].dot(x_new[0,:i]).sum(axis=1).to_number()
+                sum_2 = self[i,i+1:].dot(x_new[0,i+1:]).sum(axis=1).to_number()
+                x_new[0,i] = (b[i,0] - sum_1 - sum_2) * (1 / self[i,i])
         return x_new
