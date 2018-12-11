@@ -325,3 +325,28 @@ class Matrix(object):
                 
                 x_new[0,i] = (1 - omega)*x_old[0,i] + (b[i,0] - sum_1 - sum_2) * (omega / self[i,i])
         return x_new
+
+    def conjugate_gradients(self, b):
+        M  = self.shape[1]
+        x = b
+        
+        r = b - self * x
+        p = copy.copy(r)
+
+        rs_old = r.transpose() * r
+
+        for i in range(M):
+            Ap    = self * p
+
+            alpha = rs_old / (p.transpose() * Ap)
+            
+            x = x + p * alpha
+            r = r - Ap * alpha
+
+            rs_new = r.transpose() * r
+            if pow(rs_new,1/2) < 0.000001:
+                return x
+            p = r + p * (rs_new / rs_old)
+            rs_old = rs_new
+
+        return x.transpose()
