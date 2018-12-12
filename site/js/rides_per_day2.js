@@ -1,4 +1,5 @@
 require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function (d3) {
+    function 
     var formatDate1 = d3.time.format('%Y-%m-%d');
     var formatDate2 = d3.time.format('%d/%m/%Y');
     var formatP = d3.format('.1f');
@@ -34,7 +35,9 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"], function 
     // var title="Número de viagens ao longo dos anos";
     var title="";
     var units=" Viagens";
-    var breaks=[500,1000,1500,2000,2500];
+
+    var breaks= type == 'count'? [500,1000,1500,2000,2500] : [10,20,50,100,400];
+    
     // var breaks=[10,20,50,100,400];
     // var colours=["#FFFFCC","#C7E9B4","#7FCDBB","#41B6C4","#2C7FB8","#253494"];
     // var colours=["#edf8fb","#ccece6","#99d8c9","#66c2a4","#2ca25f","#006d2c"];

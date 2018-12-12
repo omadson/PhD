@@ -5,7 +5,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables, height, width, chart_t
         // var color = d3.scale.domain([]);
         var color = d3.scale.ordinal()
                       .domain(d3.range(21))
-                      .range(['#1b9e77', '#d95f02', '#7570b3']);
+                      .range(['#d95f02', '#1b9e77', '#7570b3']);
 
     } else {
         var color = d3.scale.ordinal()

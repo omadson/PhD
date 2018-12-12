@@ -3,7 +3,7 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"], function
 function dashboard(id, fData){
     var barColor = 'steelblue';
     // ['#1b9e77', '#d95f02', '#7570b3']
-    function segColor(c){ return {Masculino:"#d95f02", Feminino:"#1b9e77",Outros:"#7570b3"}[c]; }
+    function segColor(c){ return {Masculino:"#1b9e77", Feminino:"#d95f02",Outros:"#7570b3"}[c]; }
     // function segColor(c){ return {M:"#807dba", F:"#e08214",O:"#41ab5d"}[c]; }
     
     // compute total for each state.
