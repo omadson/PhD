@@ -11,7 +11,7 @@
         } else if (type_chart == 'avg_ride_per_day') {
             var file_name =  "data/avg_time_ride_day.csv";
         } else if (type_chart == 'rides_per_station') {
-            var file_name =  "data/rides_per_station.csv";
+            var file_name =  "data/rides_per_sex.csv";
         }
 
         var formatDate1 = d3.time.format('%Y-%m-%d');
@@ -27,6 +27,8 @@
                 pM = 100 * d.Men / total;
                 pW = 100 * d.Women / total;
                 pO = 100 * d.Others / total;
+
+
                 if (type_chart == 'rides_per_day') {
                     return    `<strong>Data: ${formatDate2(d.dia)} (${dias[d.dia.getDay()]}) </strong><br /><div id='viagens_dia'></div><hr />
                                    Total: ${total} <br />
@@ -77,7 +79,7 @@
         } else if (type_chart == 'avg_ride_per_day') {
             var breaks = [10,20,30,50,100];
         } else if (type_chart == 'rides_per_station') {
-            var breaks = [10,20,50,100,400];
+            var breaks = [5,15,25,30,50];
         }
 
 
@@ -124,7 +126,9 @@
                         d.avg    = parseInt(d.media_viagens);
                         
                     } else if (type_chart == 'rides_per_station') {
-                        var file_name =  "data/rides_per_station.csv";
+                        d.Men=parseInt(d.M_0 / d.num_of_stations);
+                        d.Women=parseInt(d.F_0 / d.num_of_stations);
+                        d.Others=parseInt(d.O_0 / d.num_of_stations);
                     }
 
 
