@@ -13,6 +13,14 @@ function makeLineChart(dataset, xName, yObjs, axisLables, height, width, chart_t
                       .range(['#e41a1c', '#377eb8']);
 
     }
+
+    if (chart_type == 'time_ride_sexo') {
+        // var color = d3.scale.domain([]);
+        var color = d3.scale.ordinal()
+                      .domain(21)
+                      .range(['#d95f02', '#1b9e77', '#7570b3']);
+
+    } 
     
     chartObj.xAxisLable = axisLables.xAxis;
     chartObj.yAxisLable = axisLables.yAxis;
