@@ -384,7 +384,8 @@ transition: opacity 0.15s linear;
 
 .dot2 {
     /*stroke: #293b47;*/
-    fill: rgba(0,88,36, 1);    
+    /*fill: rgba(0,88,36, 1);    */
+    fill: #d95f02;
 }
 
 

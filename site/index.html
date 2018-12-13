@@ -38,6 +38,7 @@
 
    <link href="css/style.css" rel="stylesheet" />
    <link rel="stylesheet" href="css/leaflet_awesome_number_markers.css" />
+   <!-- <script src="js/textures.js"></script> -->
 </head>
 <body>
 
@@ -295,6 +296,16 @@
       <div class="row">
         <div class="col-sm-12">
           <h3>Quantidade de viagens</h3>
+
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Selecione uma das opções</label>
+          <select class="form-control" id="exampleFormControlSelect1" onchange="calendar_chart(this)">
+            <option value="rides_per_day">Número de corridas</option>
+            <option value="avg_ride_per_day">Média do tempo da corrida</option>
+            <option value="rides_per_station">Média de corridas por estação</option>
+          </select>
+        </div>
+
           <p align="justify"> Na visualização abaixo, temos um gráfico de calor em formato de calendário no qual é exibido o número de viagens por dia. A cor da célula representa o número de viagens em determinado dia, conforme legenda acima do gráfico. Ao passar o mouse por cima de uma célula, é possível verificar o número de viagens separado por gênero. Além disso, é apresentado um gráfico de barras com a distribuição das viagens por hora do dia.</p>
         </div>
         <div class="col-sm-12" id="calendar_viagens"></div>
@@ -432,7 +443,7 @@
 <script src="js/usuarios1.js"></script>
 <script src="js/station_distribuition.js"></script>
 <script src="js/rides_of_day.js"></script>
-<script src="js/rides_per_day.js"></script>
+<script src="js/rides_per_day2.js"></script>
 <script src="js/regression_m_f.js"></script>
 <script src="js/rides_per_hour.js"></script>
 <script src="js/rides_per_month.js"></script>
