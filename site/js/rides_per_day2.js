@@ -79,7 +79,7 @@
         } else if (type_chart == 'avg_ride_per_day') {
             var breaks = [10,20,30,50,100];
         } else if (type_chart == 'rides_per_station') {
-            var breaks = [5,15,25,30,50];
+            var breaks = [10,15,25,35,50];
         }
 
 

@@ -17,7 +17,7 @@ require(["https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"], function
             'Feminino': {column: 'F'},
             'Masculino': {column: 'M'},
             // 'Outros': {column: 'O'},
-        }, {xAxis: 'Minutos', yAxis: 'Total das viagens (%)'}, 680, 200, 'time_ride_sexo');
+        }, {xAxis: 'Minutos', yAxis: 'Total das viagens (%)'}, 560, 200, 'time_ride_sexo');
         chart.bind("#time_ride_by_sex");
         chart.render();
     });

@@ -273,8 +273,19 @@
           <div class="histogram" id="rides_by_birth_year"></div>
         </div>
       </div>
+      <div class="row">
+         <div class="col-sm-5">
+          <h3>Duração da viagem por gênero</h3>
+          <p align="justify">Na visualização à direita, um gráfico de linha, é exibido o tempo de viagem por gênero. Como visto anteriormente, o número de viagens de homens é maior que o de mulheres. Contudo, a medida que a duração da viagem aumenta, a diferença no número de viagens diminuem, chegando a basicamente igualar aos 60 minutos.</p>
+        </div>
+        <div class="col-sm-7">
+          <div id="time_ride_by_sex" class="chart-wrapper"></div>
+        </div>
+      </div>
     </div>
+
   </div>
+
 
 
 
@@ -296,17 +307,17 @@
       <div class="row">
         <div class="col-sm-12">
           <h3>Quantidade de viagens</h3>
-
+          <p align="justify"> Na visualização abaixo, temos um gráfico de calor em formato de calendário no qual é exibido o número de viagens por dia. A cor da célula representa o número de viagens em determinado dia, conforme legenda acima do gráfico. Ao passar o mouse por cima de uma célula, é possível verificar o número de viagens separado por gênero. Além disso, é apresentado um gráfico de barras com a distribuição das viagens por hora do dia.</p>
           <div class="form-group">
           <label for="exampleFormControlSelect1">Selecione uma das opções</label>
           <select class="form-control" id="exampleFormControlSelect1" onchange="calendar_chart(this)">
-            <option value="rides_per_day">Número de corridas</option>
-            <option value="avg_ride_per_day">Média do tempo da corrida</option>
-            <option value="rides_per_station">Média de corridas por estação</option>
+            <option value="rides_per_day">Número absoluto de corridas</option>
+            <option value="rides_per_station">Número médio de corridas por estação</option>
+            <option value="avg_ride_per_day">Tempo médio da corrida</option>
           </select>
         </div>
 
-          <p align="justify"> Na visualização abaixo, temos um gráfico de calor em formato de calendário no qual é exibido o número de viagens por dia. A cor da célula representa o número de viagens em determinado dia, conforme legenda acima do gráfico. Ao passar o mouse por cima de uma célula, é possível verificar o número de viagens separado por gênero. Além disso, é apresentado um gráfico de barras com a distribuição das viagens por hora do dia.</p>
+          
         </div>
         <div class="col-sm-12" id="calendar_viagens"></div>
         <div class="col-sm-12">
@@ -366,15 +377,7 @@
         </div>
  -->
 
-      <div class="row">
-         <div class="col-sm-5">
-          <h3>Duração da viagem por gênero</h3>
-          <p align="justify">Na visualização à direita, um gráfico de linha, é exibido o tempo de viagem por gênero. Como visto anteriormente, o número de viagens de homens é maior que o de mulheres. Contudo, a medida que a duração da viagem aumenta, a diferença no número de viagens diminuem, chegando a basicamente igualar aos 60 minutos.</p>
-        </div>
-        <div class="col-sm-7">
-          <div id="time_ride_by_sex" class="chart-wrapper"></div>
-        </div>
-      </div>
+      
       <div class="row">
         <!-- <div class="col-sm-5"></div>
         <div class="col-sm-7"><h3>De onde para onde?</h3></div> -->
