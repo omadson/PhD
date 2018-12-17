@@ -262,9 +262,9 @@ class Matrix(object):
         else:
             print("the system not can solved by back substituition.")
             return False
-    def gauss_elimination(self):
-        N, M = self.shape
-        Ab_ = copy.deepcopy(self)
+    def gauss_elimination(self, b):
+        Ab_ = self.concat(b)
+        N, M = Ab_.shape
         # phase 1: convert A to a superior triangular matrix
         for n in range(N):
             pivot = Ab_[n,n]
@@ -277,7 +277,7 @@ class Matrix(object):
     def lu_decomposition(self):
         N = self.shape[0]
         L = eye(N)
-        U = copy.deepcopy(self)
+        U = self.copy()
         for n in range(N):
             L[n+1:,n] = U[n+1:,n] * (1/U[n,n])
             for l  in range(n+1,N):
@@ -358,11 +358,50 @@ class Matrix(object):
 
         return x.transpose()
 
+    def steepest_descent(self, b, K=1000):
+        x = b
+        b_hat = self * x
+        w = b - b_hat
+        for k in range(K):
+            if w.norm() < 10**-6:
+                return x.transpose()
+            alpha = (w.transpose() * w) / (w.transpose() * self * w)
+            x = x + (w * alpha)
+            b_hat = self * x
+            w = b - b_hat
+        return x.transpose()
+
+
+    def conjugate_gradients(self, b):
+        M  = self.shape[1]
+        x = b
+        
+        r = b - self * x
+        p = copy.deepcopy(r)
+
+        rs_old = r.transpose() * r
+
+        for i in range(M):
+            Ap    = self * p
+
+            alpha = rs_old / (p.transpose() * Ap)
+            
+            x = x + p * alpha
+            r = r - Ap * alpha
+
+            rs_new = r.transpose() * r
+            if pow(rs_new,1/2) < 0.000001:
+                return x
+            p = r + p * (rs_new / rs_old)
+            rs_old = rs_new
+
+        return x.transpose()
+
     def gram_schmidt(self):
         N,M = self.shape
         V = self.copy()
 
-        Q = zeros((N,M))
+        Q = zeros((N,N))
         R = zeros((N,M))
 
         for i in range(M):
@@ -375,22 +414,6 @@ class Matrix(object):
 
         return Q,R
 
-
-# function [H] = make_householder_matrix(A,j)
-#     m = size(A,1);
-#     H = eye(m);
-#     v = zeros(1,m);
-#     v_ = zeros(1,m);
-
-#     v(j:m) = A(j:m,j);
-    
-    
-#     v_(j) = (-1) * (abs(v(j))/v(j)) * norm(v);
-
-#     N = v - v_;
-#     n = N / norm(N);
-#     H = H - 2 .* n' * n;
-# end
     def __make_householder_matrix__(self, A, j):
         N,M  = A.shape
         H  = eye(N)
@@ -409,8 +432,6 @@ class Matrix(object):
         H = H - (n * n.transpose()) * 2
 
         return H
-
-
 
     def householder_decomposition(self):
         N,M   = self.shape
