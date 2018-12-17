@@ -245,6 +245,22 @@ class Matrix(object):
     def trace(self):
         return sum([self[i,i] for i in range(self.shape[0])]) if self.shape[0] == self.shape[1] else False
     
+
+    def forward_substituition(self):
+        N, M = self.shape
+        # vector of soluctions
+        x = zeros((1,N))
+
+        # auxiliary matrices
+        A = self[:,:-1]
+        b = self[:,-1]
+        x[0,0] = b[0,0] / A[0,0]
+        for i in range(1,N):
+            list_index = list(range(0,i))
+            x[0,i] = (-A[i,list_index].dot(x[0,list_index]).sum(axis=1) + b[i,0]) * (1/A[i,i])
+            x[0,i] = x[0,i].to_number() if type(x[0,i]) is Matrix else x[0,i]
+        return x
+
     def back_substituition(self):
         N, M = self.shape
         # vector of soluctions
