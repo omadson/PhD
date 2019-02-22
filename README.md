@@ -8,7 +8,7 @@ Repositório para as tarefas da disciplina de probabilidade e processos estocás
  - **horário**: ter e  qui 16:00--18:00 (18/02/2019 - 27/06/2019).
 
 ## ementa
- - [x] [modelos de probabilidade e axiomas](https://github.com/omadson/CKP7466/raw/master/slides/Aula%202.pdf);
+ - [x] [modelos de probabilidade e axiomas](https://github.com/omadson/CKP7466/raw/master/slides/Aula%202.pdf) (21/02/2019);
  - [ ] regra de Bayes;
  - [ ] independência de variáveis aleatórias;
  - [ ] contagem;
