@@ -25,5 +25,4 @@ Repositório para as tarefas da disciplina de probabilidade e processos estocás
  - [listas](https://github.com/omadson/CKP7466/tree/master/listas) (1 pontos adicional na média).
 
 ## referências
- - [Introduction to Probability - Dimitri P. Bertsekas and John N. Tsitsiklis](http://users.ece.cmu.edu/~byronyu/teachin
-g/18698/probability_bertsekas.pdf)
+ - [Introduction to Probability - Dimitri P. Bertsekas and John N. Tsitsiklis](http://users.ece.cmu.edu/~byronyu/teaching/18698/probability_bertsekas.pdf)
