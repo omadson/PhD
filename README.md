@@ -2,7 +2,7 @@
 Repositório para as tarefas da disciplina de probabilidade e processos estocásticos (2019.1) 
 
 
-## informãções
+## informações
  - **professor**: [João Paulo Pordeus Gomes](http://www.mdcc.ufc.br/component/content/article/34-fixo/382) (Departamento de Computação);
  - **local**: bloco 915 / sala 1074;
  - **horário**: ter e  qui 16:00--18:00 (18/02/2019 - 27/06/2019).
