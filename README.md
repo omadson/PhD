@@ -22,7 +22,8 @@ Repositório para as tarefas da disciplina de probabilidade e processos estocás
  - 2 provas;
    - [ ] AP1: sem data
    - [ ] AP2: sem data
- - [listas](https://github.com/omadson/CKP7466/tree/master/listas) (1 pontos adicional na média).
+ - listas (1 pontos adicional na média).
+   - [ ] [lista 1](https://github.com/omadson/CKP7466/raw/master/listas/Lista_1.pdf)
 
 ## referências
  - [Introduction to Probability - Dimitri P. Bertsekas and John N. Tsitsiklis](http://users.ece.cmu.edu/~byronyu/teaching/18698/probability_bertsekas.pdf)
