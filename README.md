@@ -19,7 +19,10 @@ Repositório para as tarefas da disciplina de probabilidade e processos estocás
  - [ ] processos estocásticos.
 
 ## listas
- - [x] [lista #1](https://github.com/omadson/CKP7466/raw/master/listas/Lista_1.pdf) [[respostas](https://omadson.github.io/blog/ckp7466-lista1.html)]
+ - [x] [lista #1](https://github.com/omadson/CKP7466/raw/master/listas/lista1.pdf) [[respostas](https://omadson.github.io/blog/ckp7466-lista1.html)]
+ - [ ] [lista #2](https://github.com/omadson/CKP7466/raw/master/listas/lista2.pdf) [[respostas](https://omadson.github.io/blog/ckp7466-lista2.html)]
+ - [ ] [lista #3](https://github.com/omadson/CKP7466/raw/master/listas/lista3.pdf) [[respostas](https://omadson.github.io/blog/ckp7466-lista3.html)]
+ - [ ] [lista #4](https://github.com/omadson/CKP7466/raw/master/listas/lista4.pdf) [[respostas](https://omadson.github.io/blog/ckp7466-lista4.html)]
 
 <!-- ## avaliação
  - 2 provas;
