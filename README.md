@@ -7,7 +7,7 @@ Repositório para as tarefas da disciplina de probabilidade e processos estocás
  - **local**: bloco 915 / sala 1074;
  - **horário**: ter e  qui 16:00--18:00 (18/02/2019 - 27/06/2019). -->
 
-## ementa
+## aulas
  - [x] [Introdução](https://github.com/omadson/CKP7466/raw/master/slides/aula02.pdf);
  - [x] [Axiomas](https://github.com/omadson/CKP7466/raw/master/slides/aula02.pdf);
  - [x] [Probabilidade condicional](https://github.com/omadson/CKP7466/raw/master/slides/aula03.pdf);
