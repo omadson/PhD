@@ -20,6 +20,8 @@ Repositório para as tarefas da disciplina de probabilidade e processos estocás
 ## listas
  - [x] [lista #1](https://github.com/omadson/CKP7466/raw/master/listas/lista01.pdf);
  - [x] [lista #2](https://github.com/omadson/CKP7466/raw/master/listas/lista02.pdf);
+ - [x] [lista #3.1](https://github.com/omadson/CKP7466/raw/master/listas/lista03-1.pdf);
+ - [x] [lista #3.2](https://github.com/omadson/CKP7466/raw/master/listas/lista03-2.pdf);
 
 
 ## referências
