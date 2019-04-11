@@ -16,6 +16,7 @@ Repositório para as tarefas da disciplina de probabilidade e processos estocás
  - [x] [variáveis aleatórias discretas #1](https://github.com/omadson/CKP7466/raw/master/slides/aula06.pdf);
  - [x] [variáveis aleatórias discretas #2](https://github.com/omadson/CKP7466/raw/master/slides/aula07.pdf);
  - [x] [variáveis aleatórias discretas #3](https://github.com/omadson/CKP7466/raw/master/slides/aula08.pdf);
+ - [x] [variáveis aleatórias - exercícios](https://github.com/omadson/CKP7466/raw/master/slides/aula09.pdf);
 
 ## listas
  - [x] [lista #1](https://github.com/omadson/CKP7466/raw/master/listas/lista01.pdf);
