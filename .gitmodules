@@ -10,3 +10,12 @@
 [submodule "CKP8277"]
 	path = CKP8277
 	url = https://github.com/omadson/CKP8277.git
+[submodule "datavis-project"]
+	path = datavis-project
+	url = https://github.com/omadson/datavis-project.git
+[submodule "scikit-mlm"]
+	path = scikit-mlm
+	url = https://github.com/omadson/scikit-mlm.git
+[submodule "fuzzy-c-means"]
+	path = fuzzy-c-means
+	url = https://github.com/omadson/fuzzy-c-means.git
