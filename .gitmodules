@@ -1,0 +1,3 @@
+[submodule "CKP8533"]
+	path = CKP8533
+	url = https://github.com/omadson/CKP8533.git
