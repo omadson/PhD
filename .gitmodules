@@ -7,3 +7,6 @@
 [submodule "CKP8122"]
 	path = CKP8122
 	url = https://github.com/omadson/CKP8122.git
+[submodule "CKP8277"]
+	path = CKP8277
+	url = https://github.com/omadson/CKP8277.git
