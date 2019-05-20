@@ -1,0 +1,70 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+a, a:visited {
+  color: #4d4d4d;
+  text-decoration: underline;
+}
+
+#main {
+  clear: both;
+}
+
+#controls {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+}
+
+.control {
+  float: left;
+  padding-left: 20px;
+}
+
+.control a {
+  color: black;
+  font-size: 12px;
+  padding: 5px;
+  background: #E2E2E2;
+  cursor: pointer;
+  margin-right: 3px;
+  text-decoration: none;
+}
+
+.control a:hover {
+  text-decoration: underline;
+}
+
+.control a.active {
+  color: white;
+  background: #555;
+}
+
+p.search_title {
+  display: inline;
+  text-align: left;  
+  font-weight: normal;
+  color: #777;
+}
+
+#search_section {
+  padding-top: 23px;
+  padding-left: 20px;
+}
+
+#search_form #search {
+  margin-left: 10px;
+}
+
+footer p {
+  text-align: center;
+}
+
+line.link {
+  fill: none;
+  stroke: #ddd;
+  stroke-opacity: 0.8;
+  stroke-width: 1.5px;
+}
+

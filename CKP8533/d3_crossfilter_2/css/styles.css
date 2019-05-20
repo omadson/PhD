@@ -1,0 +1,29 @@
+body {
+    padding-top: 50px;
+    font-family: "helvetica"
+}
+
+h4 span {
+    font-size:14px;
+    font-weight:normal;
+}
+  
+h2 {
+    float: right;
+  }
+  
+h2 span {
+    font-size:14px;
+    font-weight:normal;
+}
+
+.single-col {
+    padding-right:15px;
+    padding-left:15px;
+    position: relative;
+}
+
+#mapid {
+    width: 650px;
+    height: 450px;
+}

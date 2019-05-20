@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vinculando um vetor numérico</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+<body>
+
+<script type="text/javascript">
+    let data = [10, 15, 30, 50, 80, 65, 55, 30, 20, 10, 8];
+    function render(data) {
+        // Enter
+        d3.select("body").selectAll("div.h-bar")
+            .data(data)
+            .enter()
+                .append("div")
+                    .attr("class", "h-bar")
+                    .style("width", function (d) {
+                        return 5*d + 'px'
+                    })
+                    .style("font-", function (d) {
+                        return 5*d + 'px'
+                    })
+                    .text(function (d) {
+                        return d
+                    })
+                    .select("span");
+
+    }
+    render(data);
+</script>
+
+</body>
+</html>
