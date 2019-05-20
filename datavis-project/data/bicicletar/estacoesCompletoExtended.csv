@@ -1,0 +1,87 @@
+,id,stationName,lat,lon,program,adress,neighborhood,nbOnMap,etapa
+0,1,Praça Luíza Távora,-3.7321944,-38.510347,Bicicletar,"Avenida Santos Dumont, 1546, ao lado da Coord. do Gov. do Estado do Ceará / Esquina Carlos Vasconcelos",Aldeota,Aldeota,1
+1,2,José Vilar,-3.7341732,-38.504149,Bicicletar,"Rua José Vilar, lateral do 2353 (Restaurante Zahlé) / Esquina Avenida Santos Dumont",Dionísio Torres,Aldeota,1
+2,3,Shopping Del Paseo,-3.7367176,-38.49683,Bicicletar,"Avenida Santos Dumont, 3131 (Shopping del Paseo) / Esquina Rua Leonardo Mota",Aldeota,,1
+3,4,BNB Clube,-3.7386073,-38.491576,Bicicletar,"Avenida Santos Dumont, oposto ao BNB Clube / Esquina Rua Coronel Jucá",Aldeota,,1
+4,5,Frei Mansueto,-3.7359524,-38.488797,Bicicletar,"Rua Dom Luís, 1400B / Esquina Rua Frei Mansueto",Meireles,,1
+5,6,Livraria Cultura,-3.7351546,-38.492531,Bicicletar,"Rua Senador Virgílio Távora, lateral do número 1010 (Shopping Varanda) / Esquina Rua Dom Luís",Meireles,,1
+6,7,Praça Portugal,-3.7336156,-38.496978,Bicicletar,"Praça Portugal, na calçada em frente a canteiro do Shopping Aldeota / Esquina Avenida Dom Luís",Aldeota,,1
+7,8,Joaquim Nabuco,-3.7321014,-38.500273,Bicicletar,"Rua Joaquim Nabuco, 730 / Esquina Rua Dom Luís",Meireles,,1
+8,9,Moreira da Rocha,-3.7267958,-38.506248,Bicicletar,"Rua Deputado Moreira da Rocha, lateral do número 475 / Esquina Rua Rui Barbosa",Meireles,,1
+9,10,Campo do América,-3.7302816,-38.502894,Bicicletar,"Rua José Vilar, 540 / Esquina Rua Tenente Benévolo",Meireles,,1
+10,11,Círculo Militar,-3.730343,-38.496304,Bicicletar,"Rua Canuto de Aguiar, 712B / Esquina Rua Desembargador Moreira",Meireles,,1
+11,12,Ana Bilhar,-3.7308997,-38.491505,Bicicletar,"Rua Ana Bilhar, 1001 (Loja Terra Brasilis) / Esquina Avenida Senador Virgílio Távora",Meireles,,1
+12,13,Aterrinho da Praia de Iracema,-3.7202276,-38.51166,Bicicletar,"Avenida Beira Mar, 916 / Esquina Rua João Cordeiro",Praia de Iracema,,1
+13,14,Aterro Praia de Iracema,-3.7233893,-38.505394,Bicicletar,"Rua Rui Barbosa, 1680 (Boteco da Praia) / Esquina Avenida Beira Mar",Meireles,,1
+14,15,Náutico,-3.7260009,-38.495741,Bicicletar,"Avenida Beira Mar, em frente ao número 2780 (Edifício Arpoador) / Esquina com a Rua Visconde de Mauá",Praia de Iracema,,1
+15,16,Floriano Peixoto,-3.731114,-38.528349,Bicicletar,"Rua Floriano Peixoto, oposto ao estacionamento Lup Park / Esquina Rua Pedro I",Centro,,2
+16,17,BNB Cultural Catedral,-3.7257252,-38.525549,Bicicletar,"Avenida Conde D´Eu, em frente ao Centro Cultural BNB / Esquina Rua Senador Almir Pinto",Centro,,2
+17,18,Praça do Ferreira,-3.7276737,-38.527373,Bicicletar,"Praça do Ferreira, na Rua Floriano Peixoto, 625 / Esquina Rua Pedro Borges",Centro,,2
+18,19,Praça Coração de Jesus,-3.7315373,-38.526595,Bicicletar,"Rua Solon Pinheiro, oposto ao Mercado Super Lagoa / Esquina Rua Dom Pedro I",Centro,,2
+19,20,Dragão do Mar,-3.7218335,-38.519528,Bicicletar,"Rua Dragão do Mar, em frente ao Centro Dragão do Mar / Esquina Rua Almirante Jaceguai",Praia de Iracema,,2
+20,21,Monsenhor Tabosa,-3.7238918,-38.514743,Bicicletar,"Rua Monsenhor Tabosa, 518 / Esquina Rua Nogueira Acioli",Centro,,2
+21,22,João Cordeiro,-3.7266326,-38.513479,Bicicletar,"Rua João Cordeiro, oposto a EEFM Santa Luzia / Esquina Rua Tenente Benévolo",Meireles,,2
+22,23,UNIMED,-3.7307919,-38.514873,Bicicletar,Avenida Santos Dumont / Esquina Rua João Cordeiro,Centro,,3
+23,24,Rui Barbosa,-3.7368529,-38.509719,Bicicletar,"Rua Rui Barbosa, em frente ao SENAC / Esquina Rua João Carvalho",Aldeota,,2
+24,25,Torres Câmara,-3.7372182,-38.501927,Bicicletar,"Rua Joaquim Nabuco, em frente ao Edifício Embratel / Esquina Rua Torres Câmara",Aldeota,Aldeota,2
+25,26,FIC Aldeota,-3.742715,-38.501572,Bicicletar,"Rua Visconde de Mauá, em frente ao FIC Aldeota / Esquina Rua General Tertuliano Potiguara",Aldeota / Meireles,,2
+26,27,Praça das Flores,-3.7384735,-38.498159,Bicicletar,"Praça das Flores, na Rua Eduardo Garcia / Esquina Rua Barbosa de F",Aldeota,,2
+27,28,Carrefour,-3.7431306,-38.509695,Bicicletar,"Av. Antonio Sales, em frente ao Carrefour / Esquina Avenida Barão de Studart",Aldeota,,2
+28,29,Praça da Imprensa,-3.7457482,-38.501683,Bicicletar,"Avenida Antônio Sales, na Praça da Imprensa / Esquina Avenida Desembargador Moreira",Dionísio Torres,,2
+29,30,Assembleia Legislativa,-3.7511158,-38.502065,Bicicletar,"Rua Barbosa de Freitas, em frente a Assembléia Legislativa (Edificio Senador César Cals) / Esquina Avenida Pontes Vieira",Dionísio Torres,,2
+30,31,Terminal do Papicu,-3.738701,-38.485177,Bicicletar,"Rua Pereira de Miranda, em frente ao Terminal do Papicu / Próximo à Avenida Almirante Henrique Sabóia",Papicu,,3
+31,32,Praça da Gentilândia,-3.7425364,-38.5376,Bicicletar,"Rua Waldery Uchoa, 2861 / Esquina Avenida 13 de Maio",Benfica,,3
+32,33,Shopping Benfica,-3.7388161,-38.539513,Bicicletar,"Rua Juvenal Galeno, lateral do Shopping Benfica / Esquina Avenida Carapinima",Benfica,,3
+33,34,Reitoria UFC,-3.7410964,-38.539249,Bicicletar,"Avenida da Universidade, 2854 / Esquina Av. 13 de Maio",Benfica,,3
+34,35,Praça da Bandeira,-3.733079,-38.532429,Bicicletar,"Praça da Bandeira, na Meton de Alencar, oposto a Faculdade de Direito / Esquina Rua General Sampaio",Centro,,2
+35,36,Praça Otávio Bonfim,-3.7314396,-38.542764,Bicicletar,Praça Otávio Bonfim / Esquina Rua Justiniano de Serpa,Farias Brito,,3
+36,37,José Sombra,-3.7317835,-38.547838,Bicicletar,"Avenida Bezerra de Menezes, 334 / Esquina Rua Ribeiro da Silva",Farias Brito,,3
+37,38,Instituto dos Cegos,-3.7331071,-38.551978,Bicicletar,"Canteiro Central da Avenida Bezerra de Menezes, 801 / Esquina Rua Padre Anchieta",Parquelândia,,3
+38,39,Praça Monte Castelo,-3.7284071,-38.550369,Bicicletar,"Praça João Pontes, 643 / Esquina Rua Antônio Drumond",Fátima,,3
+39,40,Frangolândia Sgt. Hermínio,-3.7249075,-38.551085,Bicicletar,"Rua Padre Anchieta, em frente ao Supermercado Frangolândia / Esquina Avenida Sargento Hermínio Sampaio",Jacarecanga,,3
+40,41,Érico Mota,-3.7354169,-38.563427,Bicicletar,"Avenida Bezerra de Menezes, 2080 / Esquina Rua Eduardo Barros Leal",São Geraldo,São Geraldo,4
+41,42,North Shopping,-3.7359254,-38.566853,Bicicletar,"Avenida Bezerra de Menezes, 2500",Farias Brito,Presidente Kennedy,4
+42,43,Campus do Pici - UFC,-3.738618,-38.569411,Bicicletar,"Rua Acesso Público, próximo à entrada da UFC / Esquina com a Avenida Humberto Monte",Pici,Pici,4
+43,44,Igreja Redonda,-3.7410188,-38.560732,Bicicletar,"Rua Professor Lino Encarnação, em frente à Paróquia de Santo Afonso – Igreja Redonda / Esquina Avenida Jovita Feitosa",Parquelândia,Amadeu Furtado,4
+44,45,Regional 3,-3.739702,-38.556388,Bicicletar,"Rua Dom Lino, 590 / Esquina Avenida Jovita Feitosa, lateral da Secretaria Regional 3",Amadeu Furtado,Parquelândia,4
+45,46,Campus Porangabuçu - UFC,-3.7489708,-38.553127,Bicicletar,"Rua Coronel Nunes de Melo, 1315 (UFC) / Esquina Rua Professor Costa Mendes",Rodolfo Teófilo,,4
+46,47,Hospital Walter Cantídio,-3.7489684,-38.550904,Bicicletar,"Rua Capitão Francisco Pedro, número 1290 (Hospital das Clinicas) / Esquina com a Rua Alexandre Baraúna",Rodolfo Teófilo,,4
+47,48,Faculdade Cearense,-3.7477925,-38.545572,Bicicletar,"Rua Major Weyne, no acesso a Faculdade Cearense / Esquina com a Avenida João Pessoa",Damas,,4
+48,49,Costa Mendes,-3.7553085,-38.546358,Bicicletar,"Rua Frei Orlando, 684 / EsquinaRua Costa Mendes",Bom Futuro,,4
+49,50,Igreja de Nazaré,-3.7565373,-38.540685,Bicicletar,"Rua Padre José Piamarta, 128 / Esquina Rua André Chaves",Jardim America,,4
+50,51,Casa Freitas Montese,-3.7588242,-38.543794,Bicicletar,"Rua Afrodísio Gondim, 622 (Sanduíches Bebelu) / Esquina Avenida Professor Gomes de Matos",Montese,,4
+51,52,Esplanada Montese,-3.7627184,-38.546939,Bicicletar,"Avenida Professor Gomes de Matos, 1157 / Esquina Rua Sátiro Dias",Montese,,4
+52,53,Extra Aguanambi,-3.7486043,-38.523923,Bicicletar,"Avenida Aguanambi, em frente ao EXTRA / Esquina com a Rua Coronel Pergentino Ferreira",Fátima,,4
+53,54,Igreja de Fátima,-3.7523403,-38.52526,Bicicletar,"Rua Dom Sebastião Leme, em frente à Praça Nossa Senhora de Fátima / Esquina Avenida 13 de Maio",Fátima,,4
+54,55,Banco do Brasil - 13 de Maio,-3.7483832,-38.53024,Bicicletar,"Rua Padre Barbosa de Jesus, oposto ao número 1345 / Esquina com a Avenida 13 de Maio",Fátima,,4
+55,56,Centro de Humanidades - UECE,-3.7506302,-38.531948,Bicicletar,"Rua Ministro Joaquim Bastos, em frente ao Centro de Humanidade / Esquina Rua Monsenhor Liberato",Fátima,,4
+56,57,Rodoviária,-3.757763,-38.531637,Bicicletar,"Avenida Deputado Oswaldo Studart, 1630 (Terminal Rodoviário Engenheiro José Thomé) / Esquina Avenida Borges de Melo",Fátima,,4
+57,58,Contax Borges de Melo,-3.7577769,-38.533017,Bicicletar,"Rua Moreira Gomes, em frente ao Prédio da OI – CONTAX / Esquina Avenida Borges de Melo",Fátima,,4
+58,59,Jornal O Povo,-3.740845,-38.525714,Bicicletar,"Praça do Ciclista, na Rua Lourenço Feitosa / Esquina com a Rua Joaquim Magalhães",José Bonifácio,,4
+59,60,Salesiano Dom Bosco,-3.7394022,-38.52129,Bicicletar,"Rua J da Penha, 984 / Esquina Rua Antônio Sales",Centro,,4
+60,61,Anfiteatro Parque do Cocó,-3.7439627,-38.48567,Bicicletar,"Avenida Padre Antônio Tomás, em frente ao Anfiteatro do Cocó / Esquina Rua Valdetário Mota",Cocó,,5
+61,62,Portugália,-3.7463129,-38.479954,Bicicletar,"Rua Professor Otávio Lobo, oposto ao Portugália Shopping / Esquina Avenida Padre Antônio Tomás",Cocó,,5
+62,63,Júlio Azevedo,-3.7415488,-38.481387,Bicicletar,"Rua Júlio Azevedo, em frente ao Mercadinhos São Luiz / Esquina Avenida Santos Dumont",Papicu,,5
+63,64,Otávio Lobo,-3.7427628,-38.478428,Bicicletar,"Avenida Santos Dumont, 6050 / Entre a Rua Professor Otávio Lobo e a Rua Batista de Oliveira",Manoel Dias Branco / Cocó / Papicu,,5
+64,65,Praça Martins Dourado,-3.7454786,-38.475818,Bicicletar,"Rua Almeida Prado, no estacionamento da Praça Martins Dourado / Esquina Rua Doutor Gilberto Studart",Cocó,,5
+65,66,Francisco Matos,-3.7473295,-38.470344,Bicicletar,"Rua Doutor Francisco Matos, em frente a Praça s/nome, próximo ao chafariz desativado / Esquina Rua Doutor Gilberto Studart",Cocó,,5
+66,67,Cidade 2000,-3.7483952,-38.471426,Bicicletar,"Rua Andrade Furtado, 2105 (Condomínio Cidade Leste) / Na Praça dos Freteiros",Planalto Aldeota / Cidade 2000 / Cocó,,5
+67,68,Hospital Geral de Fortaleza,-3.7404568,-38.476476,Bicicletar,"Rua André Dall´olio, em frente ao Hospital Geral de Fortaleza / Esquina Rua Professor Otávio Lobo",Papicu,,5
+68,69,Shopping RioMar,-3.7417049,-38.473321,Bicicletar,"Rua Des. Lauro Nogueira, em frente ao Shopping Rio Mar / Oposto ao Coelce - Subestação Papicu",Papicu,,5
+69,70,Shopping Iguatemi,-3.7579316,-38.488334,Bicicletar,"Avenida Coronel Miguel Dias, lateral do Shopping Ouro Verde / Esquina com a Avenida Washington Soares",Edson Queiroz,,5
+70,71,Coronel Linhares,-3.7467183,-38.497395,Bicicletar,"Rua Coronel Linhares, lateral da Farmácia Extrafarma / Esquina Avenida Antônio Sales",Dionísio Torres,,5
+71,72,Salinas,-3.7630906,-38.483122,Bicicletar,"Avenida Washington Soares, no acesso a Passarela de Pedestres, oposto ao Centro de Eventos do Ceará / Esquina Rua Firmino Rocha Aguiar",Edson Queiroz,,5
+72,73,FIC Guararapes,-3.7640658,-38.486035,Bicicletar,"Rua Eliseu Uchôa Beco, em frente à FIC / Entre a Rua Firmino Rocha Aguiar e a Rua Romeu Aldigueri",Patriolino Ribeiro,,5
+73,74,Unifor,-3.7712492,-38.481941,Bicicletar,"Canteiro Central da Avenida Washington Soares, próximo a UNIFOR / Esquina com a Avenida Doutor Valmir Ponte",Edson Queiroz,,5
+74,75,Santa Cecília,-3.7436466,-38.495549,Bicicletar,"Rua Vicente Linhares, lateral Colégio Santa Cecília / Esquina com a Avenida Senador Virgílio Távora",Aldeota,,5
+75,76,Fórum,-3.7742715,-38.481848,Bicicletar,Canteiro central da Av. Washington Soares / Esquina Rua Otacílio Mota,Eng. Luciano Cavalcante,,5
+76,77,Faculdade Lourenço Filho,-3.736277,-38.531469,Bicicletar,"Rua Barão do Rio Branco, lateral do Power Turbo Pneus / Esquina Avenida Domingos Olímpio",José Bonifácio,,5
+77,78,Calçadão Crasa,-3.7282524,-38.545217,Bicicletar,"Avenida José Jatahy, em frente a Mitsubishi, no calçadão Crasa / Esquina com a Travessa Epifânio Leite",Jacarecanga,,5
+78,79,Liceu do Ceará,-3.7236534,-38.541337,Bicicletar,"Avenida Filomeno Gomes, oposto ao número 100 (Padaria Pão da Praça) / Em frente a Praça Gustavo Barroso",Jacarecanga,,5
+79,80,SENAI Jacarecanga,-3.7260305,-38.540672,Bicicletar,"Rua Padre Ibiapina, em frente ao SENAI / Esquina com a Rua Júlio Pinto",Jacarecanga,,5
+80,81,Amostra,-8.1081768,-34.92279,Bicicletar,"Avenida Pontes Vieira, 2391",São João do Tauape,,0
+81,501,Polo de Lazer Sargento Hermínio,-3.726356,-38.558138,Minibicicletar,"Avenida Sargento Hermínio, no Polo de Lazer Sargento Hermínio, em frente ao Posto da Guarda Municipal / Esquina com a Rua Doutor Almeida Filho",Monte Castelo,Sao Geraldo,0
+82,502,Aterrinho Praia de Iracema,-3.7199961,-38.511796,Minibicicletar,"Avenida Beira Mar, 4364 / Esquina com a Rua Tereza Hinko",Praia de Iracema,,0
+83,503,Praça Luíza Távora,-3.7321623,-38.509917,Minibicicletar,"Avenida Santos Dumont, oposto ao número 1546, ao lado da Coord. do Gov. do Estado do Ceará / Esquina com a Carlos Vasconcelos",Aldeota,Aldeota,0
+84,504,Praça das Flores,-3.739994,-38.498786,Minibicicletar,"Praça das Flores, na Avenida Padre Antonio Tomas, próximo ao Playground e Academia da UNIMED / Esquina com a R. Barbosa de Freitas",Aldeota,,0
+85,505,Lago Jacarey,-3.8010878,-38.488875,Minibicicletar,"Avenida Viena Weyne, próximo ao Restaurante Point do Lago / Esquina com a Avenida Pedro Lazar",Cidade dos Funcionários,,0

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Script Tutorials" />
+  <title>Bicicletar | Um passeio com os usuários do programa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- attach CSS styles -->
+  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="css/dc.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/> -->
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.css">
+  
+  
+
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+   <!-- <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script> -->
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js" ></script>
+
+   <!-- <script src="http://d3js.org/d3.v5.min.js"></script>   -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
+   
+   <script src="js/underscore.js"></script>
+   <script src="js/mapper.js"></script>
+   <script src="js/multiline.js" charset="utf-8"></script>
+   <!-- <script src="js/leaflet_awesome_number_markers.js"></script> -->
+   <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/dc/3.0.2/dc.min.js"></script>
+   <script src="js/crossfilter.min.js"></script> -->
+
+
+   <link href="css/style.css" rel="stylesheet" />
+   <link rel="stylesheet" href="css/leaflet_awesome_number_markers.css" />
+   <!-- <script src="js/textures.js"></script> -->
+</head>
+<body>
+
+  <!-- navigation panel -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="images/logo.png" width="25" height="25" class="d-inline-block align-top" />
+          Bicicletar
+        </a>
+      </div>
+
+
+      <div class="collapse navbar-collapse" id="navbar-collapse-main">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#estacoes_info">Estações</a></li>
+          <li><a href="#usuarios">Usuários</a></li>
+          <li><a href="#information">Viagens</a></li>
+          <li><a target="_blank" href="https://github.com/omadson/datavis-project">Projeto</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <!-- first section - Home -->
+  <div id="home" class="home">
+    <div class="text-vcenter">
+      <h1>Bicicletar</h1>
+      <h3>Uma análise dos dados do programa (2014-2017)</h3>
+      <a href="#sobre" class="btn btn-success btn-lg">Iniciar passeio</a>
+    </div>
+  </div>
+  <!-- /first section -->
+
+  <!-- second section - About -->
+  <div id="sobre" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="images/logo.png" alt="" />
+        </div>
+        <div class="col-sm-9">
+          <h2>O que é o Bicicletar?</h2>
+          <p align="justify">O Sistema de Bicicletas Públicas Bicicletar, popularmente conhecido somente como Bicicletar, é um <i>Bicycle sharing system</i> (sistema de bicicletas públicas) aplicado na cidade de Fortaleza, Ceará. O programa tem como objetivo oferecer à cidade uma opção de transporte sustentável e não poluente e está disponível para a população em geral através de passes pagos pelos usuários. O programa funciona desde 15 de dezembro de 2014 e dispõe de aproximadamente 80 estações implantadas em 5 etapas durante os anos seguintes a sua data de inauguração.</p>
+
+          <h2>Sobre as visualizações:</h2>
+          <p align="justify"> O site apresenta algumas visualizações divididas em 3 grupos:            
+            <ul>
+              <li>Estações: Conjunto de gráficos que exibem informações e localizações das estações;</li>
+              <li>Viagens: Conjunto de visualizações que exibem informações como tempo da jornada, destinos mais comuns, entre outras informações sobre os trajetos dos usuários;</li>
+              <li>Usuários: Conjunto de visualizações que exibem informações sobre os usuários dos programa, como por exemplo, distribuição por idade e sexo.</li>
+            </ul> 
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /second section -->
+  <div id="estacoes_info" class="pad-section">
+    <div class="container">
+      <div class="text-vcenter">
+        <h2>Estações</h2>
+      </div>
+    </div>
+  </div>
+  <div id="about" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8"><img src="images/home.jpg" alt="" /></div>
+
+        <div class="col-sm-4">
+          <p align="justify"> As estações são o ponto de partida e chegada de todas as viagens do Bicicletar. O usuário deve retirar e devolver a bicicleta em uma das diversas estações espalhadas pela cidade. Atualmente, é possível retirar uma bicicleta através de passes anuais, mensais ou diários. Usuários do bilhete único tem acesso gratuito através do cadastro no site do  <a href="https://www.bicicletar.com.br">Bicicletar</a>.</p>
+
+          <p align="justify"> Cada estação possui espaço para <strong>8</strong>, <strong>12</strong> ou <strong>14</strong> bicicletas, conforme visto no <a href="http://www.bicicletar.com.br/sobre.aspx">site</a> oficial do programa. Algumas características das estações:</p>
+          <ul>
+            <li>Gerenciada por computador;</li>
+            <li>Uso de energia solar e comunicação wireless;</li>
+            <li>Painel com instruções de uso e mapa com a localização das estações;</li>
+            <li>Diversos modelos de estações;</li>
+            <li>Dispositivos eletromecânicos de travamento e liberação das bicicletas;</li>
+            <li>Lâmpadas de sinalização;</li>
+            <li>Liberação da bicicleta via aplicativos inteligentes para telefone celular.</li>            
+          </ul> 
+        </div>
+        </div>
+        <div class="row">
+
+        <div class="col-sm-12"><h3>Localização e etapas de implantação</h3></div>
+         <div class="col-sm-12">
+          <p align="justify"> A visualização abaixo exibe a localização das <strong>85 estações</strong> em Fortaleza, sendo <strong>5</strong> delas do programa <strong><a href="http://www.bicicletar.com.br/miniBicicletar.aspx">Minibicicletar</a></strong>. Até o exato momento, foram executadas <strong>5 etapas</strong> de implantação. As diferentes cores das estações indicam a etapa de implantação, conforme a legenda no canto superior direito. Não foram encontradas, em fontes confiáveis, as datas exatas de suas implantações. Ao clicar em uma estação, é possível ver seu id único e nome. É possível arrastar o mapa e perceber uma estação do Minibicicletar mais ao sul da cidade, assim como aproximar pontos com grande densidade de estações.</p>
+        </div>
+        <div class="col-sm-12">
+          <div id="install_station"></div>
+        </div>
+
+        <div class="col-sm-12"><h3>Distribuição das estações nos bairros</h3></div>
+
+        <div class="col-sm-12">
+           <p align="justify">Abaixo, temos Fortaleza dividida pelos seus bairros. A visualização mostra que o Bicicletar possui pelo menos uma estação em 29 dos 119 bairros da cidade, onde 40 das 80 estações (ou 42 das 85 estações, considerando as estações do Minibicicletar) estão distribuídas em 5 bairros: Aldeota, Centro, Meireles, Cocó e Fátima. É possível ver que o programa não atende grande parte dos bairros. Isso poderia ser justificado se os bairros selecionados concentrassem grande parte da população da cidade, mas não é o que acontece: a população dos bairros com pelo menos uma estação representa 21,5% do total de Fortaleza, conforme dados do senso de 2010. Por não sabermos dos critérios de escolha dos locais dos terminais e nem de futuras implantações, não é possível inferir muito além de que há uma concentração do programa em poucos bairros e que não estão acessíveis para grande parcela da população.</p>
+
+           <p align="justify">Na visualização à direita, um gráfico de bolha, é exibido o número de estações em bairros que contém mais de 3 terminais. A intensidade do verde, assim como a área dos círculos são outros canais para exibir tal informação. Através deste gráfico reforçamos a disparidade da distribuição das estações. Há também a concentração em poucos bairros da maioria das estações.</p>
+          
+        </div>
+        <div class="col-sm-6"><div id="map_estacoes"></div></div>
+        <div class="col-sm-6"><div id="top_stations"></div></div>
+
+      </div>
+    </div>
+  </div>
+  
+  <<!-- div id="services" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7">
+          <h3>Distribuição das estações</h3>
+          <p>Bicicletar é o sistema de bicicletas públicas de Fortaleza, no Brasil. O sistema foi lançado em 15 de dezembro de 2014, por meio de parceria da Prefeitura de Fortaleza com a Unimed, operado pela concessionária Serttel. Inicialmente, o sistema possuía 150 bicicletas disponíveis em 15 estações de aluguel distribuídas nos bairros Aldeota, Varjota, Meireles e Praia de Iracema.</p>
+          <p>Em março de 2015, o sistema contava com 40 estações e 400 bicicletas disponíveis para aluguel em diversos bairros da cidade.[4] A Unimed foi a patrocinadora da primeira fase do projeto. Nos primeiros três meses de funcionamento, o sistema contabilizou 73 mil viagens.[5] Mais utilizado nos dias úteis, o sistema conta com mais de 120 mil usuários cadastrados, sendo 83% desse total usuário do Bilhete Único. </p>
+        </div>
+        <div class="col-sm-4">
+          <img src="images/logo.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- third section - Services -->
+<!--   <div id="services" class="pad-section">
+    <div class="container">
+      <h2 class="text-center">Serviços prestados</h2> <hr />
+      <div class="row text-center">
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-cloud"> </i>
+          <h4>Service 1</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-leaf"> </i>
+          <h4>Service 2</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-phone-alt"> </i>
+          <h4>Service 3</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-bullhorn"> </i>
+          <h4>Service 4</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- /third section -->
+
+  <!-- fourth section - Information -->
+
+<div id="usuarios" class="pad-section">
+    <div class="container">
+      <div class="text-vcenter">
+        <h2>Usuários</h2>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+  <div id="about" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Nesta seção, são apresentadas cinco visualizações, a saber: número de usuários ativos por sexo, distribuição dos usuários por ano de nascimento, número de viagens por gênero e distribuição do número de viagens por ano de nascimento. </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+        <h3>Número de usuários ativos por sexo</h3>
+        <p align="justify">A visualização abaixo contém dois gráficos: um de barra e um gráfico de pizza. O gráfico de barra mostra o número total de pessoas que se cadastraram por ano, independente do sexo. Nos dados, haviam alguns poucos cadastros de 2008 a 2013, mesmo o programa tendo sido iniciado em 2014. Para manter a fidelidade dos dados, mantivemos na visualização. Esses dados não representam todos os usuários cadastrados nos anos e sim os usuários cadastrados que fizeram ao menos uma viagem.</p>
+
+        <p align="justify"> Já o gráfico de pizza mostra a quantidade de usuários ativos por sexo, onde há 3 categorias: masculino, feminino e outros. A categoria "outros" agrupa uma série de cadastros que estavam com o campo "sexo" ou vazio ou com algum caractere diferente de 'M' e 'F' (havia nos dados amostras com '0', 'O' e '-'). Não sabemos se tais cadastros foram feitos dessa forma por erro no sistema de cadastro, por que a pessoa não inseriu tal informação ou se ela não se identificava como 'M' ou 'F'. Um filtro pode ser aplicado na visualização ao colocar o mouse sobre algum dos seus elementos. Ao focar uma barra, o gráfico de pizza exibe os cadastros por sexo no referente ano da barra. Já ao focar uma fatia no gráfico de pizza, o gráfico de barra é alterado mostrando o número de cadastros por ano referente ao sexo. Vale atentar para pequena fatia de "outros" localizado na fronteira superior entre as fatias de 'masculino' e 'feminino'. </p>
+
+        <p align="justify">Podemos destacar dois pontos na visualização: 1) o programa aparenta não conseguir captar novos usuários, visto a diminuição do número de usuários ativos cadastrados por ano; 2) O número de homens e mulheres cadastrados é muito próximo, independente do ano, sendo 2015 o único com mais mulheres cadastradas do que homens.</p>
+
+
+        </div>
+        <div class="col-sm-12"><div id='dashboard'></div></div>
+        
+        
+        <div class="col-sm-12"><h3>Distribuição dos usuários por ano de nascimento</h3></div>
+         <div class="col-sm-12">
+          <p align="justify"> Visto que o número de usuários ativos é distribuído de forma semelhante quanto ao gênero, na visualização abaixo é exibido os usuários ativos cadastrados através de outra dimensão: o ano de nascimento. Com isso, busca-se verificar se essa proximidade de número de usuários por gênero se mantém independente do ano de nascimento. Os dados possuíam registros de anos de nascimento desde 1900 até 2016. Os limites inferior e superior, respectivamente, para exibição no gráfico foram 1940 e 2000. O limite superior é justificado pelo fato do Bicicletar só permitir pessoas maiores de 18 anos utilizar do programa. Com isso, quase 24.000 registros foram excluídos (cadastros com ano de nascimento entre 2001 e 2016). A escolha do limite inferior foi de certa forma arbitrária e por questões estéticas, mas provavelmente com pouco impacto na distribuição uma vez que somente um pouco mais de 300 registros foram apagados. </p>
+
+          
+        </div>
+        <div class="col-sm-12">
+          <div class="histogram" id="users_by_birth_year"></div>
+        </div>
+        <div class="col-sm-12">
+          <p align="justify">Observa-se que a maior concentração de usuários ativos nasceram entre 1987 e 1996. Percebe-se também que em todos os anos a distribuição por gênero se mantém.</p>
+        </div>
+
+        <div class="col-sm-12"><h3>Número de viagens por gênero</h3></div>
+        <div class="col-sm-5">
+          <p align="justify">Apesar do número de usuários ativos ser distribuído de forma semelhante quanto ao sexo, independente da idade, quais dos dois sexos utiliza mais o programa? A visualização à direita, um gráfico de dispersão, tenta responder a questão. Cada ponto representa um dia desde <strong>16 de dezembro de 2014 até 31 de dezembro de 2017</strong>. Os eixos no gráfico são definidos pelos números de viagens feitas por homens (eixo x) e por mulheres (eixo y). É possível verificar a data exata e o número de viagens ao focar um ponto com o mouse. </p>
+          <p align="justify"> Observa-se que, com exceção de dois dias (os pontos destacados com bordas pretas), homens sempre utilizam mais o programa que as mulheres, aproximadamente em uma <strong>proporção de 2 para 1</strong>. Ou seja, para cada viagem feita por uma mulher em um dia, duas são feitas por homens, estabelecendo uma relação linear (como visto pela regressão, a reta preta, e seu modelo, no canto inferior direito).</p>
+        </div>
+        <div class="col-sm-7">
+          <div id="regression_m_f"></div>
+        </div>
+
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-12"><h3>Distribuição do número de viagens por ano de nascimento</h3></div>
+         <div class="col-sm-12">
+          <p align="justify">Mais uma vez o ano de nascimento é objeto de estudo. Neste caso, uma vez que homens utilizam mais o programa do que as mulheres, procura-se verificar se esse comportamento se mantém independente da idade. E mais uma vez, a resposta é sim. Além disso, é possível observar que os usuários mais ativos nasceram entre 1992 e 1996, de ambos os sexos.</p>          
+        </div>
+        <div class="col-sm-12">
+          <div class="histogram" id="rides_by_birth_year"></div>
+        </div>
+      </div>
+      <div class="row">
+         <div class="col-sm-5">
+          <h3>Duração da viagem por gênero</h3>
+          <p align="justify">Na visualização à direita, um gráfico de linha, é exibido o tempo de viagem por gênero. Como visto anteriormente, o número de viagens de homens é maior que o de mulheres. Contudo, a medida que a duração da viagem aumenta, a diferença no número de viagens diminuem, chegando a basicamente igualar aos 60 minutos.</p>
+        </div>
+        <div class="col-sm-7">
+          <div id="time_ride_by_sex" class="chart-wrapper"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+  <div id="information" class="pad-section">
+    <div class="container">
+      <div class="text-vcenter">
+        <h2>Viagens</h2>
+      </div>
+    </div>
+  </div>
+  <div id="about" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Nesta seção são apresentadas 3 grupos de visualizações, a saber: quantidade de viagens; dias úteis, feriados e finais de semana; Duração da viagem por gênero </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Quantidade de viagens</h3>
+          <p align="justify"> Na visualização abaixo, temos um gráfico de calor em formato de calendário no qual é exibido o número de viagens por dia. A cor da célula representa o número de viagens em determinado dia, conforme legenda acima do gráfico. Ao passar o mouse por cima de uma célula, é possível verificar o número de viagens separado por gênero. Além disso, é apresentado um gráfico de barras com a distribuição das viagens por hora do dia.</p>
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Selecione uma das opções</label>
+          <select class="form-control" id="exampleFormControlSelect1" onchange="calendar_chart(this)">
+            <option value="rides_per_day">Número absoluto de corridas</option>
+            <option value="rides_per_station">Número médio de corridas por estação</option>
+            <option value="avg_ride_per_day">Tempo médio da corrida</option>
+          </select>
+        </div>
+
+          
+        </div>
+        <div class="col-sm-12" id="calendar_viagens"></div>
+        <div class="col-sm-12">
+          <p class="text-justify">Pelas cores, percebemos que houveram dois picos maiores de viagens: nos meses de novembro e dezembro de 2015 e junho a setembro de 2016. Observamos também que o número de viagens diminuiu em 2017 relação aos anos anteriores, principalmente no segundo semestre.</p> 
+        </div>
+        <div class="col-sm-12">
+          <p>Os resultados observados na visualização anterior são sumarizados nos três gráficos de linha abaixo. Neles são mostrados o total de viagens por mês, separados por anos. Cada cor representa um gênero. Como o programa se iniciou no dia 16 de dezembro de 2014, decidiu-se apresentar gráficos somente para os anos de 2015, 2016 e 2017.</p>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>2015</h4>
+            <div class="chart-wrapper" id="rides_per_month_2015"></div>
+          </div>
+          <div class="col-sm-4">
+            <h4>2016</h4>
+            <div class="chart-wrapper" id="rides_per_month_2016"></div>
+          </div>
+          <div class="col-sm-4">
+            <h4>2017</h4>
+            <div class="chart-wrapper" id="rides_per_month_2017"></div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <p>De acordo com a visualização, é possível concluir que: 1) Sempre há uma queda de utilização de Janeiro para Fevereiro e de Novembro para Dezembro; 2) O maior período de utilização ocorreu entre junho e novembro de 2016; 3) Mesmo com o aumento de estações, o número de utilizações do serviço está diminuindo desde agosto de 2017.</p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Dias úteis, feriados e finais de semana</h3>
+        </div>
+        <div class="col-sm-12">
+          <p style="text-align: justify">A fim de verificar o comportamento em relação ao número de viagens em dias úteis (segunda à sexta) e não úteis (feriados e fins de semana), duas visualizações são apresentadas. A primeira delas é referente a duração das viagens e a segunda é referente ao horário de retirada da bicicleta. No gráfico de duração de viagens, foram consideradas viagens com mais de três minutos e menos de três horas (180 minutos). O gráfico de hora de retirada considera retiradas entre 5 e 23 horas. Para os dois gráficos são apresentados valores médios de viagens nos dias úteis ou feriados e finais de semana. Vale ressaltar que os gráficos estão em escalas distintas em relação à média, uma vez que apresentam informações diferentes.</p>
+        </div>
+        <div class="row">
+        <div class="col-sm-6">
+          <div id="time_ride_by_wd" class="chart-wrapper"></div>
+        </div>
+        <div class="col-sm-6">
+          <div id="rides_per_hour" class="chart-wrapper"></div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+          <p style="text-align: justify">
+            Na primeira visualização, à esquerda, observa-se que a maioria das viagens em dias úteis são de curta duração, entre 3 e 30 minutos. Observa-se também que aos 60 minutos, há outra queda no número de viagens, provavelmente relacionado à gratuidade concedida a viagens até uma hora utilizando o bilhete único ou passe diário. Já em dias não úteis, é mais comum ocorrer viagens mais longas do que em dias úteis. 
+          </p>
+          <p style="text-align: justify">
+            Já na segunda visualização, à direita, observa-se que os picos de retirada em dias úteis são de 7h às 8h, ao meio dia e às 17 horas. Já nos dias não úteis, o programa é mais utilizado pela manhã de forma mais uniforme do que em dias úteis e com um pico de uso no fim da tarde.
+          </p>
+        </div>
+
+      </div>
+<!--         <div class="col-sm-12">
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        <p>Aliquet erat adipiscing, consectetur tincidunt enim hac facilisi lobortis tempor dui pulvinar leo? Sapien venenatis gravida elit himenaeos. Nibh mus morbi orci enim vitae fringilla imperdiet aliquam. Quam ornare dapibus, sit nam condimentum posuere praesent placerat. Condimentum viverra conubia pulvinar viverra, imperdiet phasellus facilisi facilisis sociosqu luctus laoreet donec. Suscipit cursus fusce metus a ante torquent venenatis. Bibendum molestie lectus nascetur, amet tellus senectus quisque at bibendum nisl! Tellus nulla parturient libero erat sapien nascetur. </p>
+        </div>
+ -->
+
+      
+      <div class="row">
+        <!-- <div class="col-sm-5"></div>
+        <div class="col-sm-7"><h3>De onde para onde?</h3></div> -->
+        <div class="tooltipleft"></div>
+        <div class="col-sm-5" id="rides_between_neighborhood"></div>
+        <div class="col-sm-7">
+          <h3>Principais destinos</h3>
+          <p align="justify">A visualização à esquerda é um diagrama de acordes e mostra as viagens do Bicicletar em que o bairro da estação de retirada é diferente do bairro da estação de devolução. Por questões de visibilidade, escolhemos mostrar os 10 bairros com o maior número de viagens. Esse gráfico contém duas informações. A primeira, o tamanho do arco nos limites do gráfico, é referente a um bairro e mostra a quantidade de viagens que partem de alguma estação do mesmo. Dessa forma, vemos que do total de todas as viagens que partiram dos bairros da visualização, mais de 50% se originam do Meireles, Aldeota e Centro. É possível ver o valor exato ao passar o mouse sobre o arco. </p> 
+
+          <p align="justify">Outra informação está contida nos centro da visualização, os chamados acordes. Com o mouse sobre um bairro, podemos ver que acordes conectam os outros arcos ao arco selecionado. A largura de um acorde em um arco representa a quantidade de viagens que partem daquele bairro. A cor assumida pelo acorde indica qual dos dois bairros é um destino mais comum (proporcionalmente) em relação ao outro dentre todas as viagens que tem como origem e destino as extremidades do acorde. Por exemplo, ao selecionar o bairro "Centro", vemos que a maioria dos acordes são da mesma cor que seu arco. Isso indica que o número percentual de viagens que parte dos outros bairros para o centro é maior do que o número percentual de viagens que partem do centro para esses mesmos bairros, uma informação que faz sentido, visto o valor comercial, econômico e cultural do Centro da cidade. Esse fenômeno só não acontece em um bairro: Meireles. Nesse caso, é maior o número percentual de viagens que partem do Meireles para o Centro do que o inverso. Essas informações são visíveis também ao colocar o mouse sobre um acorde.</p>
+
+        </div>
+        
+      </div>
+
+      
+  </div>
+  
+  
+  <!-- /fourth section -->
+
+  <!-- fifth section -->
+  <div id="services" class="pad-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Trabalhos futuros</h3>
+          <ul>
+            <li>Análise de uso por tipo de usuário (Aplicativo ou Bilhete único);</li>
+            <li>Correlação com condições climáticas;</li>
+            <li>Análise de gênero e idade em relação à dias úteis, feriados e finais de semana;</li>
+            <li>Estudo mais aprofundado em relação  retiradas e destinos;</li>
+            <li>Estudo sobre os dados do Minibicicletar.</li>
+          </ul>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /fifth section -->
+
+  <!-- google map -->
+  <!-- <div id="google_map"></div> -->
+  <!-- /google map -->
+
+  <!-- footer -->
+  <footer>
+    <hr />
+    <div class="container">
+      <p class="text-right">Desenvolvido por <a href="https://github.com/danilo-avilar" target="_blank">@danilo-avilar</a>, <a href="https://github.com/omadson" target="_blank">@omadson</a> e <a href="https://github.com/renangv" target="_blank">@renangv</a></p>
+    </div>
+  </footer>
+  <!-- /footer -->
+
+  <!-- attach JavaScripts -->
+  <!-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <!-- <script src="js/bootstrap.min.js"></script>  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <!-- <script src="js/main.js"></script> -->
+</body>
+<script src="js/top_stations.js"></script>
+<script src="js/estacoes_implantacao.js"></script>
+<script src="js/rides_between_neighborhood.js"></script>
+<script src="data/bairros.js"></script>
+<script src="js/usuarios1.js"></script>
+<script src="js/station_distribuition.js"></script>
+<script src="js/rides_of_day.js"></script>
+<script src="js/rides_per_day2.js"></script>
+<script src="js/regression_m_f.js"></script>
+<script src="js/rides_per_hour.js"></script>
+<script src="js/rides_per_month.js"></script>
+<script src="js/users_by_birth_year.js"></script>
+<script src="js/rides_by_birth_year.js"></script>
+<script src="js/time_ride_by_wd.js"></script>
+<script src="js/time_ride_by_sex.js"></script>
+</html>

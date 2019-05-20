@@ -1,0 +1,4 @@
+/noteboks/.ipynb_checkpoints
+/noteboks/__pycache__
+*.xlsx
+*.xlsx#
