@@ -1,5 +1,5 @@
 # CKP7466
-Repositório para as tarefas da disciplina de probabilidade e processos estocásticos (2019.1) 
+Repositório para o material da disciplina de probabilidade e processos estocásticos (2019.1).
 
 
 <!-- ## informações
