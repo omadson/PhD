@@ -8,16 +8,28 @@ def PRESS(D_in,D_out,W):
         error = (np.divide(D_out[:,d] - D_in @ W[:,d], 1 - np.diag(D_in @ np.linalg.inv(D_in.T @ D_in) @ D_in.T)) ** 2).mean()
     return error.mean()
 
+def p_inv(X, X_pinv, x_k):
+    d_k    = X_pinv @ x_k
+    c_k    = x_k - X @ d_k
+    k1     = np.linalg.inv(1 + d_k.T @ d_k)
+    ckTck = c_k.T @ c_k
+    c_k_pinv = np.linalg.inv(ckTck) @ c_k.T
+    ck_Tck = c_k_pinv @ c_k
+    XX = (1 - ck_Tck) @ k1 @ d_k.T @ X_pinv
+    return np.vstack((X_pinv - d_k @ c_k_pinv - d_k @ XX, c_k_pinv + XX  ))
+
 class MRSR(object):
     """docstring for MRSR"""
-    def __init__(self, norm=1, feature_number=None,repetition_number=10,press=False,tol=10e-4):
+    def __init__(self, norm=1, feature_number=None,repetition_number=10,press=False,tol=None, pinv=True):
         self.norm  = norm
         self.max_k = feature_number
         self.n_var = repetition_number
         self.tol   = tol
         self.press = press
+        self.pinv  = pinv
     
     def fit(self, X, T):
+
         n, m = X.shape
         q    = T.shape[1]
 
@@ -45,14 +57,19 @@ class MRSR(object):
             # A       = A.union({c_k_hat})
 
             # add column most important to input vector
-            order.append(int(c_k.argmax()))
+            i_max = int(c_k.argmax())
+            order.append(i_max)
             X_k     = X[:,order]
             
             # estimate the regression coefficients
-            
+            if self.pinv==True:
+                X_pinv = np.linalg.inv(X_k.T @ X_k) @ X_k.T if k == 0 else p_inv(X_k[:,:-1], X_pinv, X_k[:,-1][np.newaxis].T)
+            else:
+                X_pinv = np.linalg.inv(X_k.T @ X_k) @ X_k.T 
 
-            W_k_hat = np.linalg.pinv(X_k) @ T
+            W_k_hat = X_pinv @ T
             Y_k_hat = X_k @ W_k_hat
+            
             
             # create W sparse
             W_k_hat_ = np.zeros((m,q))
@@ -64,19 +81,17 @@ class MRSR(object):
             U_k = C_k.copy()
             V_k = (Y_k_hat - Y_k).T @ X
             lb = list()
-            if self.norm == 1:
-                # l1 norm
-                # create 
+            if self.norm == np.inf:
+                # Inf norm
                 for j in set(range(m)).difference(set(order)):
                     u_kj = U_k[:,j]
                     v_kj = V_k[:,j]
-                    LB = list()
-                    for s in S: LB.append((c_k_hat - s.T @ u_kj) / (c_k_hat - s.T @ v_kj))
-                    LB = np.array(LB)
-                    try:
-                        lb.append(LB[LB>0].min())
-                    except Exception as e:
-                        lb.append(np.abs(LB).min())
+
+                    a = (c_k_hat + u_kj) / (c_k_hat + v_kj)
+                    b = (c_k_hat - u_kj) / (c_k_hat - v_kj)
+                    LB = np.vstack((a,b))
+                    lb.append(LB[LB>0].min())
+
             elif self.norm == 2:
                 # l2 norm
                 for j in set(range(m)).difference(set(order)):
@@ -99,8 +114,23 @@ class MRSR(object):
                             x2 = x1
                         roots = np.array([x1,x2])
                         lb.extend(list(roots[roots > 0]))
-            if len(lb) == 0:
-                return self
+
+            else:
+                # l1 norm
+                # create 
+                for j in set(range(m)).difference(set(order)):
+                    u_kj = U_k[:,j]
+                    v_kj = V_k[:,j]
+                    LB = list()
+                    for s in S: LB.append((c_k_hat - s.T @ u_kj) / (c_k_hat - s.T @ v_kj))
+                    LB = np.array(LB)
+                    try:
+                        lb.append(LB[LB>0].min())
+                    except Exception as e:
+                        lb.append(np.abs(LB).min())
+            
+            # if len(lb) == 0:
+            #     return self
             lb_op = np.array(lb).min()
 
             # update o regression coefficients are 
@@ -113,13 +143,13 @@ class MRSR(object):
             self.corr  = corr
 
             if k > self.n_var:
-                
                 if self.press == True:
                     error.append(PRESS(X,T,W_k))
                     error_var = np.std(np.array(error)[k-self.n_var:k])    
+                    self.tol  = 10e-4 if self.tol == None else self.tol
                 else:
                     error_var = np.std(np.array(corr)[k-self.n_var:k])
-                    self.tol  = 0.5
+                    self.tol  = 0.5 if self.tol == None else self.tol
 
                 if error_var < self.tol:
                     return self
