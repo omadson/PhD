@@ -1,11 +1,9 @@
 import numpy as np
 import itertools
 
-def PRESS(D_in,D_out,W):
-    D = D_out.shape[1]
-    error = np.zeros(D)
-    for d in range(D):
-        error = (np.divide(D_out[:,d] - D_in @ W[:,d], 1 - np.diag(D_in @ np.linalg.inv(D_in.T @ D_in) @ D_in.T)) ** 2).mean()
+def PRESS(X,X_pinv,T,W):
+    D = T.shape[1]
+    error = np.divide(T - X @ W, np.repeat(np.diag(X @ X_pinv)[np.newaxis].T,D, axis=1)) ** 2
     return error.mean()
 
 def p_inv(X, X_pinv, x_k):
@@ -38,7 +36,7 @@ class MRSR(object):
         # A = set()
         Y_k     = X @ W_k
 
-        error = list()
+        self.error = list()
         order = list()
         corr  = list()
 
@@ -65,7 +63,11 @@ class MRSR(object):
             if self.pinv==True:
                 X_pinv = np.linalg.inv(X_k.T @ X_k) @ X_k.T if k == 0 else p_inv(X_k[:,:-1], X_pinv, X_k[:,-1][np.newaxis].T)
             else:
-                X_pinv = np.linalg.inv(X_k.T @ X_k) @ X_k.T 
+                try:
+                    X_pinv = np.linalg.inv(X_k.T @ X_k) @ X_k.T 
+                except Exception as e:
+                    X_pinv = np.linalg.pinv(X_k)
+                
 
             W_k_hat = X_pinv @ T
             Y_k_hat = X_k @ W_k_hat
@@ -139,18 +141,14 @@ class MRSR(object):
 
             self.W     = W_k[order,:]
             self.order = list(order)
-            self.error = error
-            self.corr  = corr
+
+            if self.press == True:
+                self.error.append(PRESS(X_k,X_pinv,T,W_k[order,:]))
+            else:
+                self.error.append(c_k_hat)
 
             if k > self.n_var:
-                if self.press == True:
-                    error.append(PRESS(X,T,W_k))
-                    error_var = np.std(np.array(error)[k-self.n_var:k])    
-                    self.tol  = 10e-4 if self.tol == None else self.tol
-                else:
-                    error_var = np.std(np.array(corr)[k-self.n_var:k])
-                    self.tol  = 0.5 if self.tol == None else self.tol
-
+                error_var = np.std(np.array(self.error)[k-self.n_var:k])
                 if error_var < self.tol:
                     return self
 
