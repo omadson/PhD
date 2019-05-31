@@ -3,8 +3,8 @@ import itertools
 
 def PRESS(X,X_pinv,T,W):
     D = T.shape[1]
-    error = np.divide(T - X @ W, np.repeat(np.diag(X @ X_pinv)[np.newaxis].T,D, axis=1)) ** 2
-    return error.mean()
+    error = np.divide(T - X @ W, np.repeat(1 - np.diag(X @ X_pinv)[np.newaxis].T,D, axis=1)) ** 2
+    return error.sum(axis=0).sum()
 
 def p_inv(X, X_pinv, x_k):
     d_k    = X_pinv @ x_k
@@ -18,12 +18,9 @@ def p_inv(X, X_pinv, x_k):
 
 class MRSR(object):
     """docstring for MRSR"""
-    def __init__(self, norm=1, feature_number=None,repetition_number=10,press=False,tol=None, pinv=True):
+    def __init__(self, norm=1, feature_number=None, pinv=True):
         self.norm  = norm
         self.max_k = feature_number
-        self.n_var = repetition_number
-        self.tol   = tol
-        self.press = press
         self.pinv  = pinv
     
     def fit(self, X, T):
@@ -39,6 +36,9 @@ class MRSR(object):
         self.error = list()
         order = list()
         corr  = list()
+
+        Ws     = list()
+        orders = list()
 
         # optimization loop
         self.max_k = range(m-1) if self.max_k == None else range(self.max_k)
@@ -139,18 +139,14 @@ class MRSR(object):
             Y_k = ((1 - lb_op) * Y_k) + (lb_op * Y_k_hat)
             W_k = ((1 - lb_op) * W_k) + (lb_op * W_k_hat_)
 
-            self.W     = W_k[order,:]
-            self.order = list(order)
+            Ws.append(W_k[order,:])
+            orders.append(list(order))
 
-            if self.press == True:
-                self.error.append(PRESS(X_k,X_pinv,T,W_k[order,:]))
-            else:
-                self.error.append(c_k_hat)
-
-            if k > self.n_var:
-                error_var = np.std(np.array(self.error)[k-self.n_var:k])
-                if error_var < self.tol:
-                    return self
+            self.error.append(PRESS(X_k,X_pinv,T,W_k[order,:]))
+            
+        i_star = int(np.argmin(self.error))
+        self.W = Ws[i_star]
+        self.order = orders[i_star]
 
         return self
 
