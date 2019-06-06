@@ -23,6 +23,9 @@ Repositório para o material da disciplina de probabilidade e processos estocás
  - [Aula 14 - variáveis aleatórias contínuas #5](https://github.com/omadson/CKP7466/raw/master/slides/aula14.pdf);
  - [Aula 15 - distribuições de funções de variáveis aleatórias #1](https://github.com/omadson/CKP7466/raw/master/slides/aula15.pdf);
  - [Aula 16 - distribuições de funções de variáveis aleatórias #2](https://github.com/omadson/CKP7466/raw/master/slides/aula16.pdf);
+ - [Aula 17 - processos estocásticos #1](https://github.com/omadson/CKP7466/raw/master/slides/aula17.pdf);
+ - [Aula 18 - processos estocásticos #2](https://github.com/omadson/CKP7466/raw/master/slides/aula18.pdf);
+ - [Aula 19 - processos estocásticos #3](https://github.com/omadson/CKP7466/raw/master/slides/aula19.pdf);
 
 ## listas
  - [lista #1](https://github.com/omadson/CKP7466/raw/master/listas/lista01.pdf);
