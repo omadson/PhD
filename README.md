@@ -16,3 +16,4 @@ all codes of my PhD.
 ### softwares
  - scikit-mlm: Minimal Learning Machine implementation using the scikit-learn API. 
  - fuzzy-c-means: A simple implementation of Fuzzy C-means algorithm. 
+ - mrsr: A Python module implementing the Multiresponse Sparse Regression algorithm.
