@@ -1,0 +1,17 @@
+size 8 4
+begin graph
+   scale 1 1
+   !xtitle "Feature 1"
+   !ytitle "Feature 2"
+   xaxis off
+   yaxis off
+   data   "data.csv" d1=c1,c2
+   data   "rp_rn_mlm.csv" d2=c1,c2
+   data   "data_rn_mlm.csv"   d3=c1,c2
+   
+   d1 marker   fcircle   color rgb255(216,179,101) msize .15
+   d2 marker   fcircle   color rgb255(216-80,179-80,101-80)  msize .2
+   
+   d3 line color black lwidth .04
+
+end graph
