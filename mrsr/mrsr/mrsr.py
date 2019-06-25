@@ -143,9 +143,15 @@ class MRSR(object):
             Ws.append(W_k[order,:])
             orders.append(list(order))
 
-            self.error.append(PRESS(X_k,X_pinv,T,W_k[order,:]))
-            
-        self.feature_number = int(np.argmin(self.error)) if self.feature_number == None else self.feature_number-1
+            if self.feature_number == None:
+                self.error.append(PRESS(X_k,X_pinv,T,W_k[order,:]))
+        
+        if self.feature_number == None:
+            self.feature_number = int(np.argmin(self.error))
+        else:
+            self.error = corr
+            self.feature_number = self.feature_number-1
+        
         self.W = Ws[self.feature_number]
         self.order = orders[self.feature_number]
 

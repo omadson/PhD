@@ -9,7 +9,7 @@ def read(filename):
 
 setup(
     name="mrsr",
-    version="0.0.4",
+    version="0.0.5",
     url="https://github.com/omadson/mrsr",
     license='MIT',
 
