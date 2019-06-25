@@ -18,10 +18,11 @@ def p_inv(X, X_pinv, x_k):
 
 class MRSR(object):
     """docstring for MRSR"""
-    def __init__(self, norm=1, feature_number=None, pinv=True):
-        self.norm  = norm
-        self.max_k = feature_number
-        self.pinv  = pinv
+    def __init__(self, norm=1, max_feature_number=None, pinv=True, feature_number=None):
+        self.norm               = norm
+        self.max_feature_number = max_feature_number
+        self.feature_number     = feature_number
+        self.pinv               = pinv
     
     def fit(self, X, T):
 
@@ -41,11 +42,11 @@ class MRSR(object):
         orders = list()
 
         # optimization loop
-        self.max_k = range(m-1) if self.max_k == None else range(self.max_k)
+        self.max_feature_number = range(m-1) if self.max_feature_number == None else range(self.max_feature_number)
         
         if self.norm == 1: S = np.array(list(itertools.product([-1, 1], repeat=q)))
 
-        for k in self.max_k:
+        for k in self.max_feature_number:
             # compute correlation beetween inputs and outputs
             C_k        = (T - Y_k).T @ X
             c_k        = np.array([np.linalg.norm(C_k[:,j],self.norm) for j in range(m)])
@@ -144,9 +145,9 @@ class MRSR(object):
 
             self.error.append(PRESS(X_k,X_pinv,T,W_k[order,:]))
             
-        i_star = int(np.argmin(self.error))
-        self.W = Ws[i_star]
-        self.order = orders[i_star]
+        self.feature_number = int(np.argmin(self.error)) if self.feature_number == None else self.feature_number-1
+        self.W = Ws[self.feature_number]
+        self.order = orders[self.feature_number]
 
         return self
 
